@@ -36,7 +36,7 @@ class UserController extends Controller
             return redirect()->route('user.profile');
         }else{
             return back()->withErrors([
-                'nomor' => 'Kamu Bukan Admin'
+                'nomor' => 'Kamu Bukan User'
             ])->onlyInput('nomor');
         }
     }
@@ -56,13 +56,20 @@ class UserController extends Controller
 
         $data = $request->validate([
             'name' => 'required|min:3|max:255|string',
-            'email' => 'required|email',
             'nomor' => 'required|min:10',
             'jenis_kelamin' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'password'       => 'required|min:6|same:password_again',
             'password_again' => 'required'
-        ]);
+        ],
+    [
+        'name.required' => 'Nama Wajib Diisi',
+        'nomor.required' => 'Nomor Hp Wajib Diisi',
+        'jenis_kelamin.required' => 'Jenis Kelamin Wajib Diisi',
+        'tanggal_lahir.required' => 'Tanggal Lahir Wajib Diisi',
+        'password.required' => 'Password Wajib Diisi',
+        'password_again.required' => 'Password Wajib Diisi',
+    ]);
 
         $user = User::create($data);
 

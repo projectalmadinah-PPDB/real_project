@@ -10,7 +10,10 @@
   <body>
     <div class="container-scroller">
       @include('pages.admin.dashboard.layouts.sidebar')
+      <div class="container-fluid page-body-wrapper">
       @yield('content')
+      </div>
+      @include('pages.admin.dashboard.layouts.navbar')
     </div>
     @include('pages.admin.dashboard.layouts.script')
   </body>

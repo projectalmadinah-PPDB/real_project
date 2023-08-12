@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -37,8 +38,24 @@ Route::prefix('/admin')->name('admin.')->group(function(){
           return view('pages.admin.dashboard.index');
         })->name('admin.dashboard');
       });
-});
 
+      // Route::resource('article', ArticleController::class);
+
+      Route::get('/article' , [ArticleController::class,'index'])->name('article.index');
+
+      Route::get('/article/create', [ArticleController::class,'create'])->name('article.create');
+      
+      Route::post('/articles/create/proses', [ArticleController::class,'store'])->name('article.store');
+      
+      Route::get('/articles/edit/{slug}', [ArticleController::class,'edit'])->name('article.edit');
+      
+      Route::put('/articles/update/{slug}', [ArticleController::class,'update'])->name('article.update');
+
+      Route::get('/articles/{id}', [ArticleController::class,'show'])->name('article.show');
+
+      Route::delete('/article/delete/{id}', [ArticleController::class, 'destroy'])->name('article.delete');
+    });
+    
 Route::prefix('/user')->name('user.')->group(function(){
     Route::get('/login', [UserController::class,'index'])->name('index');
 
