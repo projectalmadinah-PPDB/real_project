@@ -63,36 +63,18 @@
                 </div>
             </div>
             <div class="flex flex-wrap">
+                @foreach ($article as $index)
                 <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
                     <div class="bg-white rounded-xl shadow-lg overvlow-hidden mb-10 dark:bg-slate-800">
-                        <img src="https://source.unsplash.com/360x200?programming" alt="programming" class="w-full">
+                        <img src="{{ asset('storage/' . $index['image'])}}" alt="programming" class="w-full">
                         <div class="py-8 px-6">
-                            <h3><a href="#" class="block mb-3 font-semibold text-xl text-dark hover:text-primary truncate dark:text-white">Programming</a></h3>
-                            <p class="font-medium text-base text-secondary mb-6">Mencoba beberapa bahasa program untuk membandingkan minat atau passion kita berada dimana?</p>
-                            <a href="#" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:opacity-80">Baca Selengkapnya</a>
+                            <h3><a href="#" class="block mb-3 font-semibold text-xl text-dark hover:text-primary truncate dark:text-white">{{$index['title']}}</a></h3>
+                            <p class="font-medium text-base text-secondary mb-6">{{$index['desc']}}</p>
+                            <a href="https://pondokinformatika.com/" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:opacity-80">Baca Selengkapnya</a>
                         </div>
                     </div>
                 </div>
-                <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
-                    <div class="bg-white rounded-xl shadow-lg overvlow-hidden mb-10 dark:bg-slate-800">
-                        <img src="https://source.unsplash.com/360x200?mountain" alt="mountain" class="w-full">
-                        <div class="py-8 px-6">
-                            <h3><a href="#" class="block mb-3 font-semibold text-xl text-dark hover:text-primary truncate dark:text-white">Traveling</a></h3>
-                            <p class="font-medium text-base text-secondary mb-6">Mengexplore luasnya negeri ini dengan berkendara ataupun naik angkutan umum, menjadi suatu keseruan tersendiri yang hanya bisa di nikmati dengan cara Traveling. Dengan bonus mencoba kenikmatan wisata kuliner khas lokal.</p>
-                            <a href="#" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:opacity-80">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
-                    <div class="bg-white rounded-xl shadow-lg overvlow-hidden mb-10 dark:bg-slate-800">
-                        <img src="https://source.unsplash.com/360x200?sport" alt="sport" class="w-full">
-                        <div class="py-8 px-6">
-                            <h3><a href="#" class="block mb-3 font-semibold text-xl text-dark hover:text-primary truncate dark:text-white">Olahraga</a></h3>
-                            <p class="font-medium text-base text-secondary mb-6">Menyempatkan waktu Untuk berolahraga walaupun hanya 2 kali dalam sepekan untuk menjaga stamina tetap bugar dan sehat adalah keharusan.</p>
-                            <a href="#" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:opacity-80">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

@@ -8,9 +8,20 @@
     <div class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 w-max">
         <div class="p-6">
             <div class="w-full max-w-xs">
+              @if (Auth::user()->email_verified_at == NULL)
+                  <form id="formAuthentication" class="mb-3" action="{{route('user.resend-email-verification')}}" method="POST">
+                    @csrf
+                    @method('POST')
+                    <div class="mb-3">
+                    <button class="btn btn-primary d-grid w-100" type="submit">Kirim Ulang Email</button>
+                    </div>
+                </form>
+                  @endif
                 <form class="">
+                  
                     <div class="flex">
                       <div class="">
+                        
                           <div class="mb-2">
                               <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                                   Nama Lengkap

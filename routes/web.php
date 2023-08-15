@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\User\FrontController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -17,13 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('front.index');
-})->name('front');
-
-Route::get('/profile',function(){
-    return view('front.profile');
-})->name('profile');
+Route::get('/', [FrontController::class,'index'])->name('front');
 
 Route::prefix('/admin')->name('admin.')->group(function(){
     Route::get('/login', [AdminController::class,'index'])->name('index');
@@ -57,6 +52,12 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     });
     
 Route::prefix('/user')->name('user.')->group(function(){
+
+    Route::get('/verification', [UserController::class, 'verifyEmail'])->name('verification');
+    Route::post('/verification/resend-email-verification', [UserController::class, 'resendEmailVerification'])->name('resend-email-verification');
+
+    Route::get('/verification/success/{token}', [UserController::class, 'verifyEmailProcess'])->name('verification.process');
+
     Route::get('/login', [UserController::class,'index'])->name('index');
 
     Route::post('login/proses', [UserController::class,'login'])->name('login');
@@ -67,7 +68,7 @@ Route::prefix('/user')->name('user.')->group(function(){
 
     Route::get('/logout', [UserController::class,'logout'])->name('logout');
 
-    Route::middleware(['profile', 'role:user'])->group(function(){
+    Route::middleware(['profile' , 'role:user'])->group(function(){
         Route::get('/profile', function(){
           return view('front.profile');
         })->name('profile');

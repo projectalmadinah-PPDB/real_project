@@ -33,6 +33,14 @@
                         <li class="group">
                             <a href="{{route('user.logout')}}" class="font-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Logout</a>
                         </li>
+                        @if (Auth::user()->role == 'admin')
+                            <li class="group">
+                                <a href="{{route('admin.admin.dashboard')}}" class="font-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Dashboard</a>
+                            </li>
+                            <li class="group">
+                                <a href="{{route('admin.logout')}}" class="font-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Logout</a>
+                            </li>
+                        @endif
                         @else
                         <li class="group">
                             <a href="{{route('user.show')}}" class="font-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Daftar</a>
