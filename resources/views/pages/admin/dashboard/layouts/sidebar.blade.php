@@ -65,7 +65,7 @@
           <span class="menu-title">Dashboard</span>
         </a>
       </li>
-      {{-- <li class="nav-item menu-items">
+      <li class="nav-item menu-items">
         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-icon">
             <i class="mdi mdi-account-multiple"></i>
@@ -79,37 +79,30 @@
             <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Data Pendaftaran</a></li>
           </ul>
         </div>
-      </li> --}}
+      </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" data-toggle="collapse" href="#documents" aria-expanded="false" aria-controls="document">
-            <span class="menu-icon">
-                <i class="mdi mdi-file-document-box"></i>
-            </span>
-            <span class="menu-title">Document</span>
-            <i class="menu-arrow"></i>
+        <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">
+          <span class="menu-icon">
+            <i class="mdi mdi-file-document-box"></i>
+          </span>
+          <span class="menu-title">Documentation</span>
         </a>
-        <div class="collapse" id="documents">
-            <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{route('admin.document.index')}}">All Document</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('admin.document.create')}}">Add Document</a></li>
-            </ul>
-        </div>
-    </li>
-    <li class="nav-item menu-items">
+      </li>
+      <li class="nav-item menu-items">
         <a class="nav-link" data-toggle="collapse" href="#article" aria-expanded="false" aria-controls="article">
-            <span class="menu-icon">
-                <i class="mdi mdi-security"></i>
-            </span>
-            <span class="menu-title">Article</span>
-            <i class="menu-arrow"></i>
+          <span class="menu-icon">
+            <i class="mdi mdi-security"></i>
+          </span>
+          <span class="menu-title">Article</span>
+          <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="article">
-            <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{route('admin.article.index')}}">All Article</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('admin.article.create')}}">Add Article</a></li>
-            </ul>
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{route('admin.article.index')}}">All Article</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('admin.article.create')}}">Add Article</a></li>
+          </ul>
         </div>
-    </li>    
+      </li>
       <li class="nav-item menu-items">
         <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
           <span class="menu-icon">
