@@ -10,7 +10,8 @@
   <body>
     <div class="container-scroller">
       @include('pages.admin.dashboard.layouts.sidebar')
-      <div class="container-fluid page-body-wrapper">
+      <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
       @yield('content')
       </div>
       @include('pages.admin.dashboard.layouts.navbar')

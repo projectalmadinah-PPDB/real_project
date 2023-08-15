@@ -53,7 +53,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       // document
 
-      Route::resource('/document',DocumentController::class);
+      // Route::resource('/document',DocumentController::class);
     });
     
 Route::prefix('/user')->name('user.')->group(function(){
@@ -84,6 +84,3 @@ Route::prefix('/user')->name('user.')->group(function(){
       });
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

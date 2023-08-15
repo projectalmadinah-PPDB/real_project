@@ -1,16 +1,8 @@
-<!-- plugins:css -->
-<link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
-<!-- endinject -->
-<!-- Plugin css for this page -->
-<link rel="stylesheet" href="/assets/vendors/jvectormap/jquery-jvectormap.css">
-<link rel="stylesheet" href="/assets/vendors/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet" href="/assets/vendors/owl-carousel-2/owl.carousel.min.css">
-<link rel="stylesheet" href="/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
-<!-- End plugin css for this page -->
-<!-- inject:css -->
-<!-- endinject -->
-<!-- Layout styles -->
-<link rel="stylesheet" href="/assets/css/style.css">
-<!-- End layout styles -->
-<link rel="shortcut icon" href="/assets/images/favicon.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>Adminmart Template - The Ultimate Multipurpose admin template</title>
+    <!-- Custom CSS -->
+    <link href="assets/extra-libs/c3/c3.min.css" rel="stylesheet">
+    <link href="assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+    <link href="assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="dist/css/style.min.css" rel="stylesheet">
