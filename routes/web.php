@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\User\FrontController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -48,7 +49,11 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::get('/articles/{id}', [ArticleController::class,'show'])->name('article.show');
 
-      Route::delete('/article/delete/{id}', [ArticleController::class, 'destroy'])->name('article.delete');
+      Route::delete('/articles/delete/{id}', [DocumentController::class, 'destroy'])->name('article.delete');
+
+      // document
+
+      Route::resource('/document',DocumentController::class);
     });
     
 Route::prefix('/user')->name('user.')->group(function(){
@@ -65,6 +70,10 @@ Route::prefix('/user')->name('user.')->group(function(){
     Route::get('/register',[UserController::class,'show'])->name('show');
 
     Route::post('register/proses', [UserController::class,'register'])->name('register.proses');
+
+    Route::get('/daftar-ulang', [UserController::class,'dartar_ulang'])->name('daftar.ulang');
+
+    Route::post('daftar-ulang/proses', [UserController::class,'dartar_ulang_proses'])->name('proses.daftar.proses');
 
     Route::get('/logout', [UserController::class,'logout'])->name('logout');
 

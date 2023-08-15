@@ -16,5 +16,6 @@
       @include('pages.admin.dashboard.layouts.navbar')
     </div>
     @include('pages.admin.dashboard.layouts.script')
+    @stack('add-script')
   </body>
 </html>
