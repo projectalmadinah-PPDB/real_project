@@ -336,102 +336,106 @@ class="fixed bottom-16 right-16 flex flex-col-reverse gap-y-2 z-[100]">
 
 <p id="registration"></p>
 <!-- formulir pendaftaran -->
+@if (Auth::check())
+@else
 <section
-    class="relative section flex-col shadow-lg bg-[#23AA8A]/70 mx-20 md:mx-32 mt-10">
-    <div 
-        class="bg-image-logo absolute top-0 left-0 w-full h-full opacity-10" 
-        style="background-image: url('images/logo_only_white.svg');
-        background-position: -70px -70px;
-        background-size: 80%;
-        background-repeat: no-repeat;">
-    </div>
-    <div class="mx-auto text-center my-10 relative">
-        <h2 class="text-3xl font-bold text-gray-900 md:text-4xl">Formulir Pendaftaran</h2>
-        <p class="mt-2 text-lg leading-3 text-white">Mohon isi formulir pendaftaran dengan lengkap dan benar.</p>
-    </div>
-    <form action="{{route('user.register.proses')}}" method="POST" class="flex flex-col justify-between items-center w-full px-5 pb-7 md:px-10 relative">
-        @csrf
-        @method('POST')
-        <div class="sm:10/12 md:w-3/4">
-            <div class="mb-2">
-                <label for="name" class="text-sm mb-2">Nama Lengkap</label>
-                <input placeholder="nama kamu" type="text" id="name"  name="name" class="border-0 rounded-full py-2 px-3 shadow-inner w-full placeholder:text-sm" >
-                @error('name')
-                <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                     <span class="font-medium">{{$message}}
-                </div>
-                @enderror
+class="relative section flex-col shadow-lg bg-[#23AA8A]/70 mx-20 md:mx-32 mt-10">
+<div 
+    class="bg-image-logo absolute top-0 left-0 w-full h-full opacity-10" 
+    style="background-image: url('images/logo_only_white.svg');
+    background-position: -70px -70px;
+    background-size: 80%;
+    background-repeat: no-repeat;">
+</div>
+<div class="mx-auto text-center my-10 relative">
+    <h2 class="text-3xl font-bold text-gray-900 md:text-4xl">Formulir Pendaftaran</h2>
+    <p class="mt-2 text-lg leading-3 text-white">Mohon isi formulir pendaftaran dengan lengkap dan benar.</p>
+</div>
+<form action="{{route('user.register.proses')}}" method="POST" class="flex flex-col justify-between items-center w-full px-5 pb-7 md:px-10 relative">
+    @csrf
+    @method('POST')
+    <div class="sm:10/12 md:w-3/4">
+        <div class="mb-2">
+            <label for="name" class="text-sm mb-2">Nama Lengkap</label>
+            <input placeholder="nama kamu" type="text" id="name"  name="name" class="border-0 rounded-full py-2 px-3 shadow-inner w-full placeholder:text-sm" >
+            @error('name')
+            <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                 <span class="font-medium">{{$message}}
             </div>
-            <div class="mb-2">
-                <label for="email" class="text-sm mb-2">Email Kamu</label>
-                <input placeholder="Email Kamu" type="email" id="email"  name="email" class="border-0 rounded-full py-2 px-3 shadow-inner w-full placeholder:text-sm" >
-                @error('email')
-                <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                     <span class="font-medium">{{$message}}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-2">
-                <label for="phone" class="text-sm mb-2">Nomor Telepon</label>
-                <input placeholder="nomor telepon kamu" type="number" id="phone" name="nomor" class="border-0 rounded-full py-2 px-3 shadow-inner w-full placeholder:text-sm" >
-                @error('nomor')
-                <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                    <span class="font-medium">{{$message}}</span>
-                </div>
-                @enderror
-            </div>
-            <div class="mb-2">
-                <label for="gender" class="text-sm mb-2">Jenis Kelamin</label>
-                <select id="gender" name="jenis_kelamin" class="border-0 rounded-full py-2 px-3 appearance-none shadow-inner w-full">
-                    <option class="text-sm" disabled selected>Pilih Jenis Kelamin mu</option>
-                    <option class="text-sm" value="laki">Laki-Laki</option>
-                    <option class="text-sm" value="perempuan">Perempuan</option>
-                </select>
-                @error('jenis_kelamin')
-                <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                    <span class="font-medium">{{$message}}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-2">
-                <label for="birth" class="text-sm mb-2">Tanggal Lahir</label>
-                <input type="date" id="birth" name="tanggal_lahir" class="border-0 rounded-full py-2 px-3 shadow-inner w-full">
-                @error('tanggal_lahir')
-                <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                    <span class="font-medium">{{$message}}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-2">
-                <label for="password" class="text-sm mb-2">Password</label>
-                <input placeholder="••••••••••" name="password" type="password" id="password" class="border-0 rounded-full py-2 px-3 shadow-inner w-full" >
-                @error('password')
-                <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                    <span class="font-medium">{{$message}}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-2">
-                <label for="password_corfirmation" class="text-sm mb-2">Konfirmasi Password</label>
-                <input placeholder="••••••••••" name="password_again" type="password" id="password_corfirmation" class="border-0 rounded-full py-2 px-3 shadow-inner w-full" >
-                @error('password_again')
-                <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                    <span class="font-medium">{{$message}}
-                </div>
-                @enderror
-            </div>
+            @enderror
         </div>
-        <button type="submit" class="mt-8 w-3/4 p-2 bg-[#0A4A3B] hover:bg-emerald-300 border-0 text-white hover:text-emerald-950 font-medium tracking-wide rounded-[30px] duration-200 uppercase">
-            Daftar
-        </button>
-    </form>
+        <div class="mb-2">
+            <label for="email" class="text-sm mb-2">Email Kamu</label>
+            <input placeholder="Email Kamu" type="email" id="email"  name="email" class="border-0 rounded-full py-2 px-3 shadow-inner w-full placeholder:text-sm" >
+            @error('email')
+            <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                 <span class="font-medium">{{$message}}
+            </div>
+            @enderror
+        </div>
+        <div class="mb-2">
+            <label for="phone" class="text-sm mb-2">Nomor Telepon</label>
+            <input placeholder="nomor telepon kamu" type="number" id="phone" name="nomor" class="border-0 rounded-full py-2 px-3 shadow-inner w-full placeholder:text-sm" >
+            @error('nomor')
+            <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <span class="font-medium">{{$message}}</span>
+            </div>
+            @enderror
+        </div>
+        <div class="mb-2">
+            <label for="gender" class="text-sm mb-2">Jenis Kelamin</label>
+            <select id="gender" name="jenis_kelamin" class="border-0 rounded-full py-2 px-3 appearance-none shadow-inner w-full">
+                <option class="text-sm" disabled selected>Pilih Jenis Kelamin mu</option>
+                <option class="text-sm" value="laki">Laki-Laki</option>
+                <option class="text-sm" value="perempuan">Perempuan</option>
+            </select>
+            @error('jenis_kelamin')
+            <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <span class="font-medium">{{$message}}
+            </div>
+            @enderror
+        </div>
+        <div class="mb-2">
+            <label for="birth" class="text-sm mb-2">Tanggal Lahir</label>
+            <input type="date" id="birth" name="tanggal_lahir" class="border-0 rounded-full py-2 px-3 shadow-inner w-full">
+            @error('tanggal_lahir')
+            <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <span class="font-medium">{{$message}}
+            </div>
+            @enderror
+        </div>
+        <div class="mb-2">
+            <label for="password" class="text-sm mb-2">Password</label>
+            <input placeholder="••••••••••" name="password" type="password" id="password" class="border-0 rounded-full py-2 px-3 shadow-inner w-full" >
+            @error('password')
+            <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <span class="font-medium">{{$message}}
+            </div>
+            @enderror
+        </div>
+        <div class="mb-2">
+            <label for="password_corfirmation" class="text-sm mb-2">Konfirmasi Password</label>
+            <input placeholder="••••••••••" name="password_again" type="password" id="password_corfirmation" class="border-0 rounded-full py-2 px-3 shadow-inner w-full" >
+            @error('password_again')
+            <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <span class="font-medium">{{$message}}
+            </div>
+            @enderror
+        </div>
+    </div>
+    <button type="submit" class="mt-8 w-3/4 p-2 bg-[#0A4A3B] hover:bg-emerald-300 border-0 text-white hover:text-emerald-950 font-medium tracking-wide rounded-[30px] duration-200 uppercase">
+        Daftar
+    </button>
+</form>
 </section>
-
-<p id="announcement"></p>
-<!-- pengumuman -->
 <section class="section shadow-lg">
     
 </section>
+@endif
+
+<p id="announcement"></p>
+<!-- pengumuman -->
+
 
 <p id="information"></p>
 <!-- informasi -->

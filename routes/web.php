@@ -87,6 +87,10 @@ Route::prefix('/user')->name('user.')->group(function(){
 
     Route::get('/logout', [UserController::class,'logout'])->name('logout');
 
+    Route::get('/activication',[UserController::class,'activication'])->name('activication');
+
+    Route::post('/activication/process',[UserController::class,'activication_process'])->name('activication.process');
+
     Route::middleware(['profile','role:user'])->group(function(){
         Route::get('/profile', function(){
           return view('front.profile');

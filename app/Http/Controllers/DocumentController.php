@@ -36,33 +36,49 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'file_pdf.*' => 'required|mimes:pdf|max:2048', // Maksimal 2 MB per file
+        $request->validate([
+            'kk' => 'required|mimes:pdf|max:2048', // Kartu Keluarga
+            'ijazah' => 'required|mimes:pdf|max:2048', // Ijazah
+            'akta' => 'required|mimes:pdf|max:2048', // Akta
         ]);
-        
-        if ($request->hasFile('file_pdf')) {
-            foreach ($request->file('file_pdf') as $pdfFile) {
-                $path = public_path('assets/pdf'); // Path absolut ke direktori "public/assets/pdf"
-                $fileName = time() . '_' . $pdfFile->getClientOriginalName();
-                $pdfFile->move($path, $fileName);
     
-                // Proses penyimpanan informasi ke database jika diperlukan
+        if ($request->hasFile('kk') && $request->hasFile('ijazah') && $request->hasFile('akta')) {
+            $kkFile = $request->file('kk');
+            $ijazahFile = $request->file('ijazah');
+            $aktaFile = $request->file('akta');
+    
+            $kkFileName = time() . '_kk_' . $kkFile->getClientOriginalName();
+            $ijazahFileName = time() . '_ijazah_' . $ijazahFile->getClientOriginalName();
+            $aktaFileName = time() . '_akta_' . $aktaFile->getClientOriginalName();
+    
+            $kkFile->storeAs('public/pdf', $kkFileName);
+            $ijazahFile->storeAs('public/pdf', $ijazahFileName);
+            $aktaFile->storeAs('public/pdf', $aktaFileName);
+    
+            // Proses penyimpanan informasi ke database
+            $data = [
+                'kk' => 'pdf/' . $kkFileName,
+                'ijazah' => 'pdf/' . $ijazahFileName,
+                'akta' => 'pdf/' . $aktaFileName,
+            ];
+            
+            $data['user_id'] = Auth::user()->id;
+            
+            Document::create($data);
+    
+            return redirect()->back()->with('success', 'Files berhasil diunggah.');
         }
-        $user = Auth::user();
-        $data = Document::create([
-            'file_pdf' => 'assets/pdf/' . $fileName,
-            'user_id' => $user->id
-        ]);
-    }
-        return redirect()->route('admin.document.index')->with('success', 'File PDF berhasil diunggah.');
+    
+        return redirect()->back()->with('error', 'Gagal mengunggah files.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Document $document)
+    public function show($id)
     {
-        return view('pages.admin.dashboard.documents.show');
+        $document = Document::find($id);
+        return view('pages.admin.dashboard.documents.show', compact('document'));
     }
 
     /**

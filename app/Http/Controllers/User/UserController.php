@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Traits\fonnte;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Mail;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-
+    use fonnte;
     public function __construct()
     {
         $this->middleware('guest', [
@@ -118,6 +119,11 @@ class UserController extends Controller
         'email' => $request->email,
         'password' => $request->password
     ];
+    $user = User::where('email',$request->email)->first();
+
+            if($user->active == 0){
+                return redirect()->route('activication');
+            }
 
     if (Auth::attempt($infologin)) {
         if(auth()->user()->role == 'user'){
@@ -143,7 +149,7 @@ class UserController extends Controller
     public function register(Request $request)
     {
         // dd($request->all());
-        $data = $request->validate([
+    $data = $request->validate([
         'name' => 'required|min:3|max:255|string',
         'email' => 'required|email|unique:users',
         'nomor' => 'required|min:10',
@@ -153,14 +159,38 @@ class UserController extends Controller
         'password_again' => 'required'
     ]);
 
-    $request['password'] = bcrypt($request->password);
+    $data['password'] = bcrypt($request->password);
+    // $data['token'] = rand(111111,999999);
+
     $user = User::create($data);
+
+    // $messages = "Verivication ur Account $user->token";
+
+    // $this->send_message($user->nomor,$messages);
 
     auth()->login($user);
     $this->sendEmailVerification();
 
-    return redirect()->route('user.profile');
+    return redirect()->route('user.verification');
     }
+
+    // public function activication()
+    // {
+    //     return view('pages.auth.activication');
+    // }
+
+    // public function activication_process(Request $request)
+    // {
+    //     $user = User::where('token',$request->token)->first();
+
+    //     if($user){
+    //         $user->update([
+    //             'active' => 1
+    //         ]);
+    //         return redirect()->route('login');
+    //     }
+    //     return redirect()->back()->with('error','Token Tidak Sesuai');
+    // }
     public function logout()
     {
         Auth::logout();

@@ -39,11 +39,11 @@
               <h1 class="text-lg font-semibold mb-3 dark:text-slate-200">Data Peserta</h1>
               <div class="mb-3">
                   <label class="text-sm mb-2 dark:text-slate-300">Nama Lengkap</label>
-                  <input value="nama kamu" type="text" class="border-2 border-dark rounded-full shadow-inner w-full placeholder:text-sm py-2 px-3" autocomplete="off">
+                  <input value="{{Auth::user()->name}}" type="text" class="border-2 border-dark rounded-full shadow-inner w-full placeholder:text-sm py-2 px-3" autocomplete="off">
               </div>
               <div class="mb-3">
                   <label class="text-sm mb-2 dark:text-slate-300">Nomor Telepon</label>
-                  <input value="nomor telepon kamu" type="tel" class="border-2 rounded-full shadow-inner w-full placeholder:text-sm py-2 px-3" autocomplete="off">
+                  <input value="{{Auth::user()->nomor}}" type="tel" class="border-2 rounded-full shadow-inner w-full placeholder:text-sm py-2 px-3" autocomplete="off">
               </div>
               <div class="mb-3">
                   <label class="text-sm mb-2 dark:text-slate-300">NIK</label>
@@ -51,7 +51,7 @@
               </div>
               <div class="mb-3">
                   <label class="text-sm mb-2 dark:text-slate-300">Tanggal Lahir</label>
-                  <input value="20/05/2004" type="text" class="border-2 rounded-full shadow-inner w-full py-2 px-3">
+                  <input value="{{Auth::user()->tanggal_lahir}}" type="text" class="border-2 rounded-full shadow-inner w-full py-2 px-3">
               </div>
           </div>
           <div class="divider bg-black/30 divider-horizontal"></div>

@@ -24,6 +24,8 @@ class User extends Authenticatable
         'jenis_kelamin',
         'tanggal_lahir',
         'password',
+        'token',
+        'active',
         'email_verified_at',
     ];
 

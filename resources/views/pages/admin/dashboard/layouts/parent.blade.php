@@ -8,13 +8,11 @@
     @include('pages.admin.dashboard.layouts.include')
   </head>
   <body>
-    <div class="container-scroller">
-      @include('pages.admin.dashboard.layouts.sidebar')
-      <div class="container-fluid page-body-wrapper">
-      @yield('content')
-      </div>
       @include('pages.admin.dashboard.layouts.navbar')
-    </div>
+      <div class="wrapper">     
+        @yield('content')
+      </div>
+      @include('pages.admin.dashboard.layouts.sidebar') 
     @include('pages.admin.dashboard.layouts.script')
   </body>
 </html>

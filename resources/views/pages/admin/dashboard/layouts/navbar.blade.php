@@ -1,58 +1,39 @@
-<nav class="navbar p-0 fixed-top d-flex flex-row">
-    <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-      <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/assets/images/logo-mini.svg" alt="logo" /></a>
+<div class="main-header">
+    <div class="logo-header">
+        <a href="index.html" class="logo">
+            Al-Romusa
+        </a>
+        <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
     </div>
-    <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-      <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-        <span class="mdi mdi-menu"></span>
-      </button>
-      <ul class="navbar-nav w-100">
-        <li class="nav-item w-100">
-          <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-            <input type="text" class="form-control" placeholder="Search products">
-          </form>
-        </li>
-      </ul>
-      <ul class="navbar-nav navbar-nav-right">
-        <li class="nav-item dropdown">
-          <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
-            <div class="navbar-profile">
-              <img class="img-xs rounded-circle" src="/assets/images/faces/face15.jpg" alt="">
-              <p class="mb-0 d-none d-sm-block navbar-profile-name">{{Auth::user()->name}}</p>
-              <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+    <nav class="navbar navbar-header navbar-expand-lg">
+        <div class="container-fluid">
+            <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span >{{Auth::user()->name}}</span></span> </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <div class="user-box">
+                                <div class="u-img"><img src="assets/img/profile.jpg" alt="user"></div>
+                                <div class="u-text">
+                                    <h4>{{Auth::user()->name}}</h4>
+                                    <p class="text-muted">hello@themekita.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                </div>
+                            </li>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"><i class="ti-user"></i> My Profile</a>
+                            <a class="dropdown-item" href="#"></i> My Balance</a>
+                            <a class="dropdown-item" href="#"><i class="ti-email"></i> Inbox</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"><i class="ti-settings"></i> Account Setting</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"><i class="fa fa-power-off"></i> Logout</a>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                </ul>
             </div>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-            <h6 class="p-3 mb-0">Profile</h6>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <div class="preview-icon bg-dark rounded-circle">
-                  <i class="mdi mdi-settings text-success"></i>
-                </div>
-              </div>
-              <div class="preview-item-content">
-                <p class="preview-subject mb-1">Settings</p>
-              </div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="{{route('admin.logout')}}" class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <div class="preview-icon bg-dark rounded-circle">
-                  <i class="mdi mdi-logout text-danger"></i>
-                </div>
-              </div>
-              <div class="preview-item-content">
-                <p class="preview-subject mb-1">Log out</p>
-              </div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <p class="p-3 mb-0 text-center">Advanced settings</p>
-          </div>
-        </li>
-      </ul>
-      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-        <span class="mdi mdi-format-line-spacing"></span>
-      </button>
-    </div>
-  </nav>
+    </nav>
+</div>

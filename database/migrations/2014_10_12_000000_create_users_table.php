@@ -21,6 +21,8 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->string('password');
             $table->enum('role',['user','admin'])->default('user');
+            $table->integer('token')->nullable();
+            $table->boolean('active')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

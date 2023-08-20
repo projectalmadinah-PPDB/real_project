@@ -11,7 +11,9 @@ class Document extends Model
 
     protected $fillable = [
         'user_id',
-        'file_pdf'
+        'kk',
+        'ijazah',
+        'akta'
     ];
 
     public function user()
