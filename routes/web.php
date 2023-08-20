@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DocumentController;
-use App\Http\Controllers\User\FrontController;
 use App\Http\Controllers\User\UserController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\User\FrontController;
+use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     // Route::post('register/proses', [AdminController::class,'register'])->name('register');
     Route::get('/logout', [AdminController::class,'logout'])->name('logout');
 
-    Route::middleware(['auth', 'role:admin'])->group(function(){
+    Route::middleware(['auth','role:admin'])->group(function(){
         Route::get('/dashboard', function(){
           return view('pages.admin.dashboard.index');
         })->name('admin.dashboard');
@@ -53,7 +53,21 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       // document
 
-      // Route::resource('/document',DocumentController::class);
+      Route::resource('/document',DocumentController::class);
+
+      // Route::get('/document' , [DocumentController::class,'index'])->name('admin.document.index');
+
+      // Route::get('/document/create', [DocumentController::class,'create'])->name('admin.document.create');
+      
+      // Route::post('documents/create/proses', [DocumentController::class,'store'])->name('admin.document.store');
+      
+      // Route::get('/documents/edit/{id}', [DocumentController::class,'edit'])->name('admin.document.edit');
+      
+      // Route::put('/documents/update/{id}', [DocumentController::class,'update'])->name('admin.document.update');
+
+      // Route::get('/documents/{id}', [DocumentController::class,'show'])->name('admin.document.show');
+
+      // Route::delete('/documents/delete/{id}', [DocumentController::class, 'destroy'])->name('admin.document.delete');
     });
     
 Route::prefix('/user')->name('user.')->group(function(){
@@ -71,13 +85,9 @@ Route::prefix('/user')->name('user.')->group(function(){
 
     Route::post('register/proses', [UserController::class,'register'])->name('register.proses');
 
-    Route::get('/daftar-ulang', [UserController::class,'dartar_ulang'])->name('daftar.ulang');
-
-    Route::post('daftar-ulang/proses', [UserController::class,'dartar_ulang_proses'])->name('proses.daftar.proses');
-
     Route::get('/logout', [UserController::class,'logout'])->name('logout');
 
-    Route::middleware(['profile' , 'role:user'])->group(function(){
+    Route::middleware(['profile','role:user'])->group(function(){
         Route::get('/profile', function(){
           return view('front.profile');
         })->name('profile');

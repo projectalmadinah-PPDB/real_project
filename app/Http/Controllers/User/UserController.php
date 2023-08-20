@@ -73,7 +73,7 @@ class UserController extends Controller
             "email_verified_at" => Date('Y-m-d'),
         ]);
 
-        return redirect()->route('user.profile');
+        return redirect()->route('user.profile')->with('success','Anda Berhasil Masuk');
     }
 
     public function resendEmailVerification()
@@ -107,10 +107,10 @@ class UserController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:8'
         ],
     [
-        'email.required' => 'Email Wajib Diisi',
+        'email.required' => 'email Wajib Diisi',
         'password.required' => 'Password Wajib Diisi'
     ]);
 
@@ -123,16 +123,16 @@ class UserController extends Controller
         if(auth()->user()->role == 'user'){
             $request->session()->regenerate();
             return redirect()->route('user.profile');
-        }else{
+        }else{ 
             return back()->withErrors([
-                'nomor' => 'Kamu Bukan User'
-            ])->onlyInput('nomor');
+                'email' => 'Kamu Bukan User'
+            ])->onlyInput('email');
         }
     }
     return back()->withErrors([
-        'nomor' => 'Nomor Hp Anda Salah / Sudah Di Pakai',
+        'email' => 'Email Anda Salah / Sudah Di Pakai',
         'password' => 'Password Salah'
-    ])->onlyInput('nomor','password');
+    ])->onlyInput('email','password');
     }
 
     public function show()
@@ -142,24 +142,24 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-
-    $request->validate([
+        // dd($request->all());
+        $data = $request->validate([
         'name' => 'required|min:3|max:255|string',
-            'email' => 'required|email|unique:users',
-            'nomor' => 'required|min:10',
-            'jenis_kelamin' => 'required|string',
-            'tanggal_lahir' => 'required|date',
-            'password'       => 'required|min:6|same:password_again',
-            'password_again' => 'required'
+        'email' => 'required|email|unique:users',
+        'nomor' => 'required|min:10',
+        'jenis_kelamin' => 'required|string',
+        'tanggal_lahir' => 'required|date',
+        'password'       => 'required|min:6|same:password_again',
+        'password_again' => 'required'
     ]);
 
     $request['password'] = bcrypt($request->password);
-    $user = User::create($request->all());
+    $user = User::create($data);
 
     auth()->login($user);
     $this->sendEmailVerification();
 
-    return redirect()->route('user.verification');
+    return redirect()->route('user.profile');
     }
     public function logout()
     {

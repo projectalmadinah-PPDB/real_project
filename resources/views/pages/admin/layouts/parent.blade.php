@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Farhan | @yield('title')</title>
     @include('front.layouts.include')
-    @vite(['resources/css/final.css','resources/js/script.js'])
 </head>
 <body>
    

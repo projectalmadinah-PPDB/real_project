@@ -135,7 +135,7 @@
                     </div>
                     <button class="bg-emerald-300 px-20 py-1 rounded-full font-base text-white" type="submit">Daftar</button>
                     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                        Already have an account? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+                        Already have an account? <a href="{{route('user.index')}}" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
                     </p>
                 </form>
             </div>

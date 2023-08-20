@@ -22,25 +22,25 @@
                 <div class="col-md-6">
                   <h4 class="card-title">Detail Article</h4>
                   <label for="" class="form-label">Image</label>
-                  <img src="{{ asset('storage/' . $article['image'])}}" style="width:450px;height:280px" class="rounded-0" alt="">
+                  <img src="{{ asset('storage/' . $articles['image'])}}" style="width:450px;height:280px" class="rounded-0" alt="">
                 </div>
                 <div class="col-md-6">
                   <h4 class="card-title">Detail</h4>
                   <div class="mb-2">
                     <label for="" class="form-label">Title</label>
-                    <input type="text" disabled value="{{$article->title}}" class="d-block bg-white border-0 px-3 py-1 rounded-lg text-bold w-75">
+                    <input type="text" disabled value="{{$articles->title}}" class="d-block bg-white border-0 px-3 py-1 rounded-lg text-bold w-75">
                   </div>
                   <div class="mb-2">
                     <label for="" class="form-label">Description</label>
-                    <textarea disabled cols="10" rows="5" class="d-block bg-white border-0 px-3 py-1 rounded-lg text-bold w-75">{{$article->title}}</textarea>
+                    <textarea disabled cols="10" rows="5" class="d-block bg-white border-0 px-3 py-1 rounded-lg text-bold w-75">{{$articles->title}}</textarea>
                   </div>
                   <div class="mb-2">
                     <label for="" class="form-label">Author</label>
-                    <input type="text" disabled value="{{$article->user->name}}" class="d-block bg-white border-0 px-3 py-1 rounded-lg text-bold w-75">
+                    <input type="text" disabled value="{{$articles->user->name}}" class="d-block bg-white border-0 px-3 py-1 rounded-lg text-bold w-75">
                   </div>
                   <div class="mb-3">
                     <label for="" class="form-label">Slug</label>
-                    <input type="text" disabled value="{{$article->slug}}" class="d-block bg-white border-0 px-3 py-1 rounded-lg text-bold w-75">
+                    <input type="text" disabled value="{{$articles->slug}}" class="d-block bg-white border-0 px-3 py-1 rounded-lg text-bold w-75">
                   </div>
                   <a href="{{route('admin.article.index')}}" type="button" class="btn btn-outline-warning btn-icon-text">
                     <i class="mdi mdi-keyboard-backspace"></i> Back </a>

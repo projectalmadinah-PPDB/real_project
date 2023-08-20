@@ -1,1 +1,1 @@
-<script src="resouces/js/script.js"></script>
+{{-- <script src="resouces/js/script.js"></script> --}}

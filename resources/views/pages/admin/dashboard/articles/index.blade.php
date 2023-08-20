@@ -40,7 +40,22 @@
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Article Table</h4>
+              <div class="d-flex justify-content-between align-items-center">
+                <h4 class="card-title lh-1 mb-0">Article Table</h4>
+                <div>
+                <a href="{{route('admin.article.create')}}" class="badge badge-primary text-white">Add Article + </a>
+                </div>
+              </div>
+              <form action="{{route('admin.article.index')}}" method="GET">
+                <div class="form-group mt-3 mb-3">
+                  <div class="input-group w-25">
+                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" name="search">
+                    <div class="input-group-append">
+                      <button class="btn btn-sm btn-primary" type="submit">Search</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
               <div class="table-responsive">
                 <table class="table">
                   <thead>
@@ -56,7 +71,7 @@
                   <tbody>
                     @foreach ($article as $index => $item)
                     <tr>
-                      <td>{{$index + 1}}</td>
+                      <td>{{$index + $article->firstItem()}}</td>
                       <td><img src="{{ asset('storage/' . $item['image'])}}" style="width:120px;height:70px" class="rounded-0"></td>
                       <td>{{$item['title']}}</td>
                       <td>{{$item->user->name}}</td>
@@ -74,6 +89,9 @@
                     @endforeach
                   </tbody>
                 </table>
+              </div>
+              <div class="d-flex align-items-center justify-content-end">
+                {{$article->links()}}
               </div>
             </div>
           </div>

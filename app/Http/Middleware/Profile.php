@@ -18,8 +18,6 @@ class Profile
     {
         if (Auth::check() && Auth::user()->role == 'user') {
             return $next($request);
-        }elseif(Auth::check() && Auth::user()->role == 'admin'){
-            return redirect()->route('admin.admin.dashboard');
         }
     }
 }

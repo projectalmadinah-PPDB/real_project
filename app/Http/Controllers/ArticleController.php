@@ -6,17 +6,22 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-
 class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $article = Article::orderBy('id', 'desc')->get();
+        if($request->has('search')){
+            $article = Article::where('title','LIKE','%'.$request->search.'%')->paginate(5);
+        }
+        else{
+            $article = Article::orderBy('id', 'desc')->paginate(5);
+        }
         return view('pages.admin.dashboard.articles.index',compact('article'));
     }
+	
 
     /**
      * Show the form for creating a new resource.
@@ -55,10 +60,10 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Article $article)
+    public function show($slug)
     {
-        $article = Article::firstOrFail();
-        return view('pages.admin.dashboard.articles.show',compact('article'));
+        $articles = Article::where('slug', $slug)->firstOrFail();
+        return view('pages.admin.dashboard.articles.show', compact('articles'));
     }
 
     /**

@@ -13,15 +13,9 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->bigInteger('no_kk');
-            $table->bigInteger('no_nik');
-            $table->text('address');
-            $table->string('photo_kk');
-            $table->string('nama_bapak');
-            $table->string('nama_ibu');
-            $table->string('asal_sekolah');
-            $table->text('alasan_masuk');
+            $table->unsignedBigInteger('user_id')->constrained();
+            $table->string('file_pdf');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

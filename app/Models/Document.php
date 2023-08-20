@@ -11,18 +11,11 @@ class Document extends Model
 
     protected $fillable = [
         'user_id',
-        'no_kk',
-        'no_nik',
-        'address',
-        'photo_kk',
-        'nama_bapak',
-        'nama_ibu',
-        'asal_sekolah',
-        'alasan_masuk'
+        'file_pdf'
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class);
     }
 }

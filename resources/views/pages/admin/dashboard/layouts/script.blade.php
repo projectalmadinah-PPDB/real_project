@@ -1,19 +1,21 @@
-<script src="assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- apps -->
-    <!-- apps -->
-    <script src="dist/js/app-style-switcher.js"></script>
-    <script src="dist/js/feather.min.js"></script>
-    <script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="dist/js/custom.min.js"></script>
-    <!--This page JavaScript -->
-    <script src="assets/extra-libs/c3/d3.min.js"></script>
-    <script src="assets/extra-libs/c3/c3.min.js"></script>
-    <script src="assets/libs/chartist/dist/chartist.min.js"></script>
-    <script src="assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-    <script src="assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="dist/js/pages/dashboards/dashboard1.min.js"></script>
+<!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="/assets/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="/assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
+    <script src="/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="/assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="/assets/js/off-canvas.js"></script>
+    <script src="/assets/js/hoverable-collapse.js"></script>
+    <script src="/assets/js/misc.js"></script>
+    <script src="/assets/js/settings.js"></script>
+    <script src="/assets/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="/assets/js/dashboard.js"></script>
+    <!-- End custom js for this page -->

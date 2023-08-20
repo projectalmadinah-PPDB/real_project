@@ -6,20 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Farhan | @yield('title')</title>
     @include('front.layouts.include')
-    @vite(['resources/css/final.css','resources/js/script.js'])
+    @vite(['resources/css/output.css'])
 </head>
 <body>
     @include('front.layouts.header')
-    
-    @yield('content')
-
+    <div class="font-poppins dark:bg-slate-800">
+        @yield('content')
+    </div>
     @include('front.layouts.footer')
-
-<!-- Back to top Start -->
-    <a href="#home" id="to-top" class="hidden fixed bottom-4 right-4 z-[9999] justify-center items-center h-14 w-14 rounded-full bg-primary p-4 hover:animate-pulse">
-        <span class="block h-5 w-5 border-t-2 border-l-2 rotate-45 mt-2"></span>
-    </a>
-<!-- Back to top End -->
     @include('front.layouts.script')
     @stack('my-script')
 </body>

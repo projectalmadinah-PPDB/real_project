@@ -1,4 +1,4 @@
-<!-- Footer Start -->
+{{-- <!-- Footer Start -->
 <footer class="bg-dark pt-24 pb-12">
     <div class="container">
         <div class="flex flex-wrap">
@@ -76,4 +76,34 @@
         </div>
     </div>
 </footer>
-<!-- Footer End -->
+<!-- Footer End --> --}}
+
+<footer 
+            class="flex flex-col md:flex-row justify-center items-center gap-x-16 gap-y-5 p-10 bg-[#23AA8A] text-base-100">
+            <div class="flex flex-col gap-y-4 items-end w-[17rem] order-last md:order-none">
+                <input type="text" value="alamat" class="bg-white w-full rounded-[30px] py-2 border-0 shadow-inner text-center" disabled>
+                <textarea class="bg-white w-full rounded-[30px] border-0 shadow-inner min-h-[6rem] max-h-[6rem] resize-none p-4 py-2" disabled>deskripsi</textarea>
+            </div>
+            <div class="flex flex-col items-center text-white order-first md:order-none">
+                <img src="/dist/images/logo_only_white.svg" class="w-40">
+                <p class="font-extrabold text-4xl uppercase mt-3">
+                    Ar-Romusha
+                    <p>Copyright © 2023 - All right reserved</p>
+                </p>
+            </div>
+            <div class="flex flex-col gap-y-4 items-start w-[17rem]">
+                <input type="text" value="email" class="bg-white w-full rounded-[30px] py-2 border-0 shadow-inner text-center" disabled>
+                <input type="text" value="no telepon" class="bg-white w-full rounded-[30px] py-2 border-0 shadow-inner text-center" disabled>
+                <input type="text" value="instagram" class="bg-white w-full rounded-[30px] py-2 border-0 shadow-inner text-center" disabled>
+            </div>
+        </footer>
+
+        <footer 
+            class="grid w-full text-center justify-center items-center p-4 bg-[#0A4A3B] text-base-100 ">
+            <div>
+                <p class="text-xs font-thin text-white">
+                    <span class="font-normal">Copyright © 2023 </span> - All right reserved by 
+                    <span class="font-medium">Pondok Informatika Al Madinah</span>
+                </p>
+            </div>
+        </footer>
