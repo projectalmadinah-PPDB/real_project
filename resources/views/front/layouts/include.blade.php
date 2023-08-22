@@ -8,5 +8,5 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link rel="shortcut icon" type="image/x-icon" href="">
 
-<link rel="stylesheet" href="dist/assets/style.css">
+<link rel="stylesheet" href="/dist/assets/style.css">
 <link rel="stylesheet" href="resource/css/output.css"/>

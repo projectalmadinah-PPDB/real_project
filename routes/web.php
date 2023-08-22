@@ -7,6 +7,10 @@ use App\Http\Controllers\User\UserController;
 // use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\FrontController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LolosController;
+use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +34,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     Route::get('/logout', [AdminController::class,'logout'])->name('logout');
 
     Route::middleware(['auth','role:admin'])->group(function(){
-        Route::get('/dashboard', function(){
-          return view('pages.admin.dashboard.index');
-        })->name('admin.dashboard');
+        Route::get('/dashboard', [DashboardController::class,'index'])->name('admin.dashboard');
       });
 
       // Route::resource('article', ArticleController::class);
@@ -50,6 +52,21 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::get('/articles/{id}', [ArticleController::class,'show'])->name('article.show');
 
       Route::delete('/articles/delete/{id}', [DocumentController::class, 'destroy'])->name('article.delete');
+
+      Route::get('/biodata',[PendaftaranController::class,'index'])->name('pendaftaran.index');
+
+      Route::get('/biodata/show/{id}',[PendaftaranController::class,'show'])->name('pendaftaran.show');
+
+      Route::get('/biodata/document/{id}',[PendaftaranController::class,'show_document'])->name('pendaftaran.show_document');
+
+      Route::delete('/biodata/delete/{id}',[PendaftaranController::class,'destroy'])->name('pendaftaran.destroy');
+
+      Route::get('/biodata/edit/{id}',[PendaftaranController::class,'edit'])->name('pendaftaran.edit');
+
+      Route::put('/biodata/update/{id}',[PendaftaranController::class,'update'])->name('pendaftaran.update');
+
+      Route::get('/lolos',[LolosController::class,'index'])->name('lolos.index');
+
 
       // document
 
@@ -91,10 +108,26 @@ Route::prefix('/user')->name('user.')->group(function(){
 
     Route::post('/activication/process',[UserController::class,'activication_process'])->name('activication.process');
 
-    Route::middleware(['profile','role:user'])->group(function(){
+    Route::middleware(['auth','role:user'])->group(function(){
         Route::get('/profile', function(){
           return view('front.profile');
         })->name('profile');
       });
+    Route::middleware('profile')->group(function(){
+      Route::post('/kelengkapan/process',[PendaftaranController::class,'kelengkapan'])->name('kelengkapan.process');
+
+      Route::get('/uploads/document', [DocumentController::class,'document'])->name('document.index');
+
+      Route::post('/uploads/document/process', [DocumentController::class,'unggah_document'])->name('document.process');
+
+      Route::get('/edit/profile', [SettingController::class,'index'])->name('setting.index');
+      
+      Route::post('/edit/profile/process',[SettingController::class,'update'])->name('setting.update');
+
+      Route::get('/edit/profile/change/password',[SettingController::class,'change_password'])->name('setting.change.password');
+
+      Route::post('/edit/profile/change/password/process',[SettingController::class,'change_password_process'])->name('setting.change.password.process');
+
+    });
 });
 

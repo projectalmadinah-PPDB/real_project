@@ -19,8 +19,8 @@
                                 </div>
                                 <div class="col-7 d-flex align-items-center">
                                     <div class="numbers">
-                                        <p class="card-category">Visitors</p>
-                                        <h4 class="card-title">1,294</h4>
+                                        <p class="card-category">Pendaftar</p>
+                                        <li>{{ $users->count() }}</li>
                                     </div>
                                 </div>
                             </div>
@@ -38,8 +38,8 @@
                                 </div>
                                 <div class="col-7 d-flex align-items-center">
                                     <div class="numbers">
-                                        <p class="card-category">Sales</p>
-                                        <h4 class="card-title">$ 1,345</h4>
+                                        <p class="card-category">Lolos</p>
+                                        <h4 class="card-title">{{$pendaftaran->count()}}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -57,8 +57,8 @@
                                 </div>
                                 <div class="col-7 d-flex align-items-center">
                                     <div class="numbers">
-                                        <p class="card-category">Subscribers</p>
-                                        <h4 class="card-title">1303</h4>
+                                        <p class="card-category">Informasi</p>
+                                        <h4 class="card-title">{{$informasi->count()}}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -178,18 +178,34 @@
                 </div>
                 <div class="col-md-9">
                     <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">World Map</h4>
-                            <p class="card-category">
-                            Map of the distribution of users around the world</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="mapcontainer">
-                                <div class="map">
-                                    <span>Alternative content for the map</span>
-                                </div>
-                            </div>
-                        </div>
+                        <div style="height: 450px;width:100%">
+                            <canvas id="myChart" style="height: 10px"></canvas>
+                          </div>
+                          
+                          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                          
+                          <script>
+                            const ctx = document.getElementById('myChart');
+                          
+                            new Chart(ctx, {
+                              type: 'line',
+                              data: {
+                                labels: ['Pendaftar', 'Lolos', 'Informasi'],
+                                datasets: [{
+                                  label: '# of Votes',
+                                  data: [{{$pendaftaran->count()}}, {{$users->count()}}, {{$informasi->count()}}],
+                                  borderWidth: 1
+                                }]
+                              },
+                              options: {
+                                scales: {
+                                  y: {
+                                    beginAtZero: true
+                                  }
+                                }
+                              }
+                            });
+                          </script>
                     </div>
                 </div>
             </div>

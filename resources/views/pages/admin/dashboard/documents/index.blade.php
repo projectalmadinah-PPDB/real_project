@@ -35,13 +35,17 @@
                         <tr>
                           <td>{{$index + $document->firstItem()}}</td>
                           <td>{{$item->user->name}}</td>
-                          <td>{{$item->kk ? 'ADA' : 'TIDAK ADA'}}</td>
-                          <td>{{$item->ijazah ? 'ADA' : 'TIDAK ADA'}}</td>
-                          <td>{{$item->akta ? 'ADA' : 'TIDAK ADA'}}</td>
+                          <td><button class=" border-0 badge  {{$item->kk ? 'badge-success' : 'badge-danger'}}">{!!$item->kk ? '&#x2713;' : '&#x2715;'!!}</button></td>
+                          <td><button class=" border-0 badge  {{$item->ijazah ? 'badge-success' : 'badge-danger'}}">{!!$item->ijazah ? '&#x2713;' : '&#x2715;'!!}</button></td>
+                          <td><button class=" border-0 badge  {{$item->akta ? 'badge-success' : 'badge-danger'}}">{!!$item->akta ? '&#x2713;' : '&#x2715;'!!}</button></td>
                           <td>
                             <a href="{{route('admin.document.show',$item->id)}}" class="badge badge-primary">Show</a>
-                            <a href="" class="badge badge-warning">Edit</a>
-                            <a href="" class="badge badge-danger">Delete</a>
+                            <a href="{{route('admin.document.edit',$item->id)}}" class="badge badge-warning">Edit</a>
+                            <form action="{{route('admin.document.destroy',$item->id)}}" method="post">
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="badge badge-danger border-0">Delete</button>
+                            </form>
                           </td>
                         </tr>
                       @endforeach

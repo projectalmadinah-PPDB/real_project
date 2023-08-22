@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Document::class);
     }
+
+    public function pendaftaran()
+    {
+        return $this->hasOne(Pendaftaran::class);
+    }
 }

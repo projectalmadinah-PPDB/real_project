@@ -5,19 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Document extends Model
+class Biodata extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'user_id',
-        'kk',
-        'ijazah',
-        'akta'
+        'document_id',
+        'pendaftaran_id'
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class,'user_id','id');
-    }
+    
 }

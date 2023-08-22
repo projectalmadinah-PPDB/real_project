@@ -6,25 +6,35 @@
 <div class="main-panel">
   <div class="content">
     <div class="container-fluid">
-      <h4 class="page-title">Document</h4>
+      <h4 class="page-title">Article</h4>
       <div class="row">
         <div class="col-md-12">
           
           <div class="card">
             <div class="card-header">
               <div class="d-flex justify-content-between">
-                <div class="card-title">Document Table</div>
+                <div class="card-title">Article Table</div>
                 <a href="{{route('admin.article.create')}}" class="btn btn-primary float-end text-white">Create New</a>
               </div>
             </div>
             <div class="card-body">
+              <form action="{{route('admin.article.index')}}" method="get">
+                @csrf
+                @method('get')
+                <div class="d-flex">
+                  <input type="text" name="search" class="form-control w-25 mb-3" >
+                  <div>
+                    <button class="btn btn-primary" type="submit">Find</button>
+                  </div>
+                </div>
+              </form>
               <div class="table-responsive">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
                       <th>ID</th>
                       <th>Title</th>
-                      <th>Photo</th>
+                      {{-- <th>Photo</th> --}}
                       <th>Author</th>
                       <th>Action</th>
                     </tr>
@@ -34,10 +44,10 @@
                       <tr>
                         <td>{{$index + $article->firstItem()}}</td>
                         <td>{{$item->title}}</td>
-                        <td><img src="{{ asset('storage/' . $articles['image'])}}" style="width:450px;height:280px" class="rounded-0" alt=""></td>
+                        {{-- <td><img src="{{ asset('storage/' . $item['image'])}}" style="width:200px;height:200px" class="rounded-0" alt=""></td> --}}
                         <td>{{$item->user->name}}</td>
                         <td>
-                          <a href="{{route('admin.document.show',$item->id)}}" class="badge badge-primary">Show</a>
+                          <a href="{{route('admin.article.show',$item->slug)}}" class="badge badge-primary">Show</a>
                           <a href="" class="badge badge-warning">Edit</a>
                           <a href="" class="badge badge-danger">Delete</a>
                         </td>
@@ -45,6 +55,7 @@
                     @endforeach
                   </tbody>
                 </table>
+                {{$article->links()}}
               </div>
             </div>
           </div>

@@ -65,7 +65,7 @@ class DocumentController extends Controller
             $data['user_id'] = Auth::user()->id;
             
             Document::create($data);
-    
+            
             return redirect()->back()->with('success', 'Files berhasil diunggah.');
         }
     
@@ -100,8 +100,55 @@ class DocumentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Document $document)
+    public function destroy($id)
     {
-        //
+        $data = Document::findOrFail($id);
+
+        $data->delete();
+
+        return redirect()->route('admin.document.index');
+    }
+
+    public function document()
+    {
+        return view('front.upload');
+    }
+
+    public function unggah_document(Request $request)
+    {
+        $request->validate([
+            'kk' => 'required|mimes:pdf|max:2048', // Kartu Keluarga
+            'ijazah' => 'required|mimes:pdf|max:2048', // Ijazah
+            'akta' => 'required|mimes:pdf|max:2048', // Akta
+        ]);
+    
+        if ($request->hasFile('kk') && $request->hasFile('ijazah') && $request->hasFile('akta')) {
+            $kkFile = $request->file('kk');
+            $ijazahFile = $request->file('ijazah');
+            $aktaFile = $request->file('akta');
+    
+            $kkFileName = time() . '_kk_' . $kkFile->getClientOriginalName();
+            $ijazahFileName = time() . '_ijazah_' . $ijazahFile->getClientOriginalName();
+            $aktaFileName = time() . '_akta_' . $aktaFile->getClientOriginalName();
+    
+            $kkFile->storeAs('public/pdf', $kkFileName);
+            $ijazahFile->storeAs('public/pdf', $ijazahFileName);
+            $aktaFile->storeAs('public/pdf', $aktaFileName);
+    
+            // Proses penyimpanan informasi ke database
+            $data = [
+                'kk' => 'pdf/' . $kkFileName,
+                'ijazah' => 'pdf/' . $ijazahFileName,
+                'akta' => 'pdf/' . $aktaFileName,
+            ];
+            
+            $data['user_id'] = Auth::user()->id;
+            
+            Document::create($data);
+    
+            return redirect()->route('user.profile')->with('success', 'Files berhasil diunggah.');
+        }
+    
+        return redirect()->back()->with('success', 'Gagal mengunggah files.');
     }
 }

@@ -14,5 +14,6 @@
       </div>
       @include('pages.admin.dashboard.layouts.sidebar') 
     @include('pages.admin.dashboard.layouts.script')
+    @stack('add-script')
   </body>
 </html>

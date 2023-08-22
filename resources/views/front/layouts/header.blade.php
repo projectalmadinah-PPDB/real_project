@@ -97,6 +97,13 @@
                     class="text-[15px] font-poppins text-slate-900 hover:text-white bg-emerald-300 hover:bg-emerald-400 py-1 px-3 duration-100 rounded-[15px] shadow-inner">
                     Logout
                 </a>
+                @elseif(Auth::check() == 'admin')
+                <a href="{{route('admin.admin.dashboard')}}" 
+                    class="text-[15px] font-poppins dark:text-slate-300 text-slate-900 hover:text-white hover:bg-emerald-400 py-0 px-2 duration-100 rounded-[15px]"
+                >Dashboard</a>
+                <a href="{{route('admin.logout')}}" 
+                    class="text-[15px] font-poppins dark:text-slate-300 text-slate-900 hover:text-white hover:bg-emerald-400 py-0 px-2 duration-100 rounded-[15px]"
+                >logout</a>
                 @else
                 <a href="{{route('user.show')}}" 
                     class="text-[15px] font-poppins dark:text-slate-300 text-slate-900 hover:text-white hover:bg-emerald-400 py-0 px-2 duration-100 rounded-[15px]"

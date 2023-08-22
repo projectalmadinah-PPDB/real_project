@@ -146,6 +146,18 @@
           <p>Dashboard</p>
         </a>
       </li>
+      <li class="nav-item {{Route::is('admin.pendaftaran.*') ? 'active' : '' }}">
+        <a href="{{route('admin.pendaftaran.index')}}">
+          <i class="la la-table"></i>
+          <p>Biodata</p>
+        </a>
+      </li>
+      <li class="nav-item {{Route::is('admin.lolos.index') ? 'active' : '' }}">
+        <a href="{{route('admin.lolos.index')}}">
+          <i class="la la-table"></i>
+          <p>Lolos</p>
+        </a>
+      </li>
       <li class="nav-item {{Route::is('admin.document.*') ? 'active' : '' }}">
         <a href="{{route('admin.document.index')}}">
           <i class="la la-table"></i>

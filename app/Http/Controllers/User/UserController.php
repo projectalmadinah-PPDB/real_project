@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Traits\fonnte;
+use App\Traits\Fonnte;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Mail;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    use fonnte;
+    use Fonnte;
     public function __construct()
     {
         $this->middleware('guest', [
@@ -121,9 +121,9 @@ class UserController extends Controller
     ];
     $user = User::where('email',$request->email)->first();
 
-            if($user->active == 0){
-                return redirect()->route('activication');
-            }
+        if($user->active == 0){
+            return redirect()->route('user.activication');
+        }
 
     if (Auth::attempt($infologin)) {
         if(auth()->user()->role == 'user'){
@@ -160,18 +160,18 @@ class UserController extends Controller
     ]);
 
     $data['password'] = bcrypt($request->password);
-    // $data['token'] = rand(111111,999999);
+    $data['token'] = rand(111111,999999);
 
     $user = User::create($data);
 
-    // $messages = "Verivication ur Account $user->token";
+    $messages = "Verivication ur Account $user->token";
 
-    // $this->send_message($user->nomor,$messages);
-
+    $this->send_message($user->nomor,$messages);
+    
     auth()->login($user);
-    $this->sendEmailVerification();
+    // $this->sendEmailVerification();
 
-    return redirect()->route('user.verification');
+    return redirect()->route('user.activication');
     }
 
     // public function activication()

@@ -13,22 +13,21 @@
             <div class="card-header">
               <div class="card-title">Base Form Control</div>
             </div>
-            <form action="{{route('admin.document.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.article.store')}}" method="post" enctype="multipart/form-data">
               @csrf
               @method('POST')
               <div class="card-body">
                 <div class="form-group">
-                  <label for="exampleFormControlFile1">Kartu Keluarga <strong>*File PDF</strong></label>
-                  <input type="file" class="form-control-file" name="kk" id="exampleFormControlFile1" accept=".pdf">
+                  <label for="Title">Title</label>
+                  <input type="text" class="form-control"  name="title" placeholder="Enter Title">
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlFile1">Ijazah <strong>*File PDF</strong></label>
-                  <input type="file" class="form-control-file" name="ijazah" id="exampleFormControlFile1" accept=".pdf">
+                  <label for="email">Desc</label>
+                  <textarea name="desc" id="" cols="30" rows="2" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="email">Email Address</label>
-                  <input type="email" class="form-control" id="email" placeholder="Enter Email">
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  <label for="email">Image</label>
+                  <input type="file" class="form-control" name="image">
                 </div>
               </div>
               <div class="card-action">

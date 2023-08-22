@@ -5,15 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Document extends Model
+class Pendaftaran extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'kk',
-        'ijazah',
-        'akta'
+        'nik',
+        'nama_ayah',
+        'no_ayah',
+        'nama_ibu',
+        'no_ibu',
+        'alamat'
     ];
 
     public function user()
