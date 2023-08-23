@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="col-7 d-flex align-items-center">
                                     <div class="numbers">
-                                        <p class="card-category">Pendaftar</p>
+                                        <p class="card-category">Registrasi</p>
                                         <li>{{ $users->count() }}</li>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="col-7 d-flex align-items-center">
                                     <div class="numbers">
-                                        <p class="card-category">Lolos</p>
+                                        <p class="card-category">Pendaftaran</p>
                                         <h4 class="card-title">{{$pendaftaran->count()}}</h4>
                                     </div>
                                 </div>
@@ -76,8 +76,8 @@
                                 </div>
                                 <div class="col-7 d-flex align-items-center">
                                     <div class="numbers">
-                                        <p class="card-category">Order</p>
-                                        <h4 class="card-title">576</h4>
+                                        <p class="card-category">Document</p>
+                                        <h4 class="card-title">{{$document->count()}}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -190,10 +190,10 @@
                             new Chart(ctx, {
                               type: 'line',
                               data: {
-                                labels: ['Pendaftar', 'Lolos', 'Informasi'],
+                                labels: ['Pendaftaran', 'Registrasi', 'Informasi','Document'],
                                 datasets: [{
                                   label: '# of Votes',
-                                  data: [{{$pendaftaran->count()}}, {{$users->count()}}, {{$informasi->count()}}],
+                                  data: [{{$pendaftaran->count()}}, {{$users->count()}}, {{$informasi->count()}},{{$document->count()}}],
                                   borderWidth: 1
                                 }]
                               },

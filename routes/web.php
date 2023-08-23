@@ -7,6 +7,7 @@ use App\Http\Controllers\User\UserController;
 // use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\FrontController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LolosController;
 use App\Http\Controllers\PendaftaranController;
@@ -53,17 +54,19 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::delete('/articles/delete/{id}', [DocumentController::class, 'destroy'])->name('article.delete');
 
-      Route::get('/biodata',[PendaftaranController::class,'index'])->name('pendaftaran.index');
+      Route::get('/biodata',[BiodataController::class,'index'])->name('biodata.index');
 
-      Route::get('/biodata/show/{id}',[PendaftaranController::class,'show'])->name('pendaftaran.show');
+      Route::get('/biodata/show/{id}',[BiodataController::class,'show'])->name('biodata.show');
 
-      Route::get('/biodata/document/{id}',[PendaftaranController::class,'show_document'])->name('pendaftaran.show_document');
+      Route::get('/biodata/document/{id}',[BiodataController::class,'show_document'])->name('biodata.show_document');
 
-      Route::delete('/biodata/delete/{id}',[PendaftaranController::class,'destroy'])->name('pendaftaran.destroy');
+      Route::delete('/biodata/delete/{id}',[BiodataController::class,'destroy'])->name('biodata.destroy');
 
-      Route::get('/biodata/edit/{id}',[PendaftaranController::class,'edit'])->name('pendaftaran.edit');
+      Route::get('/biodata/edit/{id}',[BiodataController::class,'edit'])->name('biodata.edit');
 
-      Route::put('/biodata/update/{id}',[PendaftaranController::class,'update'])->name('pendaftaran.update');
+      Route::put('/biodata/update/{id}',[BiodataController::class,'update'])->name('biodata.update');
+
+      Route::get('/pendaftaran',[PendaftaranController::class,'index'])->name('pendaftaran.index');
 
       Route::get('/lolos',[LolosController::class,'index'])->name('lolos.index');
 
@@ -114,7 +117,7 @@ Route::prefix('/user')->name('user.')->group(function(){
         })->name('profile');
       });
     Route::middleware('profile')->group(function(){
-      Route::post('/kelengkapan/process',[PendaftaranController::class,'kelengkapan'])->name('kelengkapan.process');
+      Route::post('/kelengkapan/process',[FrontController::class,'kelengkapan'])->name('kelengkapan.process');
 
       Route::get('/uploads/document', [DocumentController::class,'document'])->name('document.index');
 

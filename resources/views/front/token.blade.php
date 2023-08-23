@@ -9,10 +9,10 @@
       <div class="flex items-center justify-center">
         <img src="../dist/img/Vector.svg" class="items-center justify-center mb-12" >
       </div>
-      <form action="{{route('user.login')}}" method="POST">
+      <form action="{{route('user.activication.process')}}" method="POST">
         @csrf
         <div class="mb-4">
-          <label class="block mb-1" for="number">Email Anda</label>
+          <label class="block mb-1" for="number">Token Anda</label>
           <input id="number" type="number" name="token" class="py-2 px-3 border border-gray-300 focus:border-red-300 focus:outline-none focus:ring focus:ring-red-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full" />
           @error('token')
             <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">

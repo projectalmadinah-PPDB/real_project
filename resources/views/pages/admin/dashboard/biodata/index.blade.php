@@ -1,6 +1,6 @@
 @extends('pages.admin.dashboard.layouts.parent')
 
-@section('title','Pendaftaran')
+@section('title','Biodata')
 
 @section('content')
 <div class="main-panel">
@@ -26,6 +26,7 @@
                         <th>Name</th>
                         <th>Nomor Hp</th>
                         <th>Email</th>
+                        <th>Status</th>
                         {{-- <th>Tanggal Lahir</th>
                         <th>Jenis Kelamin</th> --}}
                         {{-- <th>NIK</th> --}}
@@ -42,19 +43,24 @@
                           {{-- <td>{{$item->tanggal_lahir}}</td>
                           <td>{{$item->jenis_kelamin}}</td> --}}
                           {{-- <td>{{$item->nik}}</td> --}}
+                          @if($item->pendaftaran && $item->document)
+                          <td><button class="badge badge-success border-0">Lengkap</button></td>
+                          @else
+                          <td><button class="badge badge-danger border-0">Tidak Legkap</button></td>
+                          @endif
                           <td>
                             @if($item->pendaftaran == NULL)
                             <a href="" class="badge badge-danger">Tidak Ada Data</a>
                             @else
-                            <a href="{{route('admin.pendaftaran.show',$item->pendaftaran->id)}}" class="badge badge-primary">Data Pribadi</a>
+                            <a href="{{route('admin.biodata.show',$item->pendaftaran->id)}}" class="badge badge-primary">Data Pribadi</a>
                             @endif
                             @if ($item->document == NULL)
                             <a href="" class="badge badge-danger">Tidak Ada Document</a>
                             @else
-                            <a href="{{route('admin.pendaftaran.show_document',$item->document->id)}}" class="badge badge-warning">Document</a>
+                            <a href="{{route('admin.biodata.show_document',$item->document->id)}}" class="badge badge-warning">Document</a>
                             @endif
-                            <a href="{{route('admin.pendaftaran.edit',$item->id)}}" class="badge badge-warning">Edit</a>
-                            <form action="{{route('admin.pendaftaran.destroy',$item->id)}}" method="post" class="d-inline">
+                            <a href="{{route('admin.biodata.edit',$item->id)}}" class="badge badge-warning">Edit</a>
+                            <form action="{{route('admin.biodata.destroy',$item->id)}}" method="post" class="d-inline">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="badge badge-danger border-0">Delete</button>

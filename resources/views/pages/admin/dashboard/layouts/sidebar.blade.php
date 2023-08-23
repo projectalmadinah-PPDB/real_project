@@ -142,31 +142,37 @@
     <ul class="nav">
       <li class="nav-item {{Route::is('admin.admin.dashboard') ? 'active' : '' }}">
         <a href="{{route('admin.admin.dashboard')}}">
-          <i class="la la-dashboard"></i>
+          <i class="bi bi-bar-chart"></i>
           <p>Dashboard</p>
+        </a>
+      </li>
+      <li class="nav-item {{Route::is('admin.biodata.*') ? 'active' : '' }}">
+        <a href="{{route('admin.biodata.index')}}">
+          <i class="bi bi-server"></i>
+          <p>Biodata</p>
         </a>
       </li>
       <li class="nav-item {{Route::is('admin.pendaftaran.*') ? 'active' : '' }}">
         <a href="{{route('admin.pendaftaran.index')}}">
-          <i class="la la-table"></i>
-          <p>Biodata</p>
+          <i class="bi bi-receipt-cutoff"></i>
+          <p>Pendaftaran</p>
         </a>
       </li>
       <li class="nav-item {{Route::is('admin.lolos.index') ? 'active' : '' }}">
         <a href="{{route('admin.lolos.index')}}">
-          <i class="la la-table"></i>
+          <i class="bi bi-reply-all"></i>
           <p>Lolos</p>
         </a>
       </li>
       <li class="nav-item {{Route::is('admin.document.*') ? 'active' : '' }}">
         <a href="{{route('admin.document.index')}}">
-          <i class="la la-table"></i>
+          <i class="bi bi-files"></i>
           <p>Document</p>
         </a>
       </li>
       <li class="nav-item {{Route::is('admin.article.index') ? 'active' : '' }}">
         <a href="{{route('admin.article.index')}}">
-          <i class="la la-keyboard-o"></i>
+          <i class="bi bi-file-earmark-text"></i>
           <p>Article</p>
         </a>
       </li>

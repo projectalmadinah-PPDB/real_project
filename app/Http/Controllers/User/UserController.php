@@ -168,29 +168,29 @@ class UserController extends Controller
 
     $this->send_message($user->nomor,$messages);
     
-    auth()->login($user);
+    // auth()->login($user);
     // $this->sendEmailVerification();
 
     return redirect()->route('user.activication');
     }
 
-    // public function activication()
-    // {
-    //     return view('pages.auth.activication');
-    // }
+    public function activication()
+    {
+        return view('front.token');
+    }
 
-    // public function activication_process(Request $request)
-    // {
-    //     $user = User::where('token',$request->token)->first();
+    public function activication_process(Request $request)
+    {
+        $user = User::where('token',$request->token)->first();
 
-    //     if($user){
-    //         $user->update([
-    //             'active' => 1
-    //         ]);
-    //         return redirect()->route('login');
-    //     }
-    //     return redirect()->back()->with('error','Token Tidak Sesuai');
-    // }
+        if($user){
+            $user->update([
+                'active' => 1
+            ]);
+            return redirect()->route('user.index');
+        }
+        return redirect()->back()->with('error','Token Tidak Sesuai');
+    }
     public function logout()
     {
         Auth::logout();

@@ -1,6 +1,6 @@
 @extends('pages.admin.dashboard.layouts.parent')
 
-@section('title','Show Data Pribadi')
+@section('title','Biodata Document')
 
 @section('content')
 <div class="main-panel">
@@ -14,7 +14,7 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Detail Document {{$document->user->name}}</div>
-                  <a href="{{route('admin.pendaftaran.index')}}" class="btn btn-primary float-end text-white">Back</a>
+                  <a href="{{route('admin.biodata.index')}}" class="btn btn-primary float-end text-white">Back</a>
                 </div>
               </div>
               <div class="card-body">
