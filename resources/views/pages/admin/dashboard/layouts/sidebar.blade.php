@@ -149,13 +149,13 @@
       <li class="nav-item {{Route::is('admin.biodata.*') ? 'active' : '' }}">
         <a href="{{route('admin.biodata.index')}}">
           <i class="bi bi-server"></i>
-          <p>Biodata</p>
+          <p>Pendaftaran</p>
         </a>
       </li>
       <li class="nav-item {{Route::is('admin.pendaftaran.*') ? 'active' : '' }}">
         <a href="{{route('admin.pendaftaran.index')}}">
           <i class="bi bi-receipt-cutoff"></i>
-          <p>Pendaftaran</p>
+          <p>Data Valid</p>
         </a>
       </li>
       <li class="nav-item {{Route::is('admin.lolos.index') ? 'active' : '' }}">

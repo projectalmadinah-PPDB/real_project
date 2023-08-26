@@ -12,7 +12,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::where('role','user')->get();
         $pendaftaran = Pendaftaran::all();
         $document = Document::all();
         $informasi = Article::all();

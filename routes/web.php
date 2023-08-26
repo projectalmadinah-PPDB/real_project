@@ -68,7 +68,22 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::get('/pendaftaran',[PendaftaranController::class,'index'])->name('pendaftaran.index');
 
+      Route::get('/pendaftaran/edit/{id}',[PendaftaranController::class,'edit'])->name('pendaftaran.edit');
+
+      Route::put('/pendaftaran/process/{id}',[PendaftaranController::class,'update'])->name('pendaftaran.update');
+
+      Route::get('/pendaftaran/delete/{id}',[PendaftaranController::class,'destroy'])->name('pendaftaran.destroy');
+
       Route::get('/lolos',[LolosController::class,'index'])->name('lolos.index');
+
+      // Route::get('/lolos/edit/{id}',[LolosController::class,'edit'])->name('lolos.edit');
+
+      // Route::get('/lolos/process/{id}',[LolosController::class,'update'])->name('lolos.update');
+
+      Route::delete('/lolos/delete/{id}',[LolosController::class,'destroy'])->name('lolos.destroy');
+
+
+      Route::post('/pengecekan/{id}',[LolosController::class,'pengecekan'])->name('pengecekan');
 
 
       // document
@@ -92,6 +107,12 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     
 Route::prefix('/user')->name('user.')->group(function(){
 
+    Route::get('/informasi',[FrontController::class,'informasi'])->name('informasi');
+
+    Route::get('/detail-informasi/{slug}',[FrontController::class,'detail_informasi'])->name('informasi.detail');
+
+    Route::get('/about-us',[FrontController::class,'about'])->name('about');
+
     Route::get('/verification', [UserController::class, 'verifyEmail'])->name('verification');
     Route::post('/verification/resend-email-verification', [UserController::class, 'resendEmailVerification'])->name('resend-email-verification');
 
@@ -111,7 +132,7 @@ Route::prefix('/user')->name('user.')->group(function(){
 
     Route::post('/activication/process',[UserController::class,'activication_process'])->name('activication.process');
 
-    Route::middleware(['auth','role:user'])->group(function(){
+    Route::middleware(['profile','role:user'])->group(function(){
         Route::get('/profile', function(){
           return view('front.profile');
         })->name('profile');

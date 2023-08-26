@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -101,58 +102,65 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('pages.user.login');
+        return view('front.login');
     }
 
     public function login(Request $request)
     {
+        $phone = $request->nomor;
+        if (Str::startsWith($phone, '0')) {
+            $phone = '62' . substr($phone, 1);
+        }
         $request->validate([
-            'email' => 'required|email',
+            'nomor' => 'required',
             'password' => 'required|min:8'
         ],
     [
-        'email.required' => 'email Wajib Diisi',
+        'nomor.required' => 'email Wajib Diisi',
         'password.required' => 'Password Wajib Diisi'
     ]);
 
     $infologin = [
-        'email' => $request->email,
+        'nomor' => $phone,
         'password' => $request->password
     ];
-    $user = User::where('email',$request->email)->first();
 
-        if($user->active == 0){
-            return redirect()->route('user.activication');
-        }
+    $user = User::where('nomor',$phone)->first();
 
+    if($user->active == 0){
+         return redirect()->route('user.activication');
+    }
     if (Auth::attempt($infologin)) {
         if(auth()->user()->role == 'user'){
             $request->session()->regenerate();
             return redirect()->route('user.profile');
         }else{ 
             return back()->withErrors([
-                'email' => 'Kamu Bukan User'
-            ])->onlyInput('email');
+                'nomor' => 'Kamu Bukan User'
+            ])->onlyInput('nomor');
         }
     }
     return back()->withErrors([
-        'email' => 'Email Anda Salah / Sudah Di Pakai',
+        'nomor' => 'Nomor Anda Salah / Sudah Di Pakai',
         'password' => 'Password Salah'
-    ])->onlyInput('email','password');
+    ])->onlyInput('nomor','password');
     }
 
     public function show()
     {
-        return view('pages.user.register');
+        return view('front.register');
     }
 
     public function register(Request $request)
     {
+    $phone = $request->nomor;
+    if (Str::startsWith($phone, '0')) {
+        $phone = '62' . substr($phone, 1);
+    }
         // dd($request->all());
     $data = $request->validate([
         'name' => 'required|min:3|max:255|string',
-        'email' => 'required|email|unique:users',
-        'nomor' => 'required|min:10',
+        'nomor' => 'required|min:10|unique:users',
         'jenis_kelamin' => 'required|string',
         'tanggal_lahir' => 'required|date',
         'password'       => 'required|min:6|same:password_again',
@@ -161,7 +169,8 @@ class UserController extends Controller
 
     $data['password'] = bcrypt($request->password);
     $data['token'] = rand(111111,999999);
-
+    $data['nomor'] = $phone;
+    
     $user = User::create($data);
 
     $messages = "Verivication ur Account $user->token";

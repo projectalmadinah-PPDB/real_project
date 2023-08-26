@@ -6,14 +6,14 @@
 <div class="main-panel">
   <div class="content">
     <div class="container-fluid">
-      <h4 class="page-title">Forms</h4>
+      <h4 class="page-title">Pendaftaran</h4>
       <div class="row">
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <div class="card-title">Base Form Control</div>
+              <div class="card-title">Pendaftaran Edit "{{$data->name}}"</div>
             </div>
-            <form action="{{route('admin.biodata.update',$biodata->id)}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.pendaftaran.update',$data->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -21,26 +21,34 @@
                         <div class="card-body">
                           <div class="form-group">
                             <label for="Title">Nama Lengkap</label>
-                            <input type="text" class="form-control"  name="name" placeholder="Enter Name" value="{{$biodata->name}}">
+                            <input type="text" class="form-control"  name="name" placeholder="Enter Name" value="{{$data->name}}">
                           </div>
                           <div class="form-group">
                             <label for="nomor">NO HP</label>
-                            <input name="nomor" class="form-control" type="text" value="{{$biodata->nomor}}">
+                            <input name="nomor" class="form-control" type="text" value="{{$data->nomor}}">
                           </div>
                           <div class="form-group">
                             <label for="email">Email</label>
-                            <input name="email" class="form-control" type="email" value="{{$biodata->email}}">
+                            <input name="email" class="form-control" type="email" value="{{$data->email}}">
                           </div>
                           <div class="form-group">
                             <label for="email">Tanggal Lahir</label>
-                            <input type="date" class="form-control" name="tanggal_lahir" value="{{$biodata->tanggal_lahir}}">
+                            <input type="date" class="form-control" name="tanggal_lahir" value="{{$data->tanggal_lahir}}">
                           </div>
                           <div class="form-group">
                             <label for="email">Jenis Kelamin</label>
                             <select name="jenis_kelamin" id="" class="form-select">
                                 <option disabled selected>Pilih Jenis Kelamin</option>
-                                <option value="Laki-Laki" {{$biodata->jenis_kelamin == 'Laki-Laki' ? 'selected' : ''}}>Laki</option>
-                                <option value="Perempuan" {{$biodata->jenis_kelamin == 'Perempuan' ? 'selected' : ''}}>Perempuan</option>
+                                <option value="Laki-Laki" {{$data->jenis_kelamin == 'Laki-Laki' ? 'selected' : ''}}>Laki</option>
+                                <option value="Perempuan" {{$data->jenis_kelamin == 'Perempuan' ? 'selected' : ''}}>Perempuan</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="email">Status</label>
+                            <select name="status" id="" class="form-select">
+                                <option disabled selected>Pilih Status</option>
+                                <option value="lolos" {{$data->pendaftaran->status == 'lolos' ? 'selected' : ''}}>Lolos</option>
+                                <option value="gagal" {{$data->pendaftaran->status == 'gagal' ? 'selected' : ''}}>Gagal</option>
                             </select>
                           </div>
                         </div>
@@ -49,29 +57,29 @@
                         <div class="card-body">
                           <div class="form-group">
                             <label for="Title">Nama Ayah</label>
-                            <input type="text" class="form-control"  name="nama_ayah" placeholder="Enter Name" value="{{$biodata->pendaftaran->nama_ayah}}">
+                            <input type="text" class="form-control"  name="nama_ayah" placeholder="Enter Name" value="{{$data->pendaftaran->nama_ayah}}">
                           </div>
                           <div class="form-group">
                             <label for="nomor">Nomor Ayah</label>
-                            <input name="no_ayah" class="form-control" type="text" value="{{$biodata->pendaftaran->no_ayah}}">
+                            <input name="no_ayah" class="form-control" type="text" value="{{$data->pendaftaran->no_ayah}}">
                           </div>
                           <div class="form-group">
                             <label for="email">Nama Ibu</label>
-                            <input name="nama_ibu" class="form-control" type="text" value="{{$biodata->pendaftaran->nama_ibu}}">
+                            <input name="nama_ibu" class="form-control" type="text" value="{{$data->pendaftaran->nama_ibu}}">
                           </div>
                           <div class="form-group">
                             <label for="email">Nomor Ibu</label>
-                            <input type="text" class="form-control" name="no_ibu" value="{{$biodata->pendaftaran->no_ibu}}">
+                            <input type="text" class="form-control" name="no_ibu" value="{{$data->pendaftaran->no_ibu}}">
                           </div>
                           <div class="form-group">
                             <label for="email">Alamat</label>
                             <textarea name="alamat" id="" class="form-control" rows="5">
-                              {{$biodata->pendaftaran->alamat}}
+                              {{$data->pendaftaran->alamat}}
                             </textarea>
                           </div>
                         </div>
                       </div>
-                      @if(!$biodata->document) 
+                      @if(!$data->document) 
                       @else
                       <div class="col-md-12">
                         <div class="card-body d-flex">
@@ -82,7 +90,7 @@
                                 accept="application/pdf" >
                             <object id="outputKk" 
                                     class="bg-slate-200 bg-dark mt-2 w-full rounded-lg shadow-inner" height="400" 
-                                type="application/pdf" data="{{ asset('storage/' . $biodata->document->kk) }}"></object>
+                                type="application/pdf" data="{{ asset('storage/' . $data->document->kk) }}"></object>
                           </div>
                           <div class="form-group">
                             <label for="nomor">Ijazah</label>
@@ -91,7 +99,7 @@
                                 accept="application/pdf">
                             <object id="outputIjazah" 
                                     class="bg-slate-200 dark:bg-slate-800 w-full mt-2 rounded-[30px] shadow-inner" height="400" 
-                                type="application/pdf" data="{{ asset('storage/' . $biodata->document->ijazah) }}"></object>
+                                type="application/pdf" data="{{ asset('storage/' . $data->document->ijazah) }}"></object>
                           </div>
                           <div class="form-group">
                             <label for="email">Akta</label>
@@ -100,14 +108,14 @@
                                 accept="application/pdf">
                             <object id="outputAkte" 
                                     class="bg-slate-200 dark:bg-slate-800 w-full mt-2 rounded-[30px] shadow-inner" height="400" 
-                                type="application/pdf" data="{{ asset('storage/' . $biodata->document->akta) }}"></object>
+                                type="application/pdf" data="{{ asset('storage/' . $data->document->akta) }}"></object>
                           </div>
                         </div>
                       </div> 
                       @endif
                     <div class="card-action">
                       <button class="btn btn-success" type="submit">Submit</button>
-                      <a href="{{route('admin.biodata.index')}}" class="btn btn-warning" type="button">Back</a>
+                      <a href="{{route('admin.pendaftaran.index')}}" class="btn btn-warning" type="button">Back</a>
                     </div>  
                 </div>
             </form>

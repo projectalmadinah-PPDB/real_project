@@ -86,15 +86,37 @@ class DocumentController extends Controller
      */
     public function edit(Document $document)
     {
-        return view('pages.admin.dashboard.documents.edit');
+        return view('pages.admin.dashboard.documents.edit',compact('document'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Document $document)
+    public function update(Request $request,$id)
     {
-        //
+        $document = Document::find($id);
+        // Update document files if uploaded
+        if ($request->hasFile('kk')) {
+            $kkFile = $request->file('kk');
+            $kkFileName = time() . '_kk_' . $kkFile->getClientOriginalName();
+            $kkFile->storeAs('public/pdf', $kkFileName);
+            $document->kk = 'pdf/' . $kkFileName;
+        }
+        if ($request->hasFile('ijazah')) {
+            $ijazahFile = $request->file('ijazah');
+            $ijazahFileName = time() . '_ijazah_' . $ijazahFile->getClientOriginalName();
+            $ijazahFile->storeAs('public/pdf', $ijazahFileName);
+            $document->ijazah = 'pdf/' . $ijazahFileName;
+        }
+        if ($request->hasFile('akta')) {
+            $aktaFile = $request->file('akta');
+            $aktaFileName = time() . '_akta_' . $aktaFile->getClientOriginalName();
+            $aktaFile->storeAs('public/pdf', $aktaFileName);
+            $document->akta = 'pdf/' . $aktaFileName;
+        }
+        $document->save();
+
+        return redirect()->route('admin.document.index');
     }
 
     /**

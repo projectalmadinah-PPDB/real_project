@@ -1,6 +1,6 @@
 @extends('pages.admin.dashboard.layouts.parent')
 
-@section('title','Detail Document')
+@section('title','Biodata Document')
 
 @section('content')
 <div class="main-panel">
@@ -19,24 +19,24 @@
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Kartu Keluarga</th>
-                        <th>Ijazah</th>
-                        <th>Akta</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                          <td>{{$document->user->name}}</td>
-                          <td><embed src="{{ asset('storage/' . $document->kk) }}" width="100%" height="150px" type="application/pdf"></td>
-                          <td><embed src="{{ asset('storage/' . $document->ijazah) }}" width="100%" height="150px" type="application/pdf"></td>
-                          <td><embed src="{{ asset('storage/' . $document->akta) }}" width="100%" height="150px" type="application/pdf"></td>
-                        </tr>
-                    </tbody>
-                  </table>
+                  <div>
+                    <label for="">Kartu Keluarga</label>
+                    <object data="{{ asset('storage/' . $document->kk) }}" type="application/pdf" width="100%" height="600px">
+                      <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->kk) }}">mengunduh file PDF</a> sebagai alternatif.</p>
+                  </object>
+                  </div>
+                  <div>
+                    <label for="">Ijazah</label>
+                    <object data="{{ asset('storage/' . $document->ijazah) }}" type="application/pdf" width="100%" height="600px">
+                      <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->kk) }}">mengunduh file PDF</a> sebagai alternatif.</p>
+                  </object>
+                  </div>
+                  <div>
+                    <label for="">Akta</label>
+                    <object data="{{ asset('storage/' . $document->akta) }}" type="application/pdf" width="100%" height="600px">
+                      <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->kk) }}">mengunduh file PDF</a> sebagai alternatif.</p>
+                  </object>
+                  </div>
                 </div>
               </div>
             </div>

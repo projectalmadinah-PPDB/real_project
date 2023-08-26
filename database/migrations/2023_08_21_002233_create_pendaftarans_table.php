@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('pendaftarans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id');
             $table->string('nik');
             $table->string('nama_ayah');
             $table->string('no_ayah');
             $table->string('nama_ibu');
             $table->string('no_ibu');
             $table->text('alamat');
+            $table->string('status')->default('tidak');
             $table->timestamps();
         });
     }

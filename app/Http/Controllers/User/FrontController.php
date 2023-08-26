@@ -20,6 +20,25 @@ class FrontController extends Controller
         return view('front.index',compact('article'));
     }
 
+    public function informasi()
+    {
+        $article = Article::all();
+        return view('front.artile',compact('article'));
+    }
+
+    public function detail_informasi($slug)
+    {
+        $articles = Article::where('slug', $slug)->firstOrFail();
+        $article = Article::all();
+        return view('front.detail_article', compact('articles','article'));
+    
+    }
+
+    public function about()
+    {
+        return view('front.about');
+    }
+
     public function kelengkapan(Request $request)
     {
         $validate = $request->validate([

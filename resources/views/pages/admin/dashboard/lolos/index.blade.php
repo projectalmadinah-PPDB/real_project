@@ -17,12 +17,15 @@
                 </div>
               </div>
               <div class="card-body">
-                <div class="d-flex">
-                  <input type="text" class="form-control w-25 mb-3" >
-                  <div>
-                    <button class="btn btn-primary" type="submit">Find</button>
+                <form action="{{route('admin.lolos.index')}}" method="get">
+                  @csrf
+                  <div class="d-flex">
+                    <input type="text" name="search" class="form-control w-25 mb-3" >
+                    <div>
+                      <button class="btn btn-primary" type="submit">Find</button>
+                    </div>
                   </div>
-                </div>
+                  </form>
                 <div class="table-responsive">
                   <table class="table table-bordered">
                     <thead>
@@ -31,29 +34,27 @@
                         <th>Name</th>
                         <th>Nomor Hp</th>
                         <th>Email</th>
-                        <th>Tanggal Lahir</th>
-                        <th>Jenis Kelamin</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
+                        @foreach ($lolos as $index => $item)
                         <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
+                          <td>{{$index + 1}}</td>
+                          <td>{{$item->user->name}}</td>
+                          <td>{{$item->user->nomor}}</td>
+                          <td>{{$item->user->email}}</td>
+                          <td><button class="badge badge-success border-0">{{$item->status}}</button></td>
                           <td>
-                            <form action="" method="post" class="d-inline">
+                            <form action="{{route('admin.lolos.destroy',$item->id)}}" method="post" class="d-inline">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="badge badge-danger border-0">Delete</button>
                             </form>
                           </td>
                         </tr>
+                        @endforeach
                     </tbody>
                   </table>
                 </div>
