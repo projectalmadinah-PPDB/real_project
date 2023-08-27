@@ -28,10 +28,6 @@
                             <input name="nomor" class="form-control" type="text" value="{{$data->nomor}}">
                           </div>
                           <div class="form-group">
-                            <label for="email">Email</label>
-                            <input name="email" class="form-control" type="email" value="{{$data->email}}">
-                          </div>
-                          <div class="form-group">
                             <label for="email">Tanggal Lahir</label>
                             <input type="date" class="form-control" name="tanggal_lahir" value="{{$data->tanggal_lahir}}">
                           </div>
@@ -53,8 +49,14 @@
                           </div>
                         </div>
                       </div>
+                      @if(!$data->pendaftaran)
+                      @else
                       <div class="col-md-6">
                         <div class="card-body">
+                          <div class="form-group">
+                            <label for="Title">Nomor Induk Kependudukan</label>
+                            <input type="text" class="form-control"  name="nik" placeholder="Enter Name" value="{{$data->pendaftaran->nik}}">
+                          </div>
                           <div class="form-group">
                             <label for="Title">Nama Ayah</label>
                             <input type="text" class="form-control"  name="nama_ayah" placeholder="Enter Name" value="{{$data->pendaftaran->nama_ayah}}">
@@ -79,6 +81,7 @@
                           </div>
                         </div>
                       </div>
+                      @endif
                       @if(!$data->document) 
                       @else
                       <div class="col-md-12">

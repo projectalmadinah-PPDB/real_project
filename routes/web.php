@@ -62,6 +62,10 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::delete('/biodata/delete/{id}',[BiodataController::class,'destroy'])->name('biodata.destroy');
 
+      Route::get('/biodata/create',[BiodataController::class,'create'])->name('biodata.create');
+
+      Route::post('/biodata/process',[BiodataController::class,'store'])->name('biodata.store');
+
       Route::get('/biodata/edit/{id}',[BiodataController::class,'edit'])->name('biodata.edit');
 
       Route::put('/biodata/update/{id}',[BiodataController::class,'update'])->name('biodata.update');
@@ -76,9 +80,9 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::get('/lolos',[LolosController::class,'index'])->name('lolos.index');
 
-      // Route::get('/lolos/edit/{id}',[LolosController::class,'edit'])->name('lolos.edit');
+      Route::get('/lolos/edit/{id}',[LolosController::class,'edit'])->name('lolos.edit');
 
-      // Route::get('/lolos/process/{id}',[LolosController::class,'update'])->name('lolos.update');
+      Route::put('/lolos/process/{id}',[LolosController::class,'update'])->name('lolos.update');
 
       Route::delete('/lolos/delete/{id}',[LolosController::class,'destroy'])->name('lolos.destroy');
 

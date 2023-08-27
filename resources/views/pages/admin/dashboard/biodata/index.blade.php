@@ -14,7 +14,7 @@
               <div class="card-header">
                 <div class="d-flex justify-content-between">
                   <div class="card-title">Pendaftaran Table</div>
-                  <a href="{{route('admin.document.create')}}" class="btn btn-primary float-end text-white">Create New</a>
+                  <a href="{{route('admin.biodata.create')}}" class="btn btn-primary float-end text-white">Create New</a>
                 </div>
               </div>
               <div class="card-body">

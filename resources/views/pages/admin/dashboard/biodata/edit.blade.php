@@ -28,10 +28,6 @@
                             <input name="nomor" class="form-control" type="text" value="{{$biodata->nomor}}">
                           </div>
                           <div class="form-group">
-                            <label for="email">Email</label>
-                            <input name="email" class="form-control" type="email" value="{{$biodata->email}}">
-                          </div>
-                          <div class="form-group">
                             <label for="email">Tanggal Lahir</label>
                             <input type="date" class="form-control" name="tanggal_lahir" value="{{$biodata->tanggal_lahir}}">
                           </div>
@@ -45,32 +41,39 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="card-body">
-                          <div class="form-group">
-                            <label for="Title">Nama Ayah</label>
-                            <input type="text" class="form-control"  name="nama_ayah" placeholder="Enter Name" value="{{$biodata->pendaftaran->nama_ayah}}">
-                          </div>
-                          <div class="form-group">
-                            <label for="nomor">Nomor Ayah</label>
-                            <input name="no_ayah" class="form-control" type="text" value="{{$biodata->pendaftaran->no_ayah}}">
-                          </div>
-                          <div class="form-group">
-                            <label for="email">Nama Ibu</label>
-                            <input name="nama_ibu" class="form-control" type="text" value="{{$biodata->pendaftaran->nama_ibu}}">
-                          </div>
-                          <div class="form-group">
-                            <label for="email">Nomor Ibu</label>
-                            <input type="text" class="form-control" name="no_ibu" value="{{$biodata->pendaftaran->no_ibu}}">
-                          </div>
-                          <div class="form-group">
-                            <label for="email">Alamat</label>
-                            <textarea name="alamat" id="" class="form-control" rows="5">
-                              {{$biodata->pendaftaran->alamat}}
-                            </textarea>
-                          </div>
+                     @if(!$biodata->pendaftaran)
+                     @else
+                     <div class="col-md-6">
+                      <div class="card-body">
+                        <div class="form-group">
+                          <label for="Title">Nomor Induk Kependudukan</label>
+                          <input type="text" class="form-control"  name="nik" placeholder="Enter Name" value="{{$biodata->pendaftaran->nik}}">
+                        </div>
+                        <div class="form-group">
+                          <label for="Title">Nama Ayah</label>
+                          <input type="text" class="form-control"  name="nama_ayah" placeholder="Enter Name" value="{{$biodata->pendaftaran->nama_ayah}}">
+                        </div>
+                        <div class="form-group">
+                          <label for="nomor">Nomor Ayah</label>
+                          <input name="no_ayah" class="form-control" type="text" value="{{$biodata->pendaftaran->no_ayah}}">
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Nama Ibu</label>
+                          <input name="nama_ibu" class="form-control" type="text" value="{{$biodata->pendaftaran->nama_ibu}}">
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Nomor Ibu</label>
+                          <input type="text" class="form-control" name="no_ibu" value="{{$biodata->pendaftaran->no_ibu}}">
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Alamat</label>
+                          <textarea name="alamat" id="" class="form-control" rows="5">
+                            {{$biodata->pendaftaran->alamat}}
+                          </textarea>
                         </div>
                       </div>
+                    </div>
+                     @endif
                       @if(!$biodata->document) 
                       @else
                       <div class="col-md-12">

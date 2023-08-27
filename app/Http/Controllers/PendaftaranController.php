@@ -38,7 +38,6 @@ class PendaftaranController extends Controller
 
         $data = $request->validate([
             'name' => 'required|string',
-            'email' => 'required|unique:users,email,' . $user->id,
             'nomor' => 'required|unique:users,nomor,' . $user->id,
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
@@ -47,6 +46,7 @@ class PendaftaranController extends Controller
         $user->update($data);
 
         $pendaftaranData = $request->validate([
+            'nik' => 'required',
             'nama_ayah' => 'required|string',
             'no_ayah' => 'required',
             'nama_ibu' => 'required|string',

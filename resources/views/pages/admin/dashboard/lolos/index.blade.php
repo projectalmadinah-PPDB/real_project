@@ -33,7 +33,6 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Nomor Hp</th>
-                        <th>Email</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
@@ -44,14 +43,38 @@
                           <td>{{$index + 1}}</td>
                           <td>{{$item->user->name}}</td>
                           <td>{{$item->user->nomor}}</td>
-                          <td>{{$item->user->email}}</td>
                           <td><button class="badge badge-success border-0">{{$item->status}}</button></td>
                           <td>
-                            <form action="{{route('admin.lolos.destroy',$item->id)}}" method="post" class="d-inline">
-                              @csrf
-                              @method('DELETE')
-                              <button type="submit" class="badge badge-danger border-0">Delete</button>
-                            </form>
+                            <form action="{{route('admin.lolos.update',$item->id)}}" method="post">
+                            @csrf
+                            @method('PUT')
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                              Edit
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <label for="email">Status</label>
+                                    <select name="status" id="" class="form-select">
+                                        <option disabled selected>Pilih Status</option>
+                                        <option value="lolos" {{$item->status == 'lolos' ? 'selected' : ''}}>Laki</option>
+                                        <option value="gagal" {{$item->status == 'gagal' ? 'selected' : ''}}>Perempuan</option>
+                                    </select>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
                           </td>
                         </tr>
                         @endforeach

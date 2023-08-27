@@ -868,6 +868,7 @@ class="relative section flex-col shadow-lg bg-[#23AA8A]/70 mx-20 md:mx-32 mt-10"
                     <!-- foreach here -->
                 <a href="" class="swiper-slide md:w-52 h-48 bg-dasar py-5 px-8">
                     <article>
+                        {{-- <img src="{{asset('/storage/'.$item['image'])}}" alt=""> --}}
                         <h1 class="text-xl mb-2 font-bold text-slate-950 tracking-wide truncate">{{$item->title}}</h1>
                         <p class="line-clamp-3 leading-relaxed tracking-wide">
                             {{$item->desc}}

@@ -242,7 +242,9 @@
                         </div>
                         <div class="card-footer ">
                             <div class="stats">
-                                <i class="now-ui-icons loader_refresh spin"></i> {{$item->updated_at}}
+                                @foreach ($users as $user)
+                                    {{$user->created_at}}
+                                @endforeach
                             </div>
                         </div>
                     </div>

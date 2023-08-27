@@ -13,15 +13,18 @@ class AdminSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {
-        $user = [
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
-            'nomor' => '082346739790',
-            'password' => bcrypt('rahasia'),
-            'jenis_kelamin' => 'laki'
-       ];
-       User::create($user);
-
-    }
+{
+    $user = [
+        'name' => 'Admin',
+        'email' => 'admin@email.com',
+        'nomor' => '6282346739790',
+        'password' => bcrypt('12345678'),
+        'active' => 1,
+        'role' => 'admin',
+        'token' => rand(111111, 999999),
+        'tanggal_lahir' => date('Y-m-d H:i:s'), // Ubah format tanggal di sini
+        'jenis_kelamin' => 'Laki-Laki'
+   ];
+   User::create($user);
+}
 }
