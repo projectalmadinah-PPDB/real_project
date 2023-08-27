@@ -82,7 +82,38 @@
                         </div>
                       </div>
                       @endif
-                      @if(!$data->document) 
+                      {{-- @if(!$data->document)
+                      <div class="col-md-12">
+                        <div class="card-body d-flex">
+                          <div class="form-group">
+                            <label for="Title">Kartu Keluarga</label>
+                            <input onchange="readURL2()" type="file" name="kk" id="inputKk" 
+                                    class="form-control"
+                                accept="application/pdf" >
+                            <object id="outputKk" 
+                                    class="bg-slate-200 mt-2 w-full rounded-lg shadow-inner" height="400" 
+                                type="application/pdf"></object>
+                          </div>
+                          <div class="form-group">
+                            <label for="nomor">Ijazah</label>
+                            <input onchange="readURL3()" type="file" name="ijazah" id="inputIjazah" 
+                                    class="form-control" 
+                                accept="application/pdf">
+                            <object id="outputIjazah" 
+                                    class="bg-slate-200 dark:bg-slate-800 w-full mt-2 rounded-[30px] shadow-inner" height="400" 
+                                type="application/pdf"></object>
+                          </div>
+                          <div class="form-group">
+                            <label for="email">Akta</label>
+                            <input onchange="readURL1()" type="file" name="akta" id="inputAkte" 
+                                    class="form-control" 
+                                accept="application/pdf">
+                            <object id="outputAkte" 
+                                    class="bg-slate-200 dark:bg-slate-800 w-full mt-2 rounded-[30px] shadow-inner" height="400" 
+                                type="application/pdf"></object>
+                          </div>
+                        </div>
+                      </div> 
                       @else
                       <div class="col-md-12">
                         <div class="card-body d-flex">
@@ -115,7 +146,7 @@
                           </div>
                         </div>
                       </div> 
-                      @endif
+                      @endif --}}
                     <div class="card-action">
                       <button class="btn btn-success" type="submit">Submit</button>
                       <a href="{{route('admin.pendaftaran.index')}}" class="btn btn-warning" type="button">Back</a>

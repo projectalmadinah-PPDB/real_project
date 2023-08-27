@@ -7,9 +7,24 @@
     <div class="content">
       <div class="container-fluid">
         <h4 class="page-title">Siswa Yang Lulus</h4>
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{session('success')}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @elseif(session('delete'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{session('delete')}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @elseif(session('edit'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{session('edit')}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <div class="row">
           <div class="col-md-12">
-            
             <div class="card">
               <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -33,7 +48,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Nomor Hp</th>
-                        <th>Status</th>
+                        <th>Status Kelulusan</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -48,8 +63,8 @@
                             <form action="{{route('admin.lolos.update',$item->id)}}" method="post">
                             @csrf
                             @method('PUT')
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                              Edit
+                            <button type="button" class="badge badge-warning border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                              Edit Status
                             </button>
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -63,8 +78,8 @@
                                     <label for="email">Status</label>
                                     <select name="status" id="" class="form-select">
                                         <option disabled selected>Pilih Status</option>
-                                        <option value="lolos" {{$item->status == 'lolos' ? 'selected' : ''}}>Laki</option>
-                                        <option value="gagal" {{$item->status == 'gagal' ? 'selected' : ''}}>Perempuan</option>
+                                        <option value="lolos" {{$item->status == 'lolos' ? 'selected' : ''}}>Lolos</option>
+                                        <option value="gagal" {{$item->status == 'gagal' ? 'selected' : ''}}>Gagal</option>
                                     </select>
                                   </div>
                                   <div class="modal-footer">

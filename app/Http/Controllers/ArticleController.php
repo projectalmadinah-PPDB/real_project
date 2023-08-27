@@ -54,7 +54,7 @@ class ArticleController extends Controller
 
 
         Article::create($data);
-        return redirect()->route('admin.article.index')->with('create' , 'Article Berhasil Di Tambahkan');
+        return redirect()->route('admin.article.index')->with('success' , 'Article Berhasil Di Tambahkan');
     }
 
     /**
@@ -102,18 +102,17 @@ class ArticleController extends Controller
         
         $article->update($data);
         
-        return redirect()->route('admin.article.index' , compact('id'))->with('update' , 'Artikel Berhasil Di update');
+        return redirect()->route('admin.article.index' , compact('id'))->with('edit' , 'Artikel Berhasil Di update');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Article $article,$id)
+    public function destroy($id)
     {
         $post = Article::findOrFail($id);
-
-    // Hapus data post
-    $post->delete();
+        // Hapus data post
+        $post->delete();
 
     return redirect()->route('admin.article.index',compact('post'))->with('delete', 'Artickel Berhasil Di Hapus');
     }

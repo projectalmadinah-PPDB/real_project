@@ -106,7 +106,7 @@
   <div class="scrollbar-inner sidebar-wrapper">
     <div class="user">
       <div class="photo">
-        <img src="assets/img/profile.jpg">
+        <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60">
       </div>
       <div class="info">
         <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -149,13 +149,13 @@
       <li class="nav-item {{Route::is('admin.biodata.*') ? 'active' : '' }}">
         <a href="{{route('admin.biodata.index')}}">
           <i class="bi bi-server"></i>
-          <p>Pendaftaran</p>
+          <p>Semua Pendaftaran</p>
         </a>
       </li>
       <li class="nav-item {{Route::is('admin.pendaftaran.*') ? 'active' : '' }}">
         <a href="{{route('admin.pendaftaran.index')}}">
           <i class="bi bi-receipt-cutoff"></i>
-          <p>Data Valid</p>
+          <p>Data Pendaftaran</p>
         </a>
       </li>
       <li class="nav-item {{Route::is('admin.lolos.index') ? 'active' : '' }}">
@@ -170,10 +170,16 @@
           <p>Document</p>
         </a>
       </li>
-      <li class="nav-item {{Route::is('admin.article.index') ? 'active' : '' }}">
+      <li class="nav-item {{Route::is('admin.article.*') ? 'active' : '' }}">
         <a href="{{route('admin.article.index')}}">
           <i class="bi bi-file-earmark-text"></i>
           <p>Article</p>
+        </a>
+      </li>
+      <li class="nav-item {{Route::is('admin.profile.*') ? 'active' : '' }}">
+        <a href="{{route('admin.profile.index')}}">
+          <i class="bi bi-person"></i>
+          <p>Profile</p>
         </a>
       </li>
       {{-- <li class="nav-item">

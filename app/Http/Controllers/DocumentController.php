@@ -66,7 +66,7 @@ class DocumentController extends Controller
             
             Document::create($data);
             
-            return redirect()->back()->with('success', 'Files berhasil diunggah.');
+            return redirect()->route('admin.document.index')->with('success', 'Document Baru Berhasil Di Tambahkan');
         }
     
         return redirect()->back()->with('error', 'Gagal mengunggah files.');
@@ -116,7 +116,7 @@ class DocumentController extends Controller
         }
         $document->save();
 
-        return redirect()->route('admin.document.index');
+        return redirect()->route('admin.document.index')->with('update',"Berhasil Mengupdate Document $document->user->name");
     }
 
     /**
@@ -128,7 +128,7 @@ class DocumentController extends Controller
 
         $data->delete();
 
-        return redirect()->route('admin.document.index');
+        return redirect()->route('admin.document.index')->with('delete','Berhasil Menghapus Document');
     }
 
     public function document()

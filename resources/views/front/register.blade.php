@@ -164,8 +164,13 @@
                     <input 
                         type="text" name="name"
                         placeholder="nama lengkap"
-                        class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10"
+                        class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('name')
+                        shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
+                        @enderror" value="{{old('name')}}"
                     >
+                    @error('name')
+                    <p class="text-red-500 text-xs italic">{{$message}}.</p>  
+                    @enderror
                 </div>
                 <div class="flex justify-between gap-x-3">
                     <div class="mb-3 w-1/2">
@@ -173,8 +178,13 @@
                         <input 
                             type="date" name="tanggal_lahir"
                             placeholder="62896XXXXXXXX"
-                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10"
+                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('tanggal_lahir')
+                            shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
+                            @enderror" value="{{old('tanggal_lahir')}}"
                         >
+                        @error('tanggal_lahir')
+                    <p class="text-red-500 text-xs italic">{{$message}}.</p>  
+                    @enderror
                     </div>
                     <div class="mb-3 w-1/2">
                         <span class="text-sm">Jenis Kelamin</span>
@@ -184,12 +194,18 @@
                                 <label for="laki" class="text-sm">
                                     Laki - Laki
                                 </label>
+                                @error('jenis_kelamin')
+                                <p class="text-red-500 text-xs italic">{{$message}}.</p>  
+                                @enderror
                             </div>
                             <div>
                                 <input type="radio" name="jenis_kelamin" value="Perempuan" id="perempuan" class="accent-sekunder">
                                 <label for="perempuan" class="text-sm">
                                     Perempuan
                                 </label>
+                                @error('jenis_kelamin')
+                                <p class="text-red-500 text-xs italic">{{$message}}.</p>  
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -199,8 +215,13 @@
                     <input 
                         type="tel" name="nomor"
                         placeholder="62896XXXXXXXX"
-                        class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10"
+                        class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('nomor')
+                        shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
+                        @enderror" value="{{old('nomor')}}"
                     >
+                    @error('nomor')
+                    <p class="text-red-500 text-xs italic">{{$message}}.</p>  
+                    @enderror
                 </div>
                 <div class="flex justify-between gap-x-3 mb-3">
                     <div class="mb-3 w-1/2">
@@ -209,8 +230,13 @@
                         <input 
                             type="password" name="password"
                             placeholder="••••••••"
-                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10"
+                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('password')
+                            shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
+                            @enderror" value="{{old('password')}}"
                         >
+                        @error('password')
+                        <p class="text-red-500 text-xs italic">{{$message}}.</p>  
+                        @enderror
                     </div>
                     <div class="mb-3 w-1/2">
                         <label for="" class="text-sm">Konfirmasi Password</label>
@@ -218,8 +244,13 @@
                         <input 
                             type="password" name="password_again"
                             placeholder="••••••••"
-                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10"
+                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('password_again')
+                            shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
+                            @enderror" value="{{old('password_again')}}"
                         >
+                        @error('password_again')
+                        <p class="text-red-500 text-xs italic">{{$message}}.</p>  
+                        @enderror
                     </div>
                 </div>
                 <button type="submit" 

@@ -111,14 +111,16 @@ class UserController extends Controller
         if (Str::startsWith($phone, '0')) {
             $phone = '62' . substr($phone, 1);
         }
+        $messages = [
+            'nomor.required' => 'Nomor Harus Diisi Dengan Benar',
+            'nomor.string' => 'Nomor Harus String',
+            'password.required' => 'Password Wajib Diisi',
+            'password.min' => 'Password Minimal :min Angka/Huruf' 
+        ];
         $request->validate([
-            'nomor' => 'required',
+            'nomor' => 'required|string',
             'password' => 'required|min:8'
-        ],
-    [
-        'nomor.required' => 'email Wajib Diisi',
-        'password.required' => 'Password Wajib Diisi'
-    ]);
+        ],$messages);
 
     $infologin = [
         'nomor' => $phone,
@@ -128,12 +130,15 @@ class UserController extends Controller
     $user = User::where('nomor',$phone)->first();
 
     if($user->active == 0){
-         return redirect()->route('user.activication');
+         return redirect()->route('user.activication')->with('gagal','Kamu Harus Mengisi Kode OTP Yang Dikirim');
     }
     if (Auth::attempt($infologin)) {
         if(auth()->user()->role == 'user'){
             $request->session()->regenerate();
-            return redirect()->route('user.profile');
+            $messages = "Yey Kamu Berhasil Login Apa Yang Kamu Mau Lanjutkan ?";
+
+            $this->send_message($phone,$messages);
+            return redirect()->route('user.profile')->with('success','Yey Berhasil Login');
         }else{ 
             return back()->withErrors([
                 'nomor' => 'Kamu Bukan User'
@@ -158,6 +163,20 @@ class UserController extends Controller
         $phone = '62' . substr($phone, 1);
     }
         // dd($request->all());
+    $messages = [
+        'name.required' => 'Nama Lengkap Harus Diisi',
+        'name.min' => 'Apakah Ini Nama Lengkap Dengan :min Doang?',
+        'name.max' => 'Waduh Wir Nama Mu Panjang Amat',
+        'name.string' => 'Nama Itu Harus Alfabet',
+        'nomor.required' => 'Nomor Harus Diisi Dengan Benar',
+        'nomor.unique' => 'Nomor Sudah Di Pake Maybe',
+        'jenis_kelamin.required' => 'Jenis Kelamin Kamu Harus Diisi',
+        'tanggal_lahir.required' => 'Tanggal Lahir Kamu Berapa?',
+        'password.required' => 'Password Wajib Diisi',
+        'password.same:password_again' => 'Password Harus Sama Dengan Confirm Password',
+        'password_again.required' => 'Woi Isi Confirmasi Passwordnya',
+        'password.min' => 'Password Minimal :min Angka/Huruf' 
+    ];
     $data = $request->validate([
         'name' => 'required|min:3|max:255|string',
         'nomor' => 'required|min:10|unique:users',
@@ -165,7 +184,7 @@ class UserController extends Controller
         'tanggal_lahir' => 'required|date',
         'password'       => 'required|min:6|same:password_again',
         'password_again' => 'required'
-    ]);
+    ],$messages);
 
     $data['password'] = bcrypt($request->password);
     $data['token'] = rand(111111,999999);
@@ -180,7 +199,7 @@ class UserController extends Controller
     // auth()->login($user);
     // $this->sendEmailVerification();
 
-    return redirect()->route('user.activication');
+    return redirect()->route('user.activication')->with('verif','Kami Sudah Mengirim Kode OTP Silahkan Cek Nomor Whatshap Anda');
     }
 
     public function activication()
@@ -196,7 +215,7 @@ class UserController extends Controller
             $user->update([
                 'active' => 1
             ]);
-            return redirect()->route('user.index');
+            return redirect()->route('user.index')->with('success' ,'Yey Token Berhasil Di Masukkan');
         }
         return redirect()->back()->with('error','Token Tidak Sesuai');
     }

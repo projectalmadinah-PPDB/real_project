@@ -91,7 +91,7 @@ class BiodataController extends Controller
         $document->save();
 
 
-        return redirect()->route('admin.biodata.index')->with('success', 'Profile berhasil diupdate.');
+        return redirect()->route('admin.biodata.index')->with('edit', 'Profile berhasil diupdate.');
     }
 
     public function create()
@@ -163,7 +163,7 @@ class BiodataController extends Controller
             
         //     Document::create($data);
 
-            return redirect()->route('admin.biodata.index');
+            return redirect()->route('admin.biodata.index')->with('success','Berhasil Menambahkan Pendaftaran');
     }
 
     public function destroy($id)
@@ -177,6 +177,6 @@ class BiodataController extends Controller
 
         $user->delete();
 
-        return redirect()->route('admin.biodata.index');
+        return redirect()->route('admin.biodata.index')->with('delete',"Berhasil Menghapus Pendaftaran $user->name");
     }
 }

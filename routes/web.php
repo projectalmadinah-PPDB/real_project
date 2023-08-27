@@ -52,7 +52,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::get('/articles/{id}', [ArticleController::class,'show'])->name('article.show');
 
-      Route::delete('/articles/delete/{id}', [DocumentController::class, 'destroy'])->name('article.delete');
+      Route::delete('/articles/delete/{id}', [ArticleController::class, 'destroy'])->name('article.delete');
 
       Route::get('/biodata',[BiodataController::class,'index'])->name('biodata.index');
 
@@ -86,8 +86,11 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::delete('/lolos/delete/{id}',[LolosController::class,'destroy'])->name('lolos.destroy');
 
-
       Route::post('/pengecekan/{id}',[LolosController::class,'pengecekan'])->name('pengecekan');
+
+      Route::get('/profile',[SettingController::class,'profile'])->name('profile.index');
+
+      Route::put('/profile/edit',[SettingController::class,'update_profile'])->name('profile.update');
 
 
       // document

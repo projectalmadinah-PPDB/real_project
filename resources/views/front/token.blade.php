@@ -54,9 +54,23 @@
                     <img src="/dists/images/logo_only.svg" alt="" class="w-10">
                 </div>
                 <h1 class="text-4xl font-bold text-center leading-none">Verification.</h1>
-                <p class="text-sm tracking-wide font-light text-gray-400">
-                    verifikasi nomor handphone kamu dengan kode OTP yang diberikan.
+                @if (session('verif'))
+                  <p class="text-sm tracking-wide font-light text-gray-400">
+                    {{session('verif')}}
                 </p>
+                @elseif (session('error'))
+                <p class="text-sm tracking-wide font-light text-red-400">
+                  {{session('error')}}
+                </p>
+                @elseif (session('gagal'))
+                <p class="text-sm tracking-wide font-light text-red-400">
+                  {{session('gagal')}}
+                </p>
+                @else
+                <p class="text-sm tracking-wide font-light text-gray-400">
+                  Masukkan Kode Otp
+                </p>
+                @endif
                 <form class="mt-4 w-full" method="post" action="{{route('user.activication.process')}}">
                   @csrf
                   @method('post')

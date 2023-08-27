@@ -51,7 +51,7 @@ class LolosController extends Controller
         ]);
         $lolos->update($data);
 
-        return redirect()->route('admin.lolos.index');
+        return redirect()->route('admin.lolos.index')->with('edit',"Berhasil Mengupdate Status Siswa $lolos->user->name");
     }
 
     public function destroy($id)

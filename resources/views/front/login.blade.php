@@ -69,9 +69,15 @@
                     <img src="/dists/images/logo_only.svg" alt="" class="w-10">
                 </a>
                 <h1 class="text-4xl font-bold text-center leading-none">Login.</h1>
+                @if(session('success'))
                 <p class="text-sm tracking-wide font-light text-gray-400">
-                    Selamat datang peserta.
+                  {{session('success')}}
                 </p>
+                @else
+                <p class="text-sm tracking-wide font-light text-gray-400">
+                  Selamat Datang Peserta
+                </p>
+                @endif
                 <form class="mt-4 w-full" action="{{route('user.login')}}" method="post">
                   @csrf
                   @method('post')
@@ -80,16 +86,26 @@
                         <input 
                             type="tel" name="nomor"
                             placeholder="62896XXXXXXXX"
-                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10"
+                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('nomor')
+                            shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
+                            @enderror"
                         >
+                        @error('nomor')
+                        <p class="text-red-500 text-xs italic">{{$message}}.</p>  
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="" class="text-sm">Password</label>
                         <input 
                             type="password" name="password"
                             placeholder="••••••••"
-                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10"
+                            class="shadow-inner rounded-full w-full py-2 px-4 outline-none placeholder:opacity-100 focus:placeholder:opacity-0 placeholder:transition-all placeholder:duration-200 placeholder:italic text-sm placeholder:text-gray-500 bg-white/10 @error('password')
+                            shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
+                            @enderror"
                         >
+                        @error('password')
+                        <p class="text-red-500 text-xs italic">{{$message}}.</p>  
+                        @enderror
                     </div>
                     <div class="mb-6 flex justify-between items-center">
                         <a href="{{route('user.show')}}" class="text-sm text-slate-400 hover:text-sky-300 duration-150">Belum daftar?</a>

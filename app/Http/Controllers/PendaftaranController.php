@@ -52,34 +52,39 @@ class PendaftaranController extends Controller
             'nama_ibu' => 'required|string',
             'no_ibu' => 'required',
             'alamat' => 'required',
-            'status' =>'required'
+            'status' => 'required'
         ]);
 
         $pendaftaran->update($pendaftaranData);
         $document = $user->document;
-        // Update document files if uploaded
-        if ($request->hasFile('kk')) {
-            $kkFile = $request->file('kk');
-            $kkFileName = time() . '_kk_' . $kkFile->getClientOriginalName();
-            $kkFile->storeAs('public/pdf', $kkFileName);
-            $document->kk = 'pdf/' . $kkFileName;
-        }
-        if ($request->hasFile('ijazah')) {
-            $ijazahFile = $request->file('ijazah');
-            $ijazahFileName = time() . '_ijazah_' . $ijazahFile->getClientOriginalName();
-            $ijazahFile->storeAs('public/pdf', $ijazahFileName);
-            $document->ijazah = 'pdf/' . $ijazahFileName;
-        }
-        if ($request->hasFile('akta')) {
-            $aktaFile = $request->file('akta');
-            $aktaFileName = time() . '_akta_' . $aktaFile->getClientOriginalName();
-            $aktaFile->storeAs('public/pdf', $aktaFileName);
-            $document->akta = 'pdf/' . $aktaFileName;
-        }
-        $document->save();
 
+        // $document_validate = $request->validate([
+        //     'nik' => 'required',
+        //     'kk' => 'required',
+        //     'ijazah' => 'required'
+        // ]);
+        // // Update document files if uploaded
+        // if ($request->hasFile('kk')) {
+        //     $kkFile = $request->file('kk');
+        //     $kkFileName = time() . '_kk_' . $kkFile->getClientOriginalName();
+        //     $kkFile->storeAs('public/pdf', $kkFileName);
+        //     $document->kk = 'pdf/' . $kkFileName;
+        // }
+        // if ($request->hasFile('ijazah')) {
+        //     $ijazahFile = $request->file('ijazah');
+        //     $ijazahFileName = time() . '_ijazah_' . $ijazahFile->getClientOriginalName();
+        //     $ijazahFile->storeAs('public/pdf', $ijazahFileName);
+        //     $document->ijazah = 'pdf/' . $ijazahFileName;
+        // }
+        // if ($request->hasFile('akta')) {
+        //     $aktaFile = $request->file('akta');
+        //     $aktaFileName = time() . '_akta_' . $aktaFile->getClientOriginalName();
+        //     $aktaFile->storeAs('public/pdf', $aktaFileName);
+        //     $document->akta = 'pdf/' . $aktaFileName;
+        // }
+        // $document->update($document_validate);
 
-        return redirect()->route('admin.pendaftaran.index')->with('success', 'Profile berhasil diupdate.');
+        return redirect()->route('admin.pendaftaran.index')->with('edit',"Data Pendaftaran $user->name Sudah Di Ganti");
     }
 
 }

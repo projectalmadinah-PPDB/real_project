@@ -15,7 +15,7 @@
         @csrf
         @method('POST')
         <div class="flex flex-col md:flex-row justify-between w-full px-5 md:px-10 relative">
-            <div class="md:w-[50%]">
+            <div class="@if(!$user->pendaftaran) md:w-[100%] @else md:w-[50%]  @endif">
                 <h1 class="text-lg font-semibold mb-3 dark:text-slate-200">Data Peserta</h1>
                 <div class="mb-3">
                     <label class="text-sm mb-2 dark:text-slate-300">Nama Lengkap</label>
@@ -41,6 +41,8 @@
                     <input value="{{$user->tanggal_lahir}}" type="date" name="tanggal_lahir" class="border-2 rounded-full shadow-inner w-full py-2 px-3">
                 </div>
             </div>
+            @if(!$user->pendaftaran)
+            @else
             <div class="divider bg-black/30 divider-horizontal"></div>
             <div class="md:w-[50%]">
                 <h1 class="text-lg font-semibold mb-3 dark:text-slate-200">Data Orang Tua / Wali</h1>
@@ -61,10 +63,11 @@
                     <input value="{{$user->pendaftaran->no_ibu}}" type="tel" class="border-2 rounded-full shadow-inner w-full placeholder:text-sm py-2 px-3" autocomplete="off" disabled>
                 </div>
             </div>
+            <details class="mx-auto w-full px-10 mb-7 mt-2 dark:text-slate-100">
+                <textarea class="border-2 shadow-inner w-full placeholder:text-sm py-2 px-3" disabled>{{$user->pendaftaran->alamat}}</textarea>
+            </details>
+            @endif
         </div>
-        <details class="mx-auto w-full px-10 mb-7 mt-2 dark:text-slate-100">
-            <textarea class="border-2 shadow-inner w-full placeholder:text-sm py-2 px-3" disabled>{{$user->pendaftaran->alamat}}</textarea>
-        </details>
         <button type="submit" class="py-2 px-20 bg-emerald-300 rounded-full ms-10 font-bold text-white">Edit</button>
     </form>
     </section>

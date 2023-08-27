@@ -7,9 +7,24 @@
     <div class="content">
       <div class="container-fluid">
         <h4 class="page-title">Pendaftaran</h4>
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{session('success')}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @elseif(session('delete'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{session('delete')}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @elseif(session('edit'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{session('edit')}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <div class="row">
           <div class="col-md-12">
-            
             <div class="card">
               <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -34,8 +49,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Nomor Hp</th>
-                        <th>Email</th>
-                        <th>Status</th>
+                        <th>Biodata</th>
                         {{-- <th>Tanggal Lahir</th>
                         <th>Jenis Kelamin</th> --}}
                         {{-- <th>NIK</th> --}}
@@ -48,7 +62,6 @@
                           <td>{{$index + 1}}</td>
                           <td>{{$item->name}}</td>
                           <td>{{$item->nomor}}</td>
-                          <td>{{$item->email}}</td>
                           {{-- <td>{{$item->tanggal_lahir}}</td>
                           <td>{{$item->jenis_kelamin}}</td> --}}
                           {{-- <td>{{$item->nik}}</td> --}}
