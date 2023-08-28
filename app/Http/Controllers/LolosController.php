@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pendaftaran;
+use App\Models\Student;
 use App\Models\User;
 use App\Traits\Fonnte;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class LolosController extends Controller
             $lolos = User::where('role','user')->where('name','LIKE','%'.$request->search.'%')->paginate(5);
         }
         else{
-            $lolos = Pendaftaran::where('status','lolos')->orderBy('id','desc')->paginate(5);
+            $lolos = Student::where('status','lolos')->orderBy('id','desc')->paginate(5);
         }
         
         return view('pages.admin.dashboard.lolos.index',compact('lolos'));
@@ -26,26 +27,26 @@ class LolosController extends Controller
     public function pengecekan(Request $request,$id)
     {
         // dd($request->all());
-        $pendaftaran = Pendaftaran::findOrFail($id);
+        $student = Student::find($id);
         $data = $request->validate([
-            'status' => ''
+            'status' => 'required|in:lolos,gagal'
         ]);
-        $pendaftaran->update($data);
-        if($pendaftaran->status == 'lolos'){
+        $student->update($data);
+        if($student->status == 'lolos'){
             $messages = "Yey Kamu Di Nyatakan Lolos Oleh Pihak Sekolah Semalat Yah";
     
-            $this->send_message($pendaftaran->user->nomor,$messages);
+            $this->send_message($student->user->nomor,$messages);
         }else{
             $messages = "Yah Kamu Gagal Mohon Bersabar Yah Menunggu 1Tahun Lagi";
 
-            $this->send_message($pendaftaran->user->nomor,$messages);
+            $this->send_message($student->user->nomor,$messages);
         }
         return redirect()->route('admin.pendaftaran.index');
     }
 
     public function update(Request $request,$id)
     {
-        $lolos = Pendaftaran::where('status','lolos')->findOrFail($id);
+        $lolos = Student::where('status','lolos')->findOrFail($id);
         $data = $request->validate([
             'status' => 'required'
         ]);

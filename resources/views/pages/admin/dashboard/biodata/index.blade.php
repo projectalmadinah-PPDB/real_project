@@ -74,7 +74,7 @@
                             @if($item->student == NULL)
                             <a href="" class="badge badge-danger">Tidak Ada Data</a>
                             @else
-                            <a href="{{route('admin.biodata.show',$item->student->id)}}" class="badge badge-primary">Data Pribadi</a>
+                            <a href="{{route('admin.biodata.show',$item->id)}}" class="badge badge-primary">Data Pribadi</a>
                             @endif
                             @if ($item->document == NULL)
                             <a href="" class="badge badge-danger">Tidak Ada Document</a>

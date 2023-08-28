@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('old_school');
             $table->text('organization_exp');
             $table->text('address');
+            $table->string('status')->default('tidak');
             $table->softDeletes();
             $table->timestamps();
         });

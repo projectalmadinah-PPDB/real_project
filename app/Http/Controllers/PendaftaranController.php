@@ -26,7 +26,7 @@ class PendaftaranController extends Controller
 
     public function edit($id)
     {
-        $data = User::with('pendaftaran','document')->findOrFail($id);
+        $data = User::with('student','document')->findOrFail($id);
 
         return view('pages.admin.dashboard.data.edit',compact('data'));
     }

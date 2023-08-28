@@ -46,7 +46,7 @@
                     <h5>Data Org Tua</h5>
                     <div class="mb-2">
                       <label for="">Nama Ayah : </label>
-                      <strong>{{$pendaftaran->father_name}}</strong>
+                      <strong>{{$pendaftaran->parents->father_name}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Nomor Ayah : </label>

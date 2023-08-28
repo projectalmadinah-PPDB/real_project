@@ -21,7 +21,8 @@ class Student extends Model
         'last_graduate',
         'old_school',
         'organization_exp',
-        'address'
+        'address',
+        'status'
     ];
 
     public function user()
