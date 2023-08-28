@@ -16,11 +16,17 @@ class Article extends Model
         'desc',
         'image',
         'slug',
-        'user_id'
+        'user_id',
+        'category_id'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class,'category_id');
     }
 }

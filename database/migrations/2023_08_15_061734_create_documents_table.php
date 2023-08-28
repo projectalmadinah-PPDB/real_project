@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('kk');
             $table->string('ijazah');
             $table->string('akta');
+            $table->string('rapor');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

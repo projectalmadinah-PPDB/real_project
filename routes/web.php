@@ -9,8 +9,10 @@ use App\Http\Controllers\User\FrontController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\LolosController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\User\PendaftaranController as UserPendaftaranController;
 use App\Http\Controllers\SettingController;
 
 /*
@@ -139,26 +141,11 @@ Route::prefix('/user')->name('user.')->group(function(){
 
     Route::post('/activication/process',[UserController::class,'activication_process'])->name('activication.process');
 
-    Route::middleware(['profile','role:user'])->group(function(){
-        Route::get('/profile', function(){
-          return view('front.profile');
-        })->name('profile');
+    Route::middleware(['auth','role:user'])->group(function(){
+        Route::get('/dashboard', [UserDashboardController::class,'index'])->name('dashboard');
+        Route::get('/profile',[UserDashboardController::class,'profile'])->name('profile');
+        Route::get('/kelengkapan' ,[UserPendaftaranController::class,'index'])->name('kelengkapan');
+        Route::post('/kelengkapan/process' ,[UserPendaftaranController::class,'store'])->name('kelengkapan.process');
       });
-    Route::middleware('profile')->group(function(){
-      Route::post('/kelengkapan/process',[FrontController::class,'kelengkapan'])->name('kelengkapan.process');
-
-      Route::get('/uploads/document', [DocumentController::class,'document'])->name('document.index');
-
-      Route::post('/uploads/document/process', [DocumentController::class,'unggah_document'])->name('document.process');
-
-      Route::get('/edit/profile', [SettingController::class,'index'])->name('setting.index');
-      
-      Route::post('/edit/profile/process',[SettingController::class,'update'])->name('setting.update');
-
-      Route::get('/edit/profile/change/password',[SettingController::class,'change_password'])->name('setting.change.password');
-
-      Route::post('/edit/profile/change/password/process',[SettingController::class,'change_password_process'])->name('setting.change.password.process');
-
-    });
 });
 

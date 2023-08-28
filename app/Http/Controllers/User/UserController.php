@@ -138,7 +138,7 @@ class UserController extends Controller
             $messages = "Yey Kamu Berhasil Login Apa Yang Kamu Mau Lanjutkan ?";
 
             $this->send_message($phone,$messages);
-            return redirect()->route('user.profile')->with('success','Yey Berhasil Login');
+            return redirect()->route('user.dashboard')->with('success','Yey Berhasil Login');
         }else{ 
             return back()->withErrors([
                 'nomor' => 'Kamu Bukan User'

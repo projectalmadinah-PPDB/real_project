@@ -16,7 +16,7 @@ class Profile
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role == 'user') {
+        if (Auth::user()->role == 'user') {
             return $next($request);
         }
     }
