@@ -37,6 +37,12 @@
                       <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->kk) }}">mengunduh file PDF</a> sebagai alternatif.</p>
                   </object>
                   </div>
+                  <div>
+                    <label for="">Rapor</label>
+                    <object data="{{ asset('storage/' . $document->rapor) }}" type="application/pdf" width="100%" height="600px">
+                      <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->kk) }}">mengunduh file PDF</a> sebagai alternatif.</p>
+                  </object>
+                  </div>
                 </div>
               </div>
             </div>

@@ -66,9 +66,9 @@
                           {{-- <td>{{$item->tanggal_lahir}}</td>
                           <td>{{$item->jenis_kelamin}}</td> --}}
                           {{-- <td>{{$item->nik}}</td> --}}
-                          @if($item->pendaftaran && $item->document)
+                          @if($item->student && $item->document)
                           <td><button class="badge badge-success border-0">Lengkap &#x2714;</button></td>
-                          @elseif ($item->pendaftaran && !$item->document)
+                          @elseif ($item->student && !$item->document)
                           <td>
                             <button class="badge badge-success border-0">data &#x2714;
                             </button>
@@ -79,26 +79,26 @@
                             <button class="badge badge-danger border-0">Tidak Legkap</button></td>
                           @endif
                           <td>
-                            @if ($item->pendaftaran->status == 'tidak')
-                            <form action="{{route('admin.pengecekan',$item->pendaftaran->id)}}" method="post">
+                            @if ($item->student->status == 'tidak')
+                            <form action="{{route('admin.pengecekan',$item->student->id)}}" method="post">
                               @csrf
                               @method('POST')
                               <button type="submit" name="status" value="lolos" class="badge badge-success border-0">Lulus</button>
                               <button type="submit" name="status" value="gagal" class="badge badge-danger border-0">Gagal</button>
                             </form>
-                            @elseif($item->pendaftaran->status == 'lolos')
+                            @elseif($item->student->status == 'lolos')
                                 <button class="badge badge-success border-0">Lulus</button>
-                            @elseif($item->pendaftaran->status == 'gagal')
+                            @elseif($item->student->status == 'gagal')
                                 <button class="badge badge-danger border-0">Gagal</button>
                             @else
                             
                             @endif
                           </td>
                           <td>
-                            @if($item->pendaftaran == NULL)
+                            @if($item->student == NULL)
                             <a href="" class="badge badge-danger">Tidak Ada Data</a>
                             @else
-                            <a href="{{route('admin.biodata.show',$item->pendaftaran->id)}}" class="badge badge-primary">Data Pribadi</a>
+                            <a href="{{route('admin.biodata.show',$item->student->id)}}" class="badge badge-primary">Data Pribadi</a>
                             @endif
                             @if ($item->document) 
                             <a href="{{route('admin.biodata.show_document',$item->document->id)}}" class="badge badge-warning">Document</a>

@@ -146,6 +146,8 @@ Route::prefix('/user')->name('user.')->group(function(){
         Route::get('/profile',[UserDashboardController::class,'profile'])->name('profile');
         Route::get('/kelengkapan' ,[UserPendaftaranController::class,'index'])->name('kelengkapan');
         Route::post('/kelengkapan/process' ,[UserPendaftaranController::class,'store'])->name('kelengkapan.process');
+        Route::get('/document',[UserPendaftaranController::class,'document'])->name('document');
+        Route::post('/document/process',[UserPendaftaranController::class,'upload'])->name('document.process');
       });
 });
 

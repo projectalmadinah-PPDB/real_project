@@ -65,16 +65,16 @@
                           {{-- <td>{{$item->tanggal_lahir}}</td>
                           <td>{{$item->jenis_kelamin}}</td> --}}
                           {{-- <td>{{$item->nik}}</td> --}}
-                          @if($item->pendaftaran && $item->document)
+                          @if($item->student && $item->document)
                           <td><button class="badge badge-success border-0">Lengkap</button></td>
                           @else
                           <td><button class="badge badge-danger border-0">Tidak Legkap</button></td>
                           @endif
                           <td>
-                            @if($item->pendaftaran == NULL)
+                            @if($item->student == NULL)
                             <a href="" class="badge badge-danger">Tidak Ada Data</a>
                             @else
-                            <a href="{{route('admin.biodata.show',$item->pendaftaran->id)}}" class="badge badge-primary">Data Pribadi</a>
+                            <a href="{{route('admin.biodata.show',$item->student->id)}}" class="badge badge-primary">Data Pribadi</a>
                             @endif
                             @if ($item->document == NULL)
                             <a href="" class="badge badge-danger">Tidak Ada Document</a>

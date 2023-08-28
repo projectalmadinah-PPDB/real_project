@@ -23,16 +23,16 @@
             <div
                 class="fixed w-full h-screen md:h-auto bg-sekunder md:bg-transparent md:relative flex flex-col items-end justify-start md:block">
                 <a href="{{route('user.dashboard')}}" 
-                    class="text-sm p-5 w-full text-end tracking-wide {{Route::is('user.dashboard') ? 'text-primer bg-dasar' : 'text-dasar'}} hover:bg-dasar hover:text-sekunder duration-200"
+                    class="text-sm p-5 w-full text-end tracking-wide {{Route::is('user.dashboard') ? 'text-primer bg-dasar' : ''}} hover:bg-dasar hover:text-sekunder duration-200"
                 >Dashboard</a>
                 <a href="{{route('user.profile')}}" 
-                    class="text-sm p-5 w-full text-end tracking-wide {{Route::is('user.profile') ? 'text-primer bg-dasar' : 'text-dasar'}} hover:bg-dasar hover:text-primer duration-200"
+                    class="text-sm p-5 w-full text-end tracking-wide {{Route::is('user.profile') ? 'text-primer bg-dasar' : ''}} hover:bg-dasar hover:text-primer duration-200"
                 >Profil</a>
                 <a href="" 
-                    class="text-sm p-5 w-full text-end tracking-wide {{Route::is('user.dashboard' ? 'text-primer bg-dasar' : 'text-dasar')}} hover:bg-dasar hover:text-primer duration-200"
+                    class="text-sm p-5 w-full text-end tracking-wide {{Route::is('user.dashboard' ? 'text-primer bg-dasar' : '')}} hover:bg-dasar hover:text-primer duration-200"
                 >Informasi</a>
                 <a href="" 
-                    class="text-sm p-5 w-full text-end tracking-wide {{Route::is('user.dashboard' ? 'text-primer bg-dasar' : 'text-dasar')}} hover:bg-dasar hover:text-primer duration-200"
+                    class="text-sm p-5 w-full text-end tracking-wide {{Route::is('user.dashboard' ? 'text-primer bg-dasar' : '')}} hover:bg-dasar hover:text-primer duration-200"
                 >Q&A</a>
             </div>
         </nav>

@@ -5,6 +5,24 @@
 @section('content')
 <main class="w-full min-h-screen h-auto pt-12 md:pt-24">
     <!-- section one -->
+    @if (!$user->document)
+    <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
+        <!-- status pendaftaran -->
+        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
+            <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang Budi!</h1>
+            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Lengkapi Data diri kamu untuk melanjutkan proses pendaftaran, melalui tombol dibawah ini.</p>
+            <a href="{{route('user.document')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                Lengkapi Document
+            </a>
+        </div>
+
+        <!-- cta ikuti tes -->
+        <div class="flex flex-col justify-center items-center gap-4">
+        </div>
+
+        <!-- alur pendaftaran dan status -->
+    </section>   
+    @elseif(!$user->student)
     <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
         <!-- status pendaftaran -->
         <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
@@ -21,6 +39,24 @@
 
         <!-- alur pendaftaran dan status -->
     </section>
+    @else
+    <section class="w-full py-7 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-4">
+        <!-- status pendaftaran -->
+        <div class="flex flex-col gap-3 justify-center items-center w-full py-7 md:py-10 px-7 md:px-12 bg-primer text-dasar rounded-lg">
+            <h1 class="text-2xl md:text-4xl tracking-wide font-semibold text-center">Selamat Datang {{$user->name}}!</h1>
+            <p class="text-dasar tracking-wide text-xs md:text-sm text-center">Kamu Telah Melengkapi Pendaftaran Silahkan Menunggu Jadwal Kelulusan</p>
+            <a href="{{route('user.profile')}}" class=" text-xs md:text-sm py-3 px-7 rounded-3xl border border-sekunder bg-sekunder hover:bg-sekunder/20 duration-200 text-dasar">
+                Halo Data Diri Saya {{$user->name}}
+            </a>
+        </div>
+
+        <!-- cta ikuti tes -->
+        <div class="flex flex-col justify-center items-center gap-4">
+        </div>
+
+        <!-- alur pendaftaran dan status -->
+    </section> 
+    @endif
 
     <!-- pengumuman -->
     <section 
@@ -65,25 +101,29 @@
         <p class="mt-2 mb-14 text-sm text-gray-700 tracking-wide">
             Baca beragam artikel terkait Sekolah Ar-Romusha dibawah ini.
         </p>
+        @forelse ($informasi as $index => $item)
         <div class="flex justify-start items-start flex-wrap w-full gap-4 relative pb-10">
             <!-- if -->
             <button class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-sekunder ring-2 ring-sekunder ring-offset-2 hover:ring-offset-4 py-2 px-4 text-sm duration-200 text-dasar font-semibold tracking-wide">Lebih Banyak</button>
             <!-- endif -->
             <!-- foreach here -->
             <a href="../detail_article.html" class="group w-[19rem] ring-1 ring-sekunder flex flex-col items-center justify-start hover:rounded-2xl transition-all duration-200 hover:ring-offset-4">
-                <img src="../images/bg-hero.jpg" alt="" class="group-hover:rounded-2xl transition-all duration-200">
+                <img src="{{asset('/storage/'.$item['image'])}}" alt="" class="group-hover:rounded-2xl transition-all duration-200">
                 <div class="py-5 px-3 w-full">
                     <div class="flex justify-between items-center mb-3 gap-2">
-                        <h1 class="text-lg font-semibold tracking-normal truncate group-hover:text-sky-800 transition-all duration-200">Judul Artikel</h1>
+                        <h1 class="text-lg font-semibold tracking-normal truncate group-hover:text-sky-800 transition-all duration-200">{{$item->title}}</h1>
                         <span class="ring-1 ring-sekunder py-0.5 px-2 italic rounded-full text-sekunder bg-dasar text-xs group-hover:bg-emerald-400 group-hover:text-dasar transition-all duration-200 hover:ring-offset-2">Kategori</span>
                     </div>
                     <p class="line-clamp-4 tracking-tight text-sm">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem, veritatis commodi, voluptate dolor cupiditate velit voluptates aliquid alias, eius distinctio ullam unde perferendis vitae corrupti quos consequatur quibusdam nisi asperiores.
+                        {{$item->desc}}
                     </p>
                 </div>
             </a>
             <!-- endforeach here -->
         </div>
+        @empty
+            
+        @endforelse
     </section>
 
     <!-- footer -->

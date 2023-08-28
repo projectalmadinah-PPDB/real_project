@@ -29,6 +29,10 @@
                   <label for="exampleFormControlFile1">Akta <strong>*File PDF</strong></label>
                   <input type="file" class="form-control-file" name="akta" id="exampleFormControlFile1" accept=".pdf">
                 </div>
+                <div class="form-group">
+                  <label for="exampleFormControlFile1">Rapor <strong>*File PDF</strong></label>
+                  <input type="file" class="form-control-file" name="rapor" id="exampleFormControlFile1" accept=".pdf">
+                </div>
               </div>
               <div class="card-action">
                 <button class="btn btn-success" type="submit">Submit</button>

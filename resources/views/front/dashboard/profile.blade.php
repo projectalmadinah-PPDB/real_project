@@ -4,7 +4,7 @@
 
 @section('content')
 <main class="w-full min-h-screen h-auto pt-12 md:pt-24">
-    <!-- alert -->
+    {{-- <!-- alert -->
     <section id="alertProfile" class="w-full pt-3 pb-2 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-5">
         <div class="flex justify-between items-center w-full py-1 px-5 bg-berhasil text-dasar rounded-full">
             <p class="">Pesan Sukses!</p>
@@ -27,7 +27,7 @@
                 &#10006;
             </span>
         </div>
-    </section>
+    </section> --}}
 
     <!-- content biodata -->
     <section class="w-full flex flex-wrap justify-center items-start px-10 md:px-20 pt-10 pb-14 gap-10">
@@ -160,40 +160,46 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if (!$user->document)
+                        <tr>
+                            <td>Belum Mengapload Data</td>
+                        </tr>
+                    @else
                     <tr class="border border-primer">
                         <td class="px-1 py-3 w-1/4">
                             <!-- if (document) -->
-                            <!-- <object 
+                            <object 
                                 class="bg-slate-200 dark:bg-slate-800 w-full rounded-[30px] shadow-inner" height="400" 
-                            type="application/pdf"></object> -->
+                            type="application/pdf" data="{{ asset('storage/' . $user->document->kk) }}"></object>
                             <!-- else -->
-                            <p class="text-sm text-center italic">Belum mengupload dokumen</p>
+                            {{-- <p class="text-sm text-center italic">Belum mengupload dokumen</p> --}}
                         </td>
                         <td class="px-1 py-3 w-1/4">
                             <!-- if (document) -->
-                            <!-- <object 
+                            <object 
                                 class="bg-slate-200 dark:bg-slate-800 w-full rounded-[30px] shadow-inner" height="400" 
-                            type="application/pdf"></object> -->
+                            type="application/pdf" data="{{ asset('storage/' . $user->document->akta) }}"></object> 
                             <!-- else -->
-                            <p class="text-sm text-center italic">Belum mengupload dokumen</p>
+                            {{-- <p class="text-sm text-center italic">Belum mengupload dokumen</p> --}}
                         </td>
                         <td class="px-1 py-3 w-1/4">
                             <!-- if (document) -->
-                            <!-- <object 
+                            <object 
                                 class="bg-slate-200 dark:bg-slate-800 w-full rounded-[30px] shadow-inner" height="400" 
-                            type="application/pdf"></object> -->
+                            type="application/pdf" data="{{ asset('storage/' . $user->document->ijazah) }}"></object>
                             <!-- else -->
-                            <p class="text-sm text-center italic">Belum mengupload dokumen</p>
+                            {{-- <p class="text-sm text-center italic">Belum mengupload dokumen</p> --}}
                         </td>
                         <td class="px-1 py-3 w-1/4">
                             <!-- if (document) -->
-                            <!-- <object 
+                            <object 
                                 class="bg-slate-200 dark:bg-slate-800 w-full rounded-[30px] shadow-inner" height="400" 
-                            type="application/pdf"></object> -->
+                            type="application/pdf" data="{{ asset('storage/' . $user->document->rapor) }}"></object>
                             <!-- else -->
-                            <p class="text-sm text-center italic">Belum mengupload dokumen</p>
+                            {{-- <p class="text-sm text-center italic">Belum mengupload dokumen</p> --}}
                         </td>
                     </tr>
+                    @endif
                 </tbody>
             </table>
         </div>

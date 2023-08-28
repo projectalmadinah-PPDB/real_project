@@ -19,7 +19,7 @@ class PendaftaranController extends Controller
             $data = User::where('name','LIKE','%'.$request->search.'%')->paginate(5);
         }
         else{
-            $data = User::orderBy('id','desc')->with('pendaftaran','document')->where('role','user')->whereHas('pendaftaran')->paginate(5);
+            $data = User::orderBy('id','desc')->with('student','document')->where('role','user')->whereHas('student')->paginate(5);
         }
         return view('pages.admin.dashboard.data.index',compact('data'));
     }

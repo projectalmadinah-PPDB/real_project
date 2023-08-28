@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" href="../assets/style.css"/>
-    <link rel="stylesheet" href="/../dist/output.css"/>
+    @include('front.layouts.include')
+    @vite(['resources/css/real.css'])
     <title>Document</title>
 </head>
 <body>
@@ -24,28 +24,33 @@
             begitu;
      -->
     <div class="bg-gradient-to-br from-dasar via-sky-50 to-sky-200 w-full py-[53rem] sm:py-[20rem] md:py-72 lg:py-80 h-auto font-poppins caret-sekunder accent-primer">
-        <img src="../images/logo_only_currentColor.svg" draggable="false" class="fixed w-[70rem] opacity-20 -bottom-52">
+        <img src="/dists/images/logo_only_currentColor.svg" draggable="false" class="fixed w-[70rem] opacity-20 -bottom-52">
         <main class="w-full h-screen flex justify-center items-center">
             <!-- formulir pendaftaran -->
             <section 
                 class="relative w-full flex justify-center items-center py-7 tracking-wide px-10 sm:px-20 md:px-40 lg:px-80">
                 <div class="bg-gradient-to-t from-primer to-sky-900 flex flex-col justify-center items-center gap-y-3 px-5 md:px-10 pt-14 pb-7 rounded-3xl text-dasar">
                     <div class="py-[16px] px-[14px] rounded-full absolute z-999 top-0 bg-dasar shadow-2xl">
-                        <img src="../images/logo_only.svg" alt="" class="w-10">
+                        <img src="/dists/images/logo_only.svg" alt="" class="w-10">
                     </div>
                     <h1 class="text-2xl font-bold text-center leading-none">Upload Dokumen.</h1>
                     <p class="text-sm text-center tracking-wide font-light text-gray-400">
                         Upload dokumen persyaratan melalui form dibawah ini.
                     </p>
-                    <form class="mt-2 w-full">
+                    <form action="{{route('user.document.process')}}" class="mt-2 w-full" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('POST')
                         <ul class="flex flex-row flex-wrap justify-center items-center md:items-start w-full gap-5">
                             <li class="w-full sm:w-5/12 mt-3">
                                 <div class="mb-3 w-full">
                                     <label for="" class="text-sm">Dokumen Akte Kelahiran</label>
-                                    <input  onchange="previewPDF('inputAkte', 'outputAkte')" id="inputAkte"
+                                    <input name="akta" onchange="previewPDF('inputAkte', 'outputAkte')" id="inputAkte"
                                     type="file" accept="application/pdf"
                                     class="shadow-inner rounded-full w-full py-2 px-4 outline-none text-sm bg-white/10 file:rounded-full file:border-sekunder file:border-solid file:text-sekunder file:bg-sekunder/10 file:hover:border-sekunder file:hover:bg-sekunder/70 file:hover:text-dasar file:font-medium file:border file:lowercase file:text-sm file:duration-200"
                                     >
+                                    @error('akta')
+                                    <p class="text-red-500 text-xs italic">{{$message}}.</p>  
+                                    @enderror
                                 </div>
                                 <!-- pdf preview -->
                                 <div class="w-full">
@@ -58,10 +63,13 @@
                             <li class="w-full sm:w-5/12 mt-3">
                                 <div class="mb-3 w-full">
                                     <label for="" class="text-sm">Dokumen Kartu Keluarga</label>
-                                    <input onchange="previewPDF('inputKk', 'outputKk')" id="inputKk"
+                                    <input name="kk" onchange="previewPDF('inputKk', 'outputKk')" id="inputKk"
                                     type="file" accept="application/pdf"
                                     class="shadow-inner rounded-full w-full py-2 px-4 outline-none text-sm bg-white/10 file:rounded-full file:border-sekunder file:border-solid file:text-sekunder file:bg-sekunder/10 file:hover:border-sekunder file:hover:bg-sekunder/70 file:hover:text-dasar file:font-medium file:border file:lowercase file:text-sm file:duration-200"
                                     >
+                                    @error('kk')
+                                    <p class="text-red-500 text-xs italic">{{$message}}.</p>  
+                                    @enderror
                                 </div>
                                 <!-- pdf preview -->
                                 <div class="w-full">
@@ -74,10 +82,13 @@
                             <li class="w-full sm:w-5/12 mt-3">
                                 <div class="mb-3 w-full">
                                     <label for="" class="text-sm">Dokumen Ijazah Kelulusan</label>
-                                    <input onchange="previewPDF('inputIjazah', 'outputIjazah')" id="inputIjazah"
+                                    <input name="ijazah" onchange="previewPDF('inputIjazah', 'outputIjazah')" id="inputIjazah"
                                     type="file" accept="application/pdf"
                                     class="shadow-inner rounded-full w-full py-2 px-4 outline-none text-sm bg-white/10 file:rounded-full file:border-sekunder file:border-solid file:text-sekunder file:bg-sekunder/10 file:hover:border-sekunder file:hover:bg-sekunder/70 file:hover:text-dasar file:font-medium file:border file:lowercase file:text-sm file:duration-200"
                                     >
+                                    @error('ijazah')
+                                    <p class="text-red-500 text-xs italic">{{$message}}.</p>  
+                                    @enderror
                                 </div>
                                 <!-- pdf preview -->
                                 <div class="w-full">
@@ -90,10 +101,13 @@
                             <li class="w-full sm:w-5/12 mt-3">
                                 <div class="mb-3 w-full">
                                     <label for="" class="text-sm">Dokumen Rapor Pendidikan Terakhir</label>
-                                    <input onchange="previewPDF('inputRapor', 'outputRapor')" id="inputRapor"
+                                    <input name="rapor" onchange="previewPDF('inputRapor', 'outputRapor')" id="inputRapor"
                                     type="file" accept="application/pdf"
                                     class="shadow-inner rounded-full w-full py-2 px-4 outline-none text-sm bg-white/10 file:rounded-full file:border-sekunder file:border-solid file:text-sekunder file:bg-sekunder/10 file:hover:border-sekunder file:hover:bg-sekunder/70 file:hover:text-dasar file:font-medium file:border file:lowercase file:text-sm file:duration-200"
                                     >
+                                    @error('rapor')
+                                    <p class="text-red-500 text-xs italic">{{$message}}.</p>  
+                                    @enderror
                                 </div>
                                 <!-- pdf preview -->
                                 <div class="w-full">

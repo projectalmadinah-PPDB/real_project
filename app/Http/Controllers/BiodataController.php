@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\Pendaftaran;
 use App\Models\Document;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class BiodataController extends Controller
@@ -21,13 +22,14 @@ class BiodataController extends Controller
             $users = User::where('role','user')->where('name','LIKE','%'.$request->search.'%')->paginate(5);
         }
         else{
-            $users = User::where('role','user')->orderBy('id','desc')->with('pendaftaran','document')->paginate(5);
+            $users = User::where('role','user')->orderBy('id','desc')->with('student','document')->paginate(5);
         }
         return view('pages.admin.dashboard.biodata.index',compact('users'));
     }
 
     public function show($id){
-        $pendaftaran = Pendaftaran::with('user')->findOrFail($id);
+        // $pendaftaran = User::with('student')->findOrFail($id);
+        $pendaftaran = User::with('parents')->findOrFail($id);
 
         return view('pages.admin.dashboard.biodata.show',compact('pendaftaran'));
     }

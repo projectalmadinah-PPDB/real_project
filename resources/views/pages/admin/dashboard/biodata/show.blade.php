@@ -13,7 +13,7 @@
             <div class="card">
               <div class="card-header">
                 <div class="d-flex justify-content-between">
-                  <div class="card-title">Detail Document {{$pendaftaran->user->name}}</div>
+                  <div class="card-title">Detail Document {{$pendaftaran->name}}</div>
                   <a href="{{route('admin.biodata.index')}}" class="btn btn-primary float-end text-white">Back</a>
                 </div>
               </div>
@@ -23,30 +23,30 @@
                     <h5>Data Pribadi</h5>
                     <div class="mb-2">
                       <label for="">Nama Lengkap : </label>
-                      <strong>{{$pendaftaran->user->name}}</strong>
+                      <strong>{{$pendaftaran->name}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Nomor Hp : </label>
-                      <strong>{{$pendaftaran->user->nomor}}</strong>
+                      <strong>{{$pendaftaran->nomor}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Email : </label>
-                      <strong>{{$pendaftaran->user->email}}</strong>
+                      <strong>{{$pendaftaran->email}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Jenis Kelamin : </label>
-                      <strong>{{$pendaftaran->user->jenis_kelamin}}</strong>
+                      <strong>{{$pendaftaran->jenis_kelamin}}</strong>
                     </div>
                     <div>
                       <label for="">Tanggal Lahir : </label>
-                      <strong>{{$pendaftaran->user->tanggal_lahir}}</strong>
+                      <strong>{{$pendaftaran->tanggal_lahir}}</strong>
                     </div>
                   </div>
                   <div class="col-6">
                     <h5>Data Org Tua</h5>
                     <div class="mb-2">
                       <label for="">Nama Ayah : </label>
-                      <strong>{{$pendaftaran->nama_ayah}}</strong>
+                      <strong>{{$pendaftaran->father_name}}</strong>
                     </div>
                     <div class="mb-2">
                       <label for="">Nomor Ayah : </label>

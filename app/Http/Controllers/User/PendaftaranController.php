@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Document;
 use App\Models\Parents;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -48,5 +49,53 @@ class PendaftaranController extends Controller
         Parents::create($parent);
 
         return redirect()->route('user.dashboard')->with('success','Berhasil Melengkapi Data Pribadi');
+    }
+
+    public function document()
+    {
+        return view('front.dashboard.upload_document');
+    }
+
+    public function upload(Request $request)
+    {
+        $request->validate([
+            'kk' => 'required|mimes:pdf|max:2048', // Kartu Keluarga
+            'ijazah' => 'required|mimes:pdf|max:2048', // Ijazah
+            'akta' => 'required|mimes:pdf|max:2048', // Akta
+            'rapor' => 'required|mimes:pdf|max:2048', // lapor
+        ]);
+    
+        if ($request->hasFile('kk') && $request->hasFile('ijazah') && $request->hasFile('akta') && $request->hasFile('rapor')) {
+            $kkFile = $request->file('kk');
+            $ijazahFile = $request->file('ijazah');
+            $aktaFile = $request->file('akta');
+            $raporFile = $request->file('rapor');
+    
+            $kkFileName = time() . '_kk_' . $kkFile->getClientOriginalName();
+            $ijazahFileName = time() . '_ijazah_' . $ijazahFile->getClientOriginalName();
+            $aktaFileName = time() . '_akta_' . $aktaFile->getClientOriginalName();
+            $raporFileName = time() . '_rapor_' . $raporFile->getClientOriginalName();
+    
+            $kkFile->storeAs('public/pdf', $kkFileName);
+            $ijazahFile->storeAs('public/pdf', $ijazahFileName);
+            $aktaFile->storeAs('public/pdf', $aktaFileName);
+            $raporFile->storeAs('public/pdf', $raporFileName);
+    
+            // Proses penyimpanan informasi ke database
+            $data = [
+                'kk' => 'pdf/' . $kkFileName,
+                'ijazah' => 'pdf/' . $ijazahFileName,
+                'akta' => 'pdf/' . $aktaFileName,
+                'rapor' => 'pdf/' . $raporFileName,
+            ];
+            
+            $data['user_id'] = Auth::user()->id;
+            
+            Document::create($data);
+            
+            return redirect()->route('user.dashboard')->with('success', 'Document Baru Berhasil Di Tambahkan');
+        }
+    
+        return redirect()->route('user.dashboard')->with('error', 'Gagal mengunggah files.');
     }
 }

@@ -40,26 +40,31 @@ class DocumentController extends Controller
             'kk' => 'required|mimes:pdf|max:2048', // Kartu Keluarga
             'ijazah' => 'required|mimes:pdf|max:2048', // Ijazah
             'akta' => 'required|mimes:pdf|max:2048', // Akta
+            'rapor' => 'required|mimes:pdf|max:2048'
         ]);
     
-        if ($request->hasFile('kk') && $request->hasFile('ijazah') && $request->hasFile('akta')) {
+        if ($request->hasFile('kk') && $request->hasFile('ijazah') && $request->hasFile('akta') && $request->hasFile('rapor')) {
             $kkFile = $request->file('kk');
             $ijazahFile = $request->file('ijazah');
             $aktaFile = $request->file('akta');
+            $raporFile = $request->file('akta');
     
             $kkFileName = time() . '_kk_' . $kkFile->getClientOriginalName();
             $ijazahFileName = time() . '_ijazah_' . $ijazahFile->getClientOriginalName();
             $aktaFileName = time() . '_akta_' . $aktaFile->getClientOriginalName();
+            $raporFileName = time() . '_rapor_' . $raporFile->getClientOriginalName();
     
             $kkFile->storeAs('public/pdf', $kkFileName);
             $ijazahFile->storeAs('public/pdf', $ijazahFileName);
             $aktaFile->storeAs('public/pdf', $aktaFileName);
+            $raporFile->storeAs('public/pdf', $raporFileName);
     
             // Proses penyimpanan informasi ke database
             $data = [
                 'kk' => 'pdf/' . $kkFileName,
                 'ijazah' => 'pdf/' . $ijazahFileName,
                 'akta' => 'pdf/' . $aktaFileName,
+                'rapor' => 'pdf/' . $raporFileName,
             ];
             
             $data['user_id'] = Auth::user()->id;
