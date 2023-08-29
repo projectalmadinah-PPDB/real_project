@@ -50,6 +50,7 @@
                       <th>ID</th>
                       <th>Title</th>
                       {{-- <th>Photo</th> --}}
+                      <th>Category</th>
                       <th>Author</th>
                       <th>Action</th>
                     </tr>
@@ -60,6 +61,7 @@
                         <td>{{$index + $article->firstItem()}}</td>
                         <td>{{$item->title}}</td>
                         {{-- <td><img src="{{ asset('storage/' . $item['image'])}}" style="width:200px;height:200px" class="rounded-0" alt=""></td> --}}
+                        <td>{{$item->category->name}}</td>
                         <td>{{$item->user->name}}</td>
                         <td>
                           <a href="{{route('admin.article.show',$item->slug)}}" class="badge badge-primary">Show</a>

@@ -26,6 +26,15 @@
                   <textarea name="desc" id="" cols="30" rows="2" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
+                  <label for="email">Category</label>
+                  <select name="category_id" id="" class="form-select">
+                    <option value="" disabled selected>Pilih Category Informasi</option>
+                    @foreach ($category as $item)
+                      <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="email">Image</label>
                   <input type="file" class="form-control" name="image">
                 </div>

@@ -52,7 +52,7 @@ class LolosController extends Controller
         ]);
         $lolos->update($data);
 
-        return redirect()->route('admin.lolos.index')->with('edit',"Berhasil Mengupdate Status Siswa $lolos->user->name");
+        return redirect()->route('admin.lolos.index')->with('edit',"Berhasil Mengupdate Status Siswa");
     }
 
     public function destroy($id)

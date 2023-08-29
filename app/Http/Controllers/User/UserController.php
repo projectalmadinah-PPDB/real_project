@@ -133,13 +133,21 @@ class UserController extends Controller
          return redirect()->route('user.activication')->with('gagal','Kamu Harus Mengisi Kode OTP Yang Dikirim');
     }
     if (Auth::attempt($infologin)) {
+        // if(auth()->user()->role == 'user'){
+        //     $request->session()->regenerate();
+        //     $messages = "Yey Kamu Berhasil Login Apa Yang Kamu Mau Lanjutkan ?";
+
+        //     $this->send_message($phone,$messages);
+        //     return redirect()->route('user.dashboard')->with('success','Yey Berhasil Login');
+        // }else{ 
+        //     return back()->withErrors([
+        //         'nomor' => 'Kamu Bukan User'
+        //     ])->onlyInput('nomor');
+        // }
         if(auth()->user()->role == 'user'){
             $request->session()->regenerate();
-            $messages = "Yey Kamu Berhasil Login Apa Yang Kamu Mau Lanjutkan ?";
-
-            $this->send_message($phone,$messages);
-            return redirect()->route('user.dashboard')->with('success','Yey Berhasil Login');
-        }else{ 
+            return redirect()->route('user.dashboard');
+        }else{
             return back()->withErrors([
                 'nomor' => 'Kamu Bukan User'
             ])->onlyInput('nomor');
@@ -162,6 +170,10 @@ class UserController extends Controller
     if (Str::startsWith($phone, '0')) {
         $phone = '62' . substr($phone, 1);
     }
+    $existingUser = User::where('nomor', $phone)->first();
+    if ($existingUser) {
+        return redirect()->back()->withErrors(['nomor' => 'Nomor Sudah Di Pake Maybe']);
+    }
         // dd($request->all());
     $messages = [
         'name.required' => 'Nama Lengkap Harus Diisi',
@@ -179,7 +191,7 @@ class UserController extends Controller
     ];
     $data = $request->validate([
         'name' => 'required|min:3|max:255|string',
-        'nomor' => 'required|min:10|unique:users',
+        'nomor' => 'required|min:10|unique:users,nomor',
         'jenis_kelamin' => 'required|string',
         'tanggal_lahir' => 'required|date',
         'password'       => 'required|min:6|same:password_again',

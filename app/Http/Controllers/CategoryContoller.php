@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class CategoryContoller extends Controller
+{
+    public function index()
+    {
+        $category = Category::all();
+        return view('pages.admin.dashboard.category.index',compact('category'));
+    }
+
+    public function create()
+    {
+        return view('pages.admin.dashboard.category.create');
+    }
+
+    public function store(Request $request)
+    {
+        $category = $request->validate([
+            'name' => 'required|string'
+        ]);
+        $category['user_id'] = Auth::user()->id;
+        Category::create($category);
+        
+        return redirect()->route('admin.category.index');
+    }
+
+    public function update(Request $request,$id)
+    {
+        $category = Category::findOrFail($id);
+        $categorys = $request->validate([
+            'name' => 'required'
+        ]);
+        $category->update($categorys);
+
+        return redirect()->route('admin.category.index');
+    }
+}

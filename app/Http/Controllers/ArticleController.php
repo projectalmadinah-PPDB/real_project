@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,7 @@ class ArticleController extends Controller
             $article = Article::where('title','LIKE','%'.$request->search.'%')->paginate(5);
         }
         else{
-            $article = Article::orderBy('id', 'desc')->paginate(5);
+            $article = Article::with('category')->orderBy('id', 'desc')->paginate(5);
         }
         return view('pages.admin.dashboard.articles.index',compact('article'));
     }
@@ -28,7 +29,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.dashboard.articles.create');
+        $category = Category::all();
+        return view('pages.admin.dashboard.articles.create',compact('category'));
     }
 
     /**
@@ -40,11 +42,13 @@ class ArticleController extends Controller
             'title' => 'required|string',
             'image' => 'required',
             'desc' => 'required',
+            'category_id' => 'required'
         ],
     [
         'title.required' => 'Title Wajib Diisi',
         'desc.required' => 'Description Wajib Diisi',
-        'image.required' => 'Image Wajib Diisi'
+        'image.required' => 'Image Wajib Diisi',
+        'category_id.required' => 'Category Wajib Diisi'
     ]);
         $data['slug'] = Str::slug($request->title);
         $data['user_id'] = Auth::user()->id;
@@ -71,8 +75,9 @@ class ArticleController extends Controller
      */
     public function edit($slug)
     {
+        $category = Category::all();
         $article = Article::where('slug', $slug)->firstOrFail();
-        return view('pages.admin.dashboard.articles.edit',compact('article'));
+        return view('pages.admin.dashboard.articles.edit',compact('article','category'));
     }
 
     /**
@@ -86,6 +91,7 @@ class ArticleController extends Controller
             'title' => 'required|string',
             'image' => '',
             'desc' => 'required',
+            'category_id' => 'required'
         ],
         [
             'title.required' => 'Title Wajib Diisi',

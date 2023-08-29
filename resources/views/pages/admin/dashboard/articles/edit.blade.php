@@ -28,6 +28,15 @@
                             <textarea name="desc" class="form-control">{{$article->desc}}</textarea>
                           </div>
                           <div class="form-group">
+                            <label for="email">Category</label>
+                            <select name="category_id" id="" class="form-select">
+                              <option value="" disabled selected>Pilih Category Informasi</option>
+                              @foreach ($category as $item)
+                                <option value="{{$item->id}}" {{$item->name == $item->name ? 'selected' : ''}}>{{$item->name}}</option>
+                              @endforeach
+                            </select>
+                          </div>
+                          <div class="form-group">
                             <label for="nomor" class="d-inline">Photo Informasi</label>
                             <img src="{{asset('/storage/'. $article['image'])}}" alt="" class="w-50 d-block">
                             <input name="image" class="form-control" type="file">

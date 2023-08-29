@@ -31,6 +31,10 @@
                     <textarea type="text" class="form-control" value="">{{$articles->desc}}</textarea>
                   </div>
                   <div class="mb-2">
+                    <label for="" class="font-bold form-label">Category : </label>
+                    <input type="text" class="form-control" value="{{$articles->category->name}}">
+                  </div>
+                  <div class="mb-2">
                     <label for="" class="font-bold form-label">Author : </label>
                     <input type="text" class="form-control" value="{{$articles->user->name}}">
                   </div>

@@ -170,6 +170,12 @@
           <p>Document</p>
         </a>
       </li>
+      <li class="nav-item {{Route::is('admin.category.*') ? 'active' : '' }}">
+        <a href="{{route('admin.category.index')}}">
+          <i class="bi bi-file-earmark-text"></i>
+          <p>Category</p>
+        </a>
+      </li>
       <li class="nav-item {{Route::is('admin.article.*') ? 'active' : '' }}">
         <a href="{{route('admin.article.index')}}">
           <i class="bi bi-file-earmark-text"></i>

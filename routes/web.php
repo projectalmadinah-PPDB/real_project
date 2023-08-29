@@ -8,6 +8,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\FrontController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\BiodataController;
+use App\Http\Controllers\CategoryContoller;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\LolosController;
@@ -55,6 +56,14 @@ Route::prefix('/admin')->name('admin.')->group(function(){
       Route::get('/articles/{id}', [ArticleController::class,'show'])->name('article.show');
 
       Route::delete('/articles/delete/{id}', [ArticleController::class, 'destroy'])->name('article.delete');
+
+      Route::get('/category',[CategoryContoller::class,'index'])->name('category.index');
+
+      Route::get('/category/create',[CategoryContoller::class,'create'])->name('category.create');
+
+      Route::post('/category/create/process',[CategoryContoller::class,'store'])->name('category.store');
+
+      Route::put('/category/edit/process/{id}',[CategoryContoller::class,'update'])->name('category.update');
 
       Route::get('/biodata',[BiodataController::class,'index'])->name('biodata.index');
 
