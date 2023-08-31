@@ -112,6 +112,10 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::put('/notify/update',[NotifyController::class,'update'])->name('setting.notify.update');
 
+      Route::get('/settings',[SettingController::class,'general'])->name('settings.general');;
+      
+
+
 
       // document
 

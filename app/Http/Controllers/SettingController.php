@@ -21,6 +21,11 @@ class SettingController extends Controller
         return view('front.edit-profile',compact('user'));
     }
 
+    public function general()
+    {
+        return view('pages.admin.dashboard.setting.general');
+    }
+
     public function profile()
     {
         $profile = Auth::user();

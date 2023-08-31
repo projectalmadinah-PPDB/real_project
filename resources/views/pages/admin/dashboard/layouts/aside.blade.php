@@ -149,21 +149,11 @@
 					<p>Laporan</p>
 				</a>
 			</li>
-			
 
-			{{-- <li class="nav-item
-      {{ (Route::is('admin.setting.*') || Route::is('admin.category.*')) ? 'active' : '' }}
-			 ">
-				<a href="#collapseSettings" data-toggle="collapse" aria-expanded="true" class="py-1 px-3">
-					<i class="bi bi-people"></i>
-					<p>Artikel</p>
-					<i class="bi bi-caret-down-fill position-absolute end-0" style="font-size: 11px"></i>
-				</a>
-			</li> --}}
-			<li class="nav-item {{ (Route::is('admin.setting.*') || Route::is('admin.setting.profile.*')) ? 'active' : '' }} pb-3">
+			<li class="nav-item {{ (Route::is('admin.setting.*') || Route::is('admin.settings.*') || Route::is('admin.setting.profile.*')) ? 'active' : '' }} pb-3">
 				<a href="#collapseSettings" data-toggle="collapse" aria-expanded="true" class="py-1 px-3">
 					<i class="bi bi-credit-card"></i>
-					<p>Setting</p>
+					<p>Pengaturan</p>
 				</a>
 			</li>
 
