@@ -38,6 +38,15 @@ class CategoryContoller extends Controller
         ]);
         $category->update($categorys);
 
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.index')->with('edit','Berhasil Mengganti Nama Category');
+    }
+
+    public function delete(Category $category,$id)
+    {
+        $categorys = Category::find($id);
+
+        $categorys->delete();
+
+        return redirect()->route('admin.category.index')->with('delete','Berhasil Menghapus Category');
     }
 }

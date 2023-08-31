@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notify;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\Fonnte;
@@ -197,16 +198,20 @@ class UserController extends Controller
         'password'       => 'required|min:6|same:password_again',
         'password_again' => 'required'
     ],$messages);
-
+    $notify = Notify::firstOrFail(); // Mengambil entitas notifikasi pertama
+    $data['notify_id'] = $notify->id;
     $data['password'] = bcrypt($request->password);
     $data['token'] = rand(111111,999999);
     $data['nomor'] = $phone;
     
     $user = User::create($data);
 
-    $messages = "Verivication ur Account $user->token";
-
-    $this->send_message($user->nomor,$messages);
+    $notif_otp = $notify->notif_otp;
+    $messages = $notif_otp . $user->token;
+        
+    $this->send_message($user->nomor, $messages);
+    
+    
     
     // auth()->login($user);
     // $this->sendEmailVerification();

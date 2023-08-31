@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'notify_id',
         'name' ,
         'email' ,
         'nomor',
@@ -77,5 +78,10 @@ class User extends Authenticatable
     public function pendaftaran()
     {
         return $this->hasOne(Pendaftaran::class);
+    }
+
+    public function notifys()
+    {
+        return $this->belongsTo(Notify::class);
     }
 }

@@ -24,4 +24,10 @@ class DashboardController extends Controller
         $user = User::with('parents')->findOrFail($users);
         return view('front.dashboard.profile',compact('user'));
     }
+
+    public function informasi()
+    {
+        $article = Article::all();
+        return view('front.dashboard.informasi',compact('article'));
+    }
 }

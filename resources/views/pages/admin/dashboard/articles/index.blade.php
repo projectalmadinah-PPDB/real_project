@@ -61,7 +61,13 @@
                         <td>{{$index + $article->firstItem()}}</td>
                         <td>{{$item->title}}</td>
                         {{-- <td><img src="{{ asset('storage/' . $item['image'])}}" style="width:200px;height:200px" class="rounded-0" alt=""></td> --}}
-                        <td>{{$item->category->name}}</td>
+                        <td>
+                          @if ($item->category)
+                            {{$item->category->name}}
+                          @else
+                            Tidak Ada Category
+                          @endif
+                        </td>
                         <td>{{$item->user->name}}</td>
                         <td>
                           <a href="{{route('admin.article.show',$item->slug)}}" class="badge badge-primary">Show</a>

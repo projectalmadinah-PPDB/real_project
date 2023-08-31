@@ -12,6 +12,7 @@ use App\Http\Controllers\CategoryContoller;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\LolosController;
+use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\User\PendaftaranController as UserPendaftaranController;
 use App\Http\Controllers\SettingController;
@@ -65,6 +66,8 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::put('/category/edit/process/{id}',[CategoryContoller::class,'update'])->name('category.update');
 
+      Route::delete('/category/delete/{id}',[CategoryContoller::class,'delete'])->name('category.destroy');
+
       Route::get('/biodata',[BiodataController::class,'index'])->name('biodata.index');
 
       Route::get('/biodata/show/{id}',[BiodataController::class,'show'])->name('biodata.show');
@@ -99,9 +102,13 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::post('/pengecekan/{id}',[LolosController::class,'pengecekan'])->name('pengecekan');
 
-      Route::get('/profile',[SettingController::class,'profile'])->name('profile.index');
+      Route::get('/profile',[SettingController::class,'profile'])->name('setting.profile.index');
 
-      Route::put('/profile/edit',[SettingController::class,'update_profile'])->name('profile.update');
+      Route::put('/profile/edit',[SettingController::class,'update_profile'])->name('setting.profile.update');
+
+      Route::get('/notify',[NotifyController::class,'index'])->name('setting.notify.index');
+
+      Route::put('/notify/update',[NotifyController::class,'update'])->name('setting.notify.update');
 
 
       // document
@@ -153,6 +160,7 @@ Route::prefix('/user')->name('user.')->group(function(){
     Route::middleware(['auth','role:user'])->group(function(){
         Route::get('/dashboard', [UserDashboardController::class,'index'])->name('dashboard');
         Route::get('/profile',[UserDashboardController::class,'profile'])->name('profile');
+        Route::get('/informasi',[UserDashboardController::class,'informasi'])->name('informasi');
         Route::get('/kelengkapan' ,[UserPendaftaranController::class,'index'])->name('kelengkapan');
         Route::post('/kelengkapan/process' ,[UserPendaftaranController::class,'store'])->name('kelengkapan.process');
         Route::get('/document',[UserPendaftaranController::class,'document'])->name('document');

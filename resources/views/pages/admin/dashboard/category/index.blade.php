@@ -116,7 +116,7 @@
                                 </div>
                                 </form>
                             </div>
-                            <form action="" method="post" class="d-inline">
+                            <form action="{{route('admin.category.destroy',$item->id)}}" method="post" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="badge badge-danger border-0">Delete</button>

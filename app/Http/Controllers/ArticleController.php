@@ -42,13 +42,12 @@ class ArticleController extends Controller
             'title' => 'required|string',
             'image' => 'required',
             'desc' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'nullable|exists:categories,id',
         ],
     [
         'title.required' => 'Title Wajib Diisi',
         'desc.required' => 'Description Wajib Diisi',
         'image.required' => 'Image Wajib Diisi',
-        'category_id.required' => 'Category Wajib Diisi'
     ]);
         $data['slug'] = Str::slug($request->title);
         $data['user_id'] = Auth::user()->id;
@@ -91,7 +90,7 @@ class ArticleController extends Controller
             'title' => 'required|string',
             'image' => '',
             'desc' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'nullable|exists:categories,id',
         ],
         [
             'title.required' => 'Title Wajib Diisi',

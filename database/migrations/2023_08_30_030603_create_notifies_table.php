@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('notifies', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('desc');
-            $table->string('image');
-            $table->foreignId('user_id');
-            $table->foreignId('category_id')->nullable();
-            $table->string('slug')->unique();
+            $table->text('notif_otp');
+            $table->text('notif_pembayaran');
+            $table->text('notif_lolos');
+            $table->text('notif_gagal');
+            $table->text('notif_info');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('notifies');
     }
 };
