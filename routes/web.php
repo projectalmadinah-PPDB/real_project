@@ -92,6 +92,8 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 
       Route::get('/pendaftaran/delete/{id}',[PendaftaranController::class,'destroy'])->name('pendaftaran.destroy');
 
+      Route::get('/pendaftaran/show/{id}',[PendaftaranController::class,'show'])->name('pendaftaran.show');
+
       Route::get('/lolos',[LolosController::class,'index'])->name('lolos.index');
 
       Route::get('/lolos/edit/{id}',[LolosController::class,'edit'])->name('lolos.edit');
@@ -137,7 +139,9 @@ Route::prefix('/user')->name('user.')->group(function(){
     Route::get('/detail-informasi/{slug}',[FrontController::class,'detail_informasi'])->name('informasi.detail');
 
     Route::get('/about-us',[FrontController::class,'about'])->name('about');
-
+    Route::get('/apa', function(){ 
+      return view('front.index');
+    });
     Route::get('/verification', [UserController::class, 'verifyEmail'])->name('verification');
     Route::post('/verification/resend-email-verification', [UserController::class, 'resendEmailVerification'])->name('resend-email-verification');
 
@@ -149,7 +153,7 @@ Route::prefix('/user')->name('user.')->group(function(){
 
     Route::get('/register',[UserController::class,'show'])->name('show');
 
-    Route::post('register/proses', [UserController::class,'register'])->name('register.proses');
+    Route::post('/register/proses', [UserController::class, 'register_proses'])->name('register.proses');
 
     Route::get('/logout', [UserController::class,'logout'])->name('logout');
 

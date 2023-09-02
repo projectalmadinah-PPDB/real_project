@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use App\Models\Pendaftaran;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,13 @@ class PendaftaranController extends Controller
             $data = User::orderBy('id','desc')->with('student','document')->where('role','user')->whereHas('student')->paginate(5);
         }
         return view('pages.admin.dashboard.data.index',compact('data'));
+    }
+
+    public function show($id){
+        // $pendaftaran = User::with('student')->findOrFail($id);
+        $pendaftaran = User::with('parents')->findOrFail($id);
+
+        return view('pages.admin.dashboard.data.show',compact('pendaftaran'));
     }
 
     public function edit($id)

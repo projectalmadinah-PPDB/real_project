@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Notify;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -46,34 +48,66 @@ class AdminController extends Controller
     ])->onlyInput('email','password');
     }
 
-    public function show()
-    {
-        return view('pages.admin.register');
-    }
+    // public function show()
+    // {
+    //     return view('pages.user.register');
+    // }
 
-    public function register(Request $request)
-    {
+    // public function register(Request $request)
+    // {
+    //     $phone = $request->nomor;
+    //     if (Str::startsWith($phone, '0')) {
+    //         $phone = '62' . substr($phone, 1);
+    //     }
+    //     $existingUser = User::where('nomor', $phone)->first();
+    //     if ($existingUser) {
+    //         return redirect()->back()->withErrors(['nomor' => 'Nomor Sudah Di Pake Maybe']);
+    //     }
+    //         // dd($request->all());
+    //     $messages = [
+    //         'name.required' => 'Nama Lengkap Harus Diisi',
+    //         'name.min' => 'Apakah Ini Nama Lengkap Dengan :min Doang?',
+    //         'name.max' => 'Waduh Wir Nama Mu Panjang Amat',
+    //         'name.string' => 'Nama Itu Harus Alfabet',
+    //         'nomor.required' => 'Nomor Harus Diisi Dengan Benar',
+    //         'nomor.unique' => 'Nomor Sudah Di Pake Maybe',
+    //         'jenis_kelamin.required' => 'Jenis Kelamin Kamu Harus Diisi',
+    //         'tanggal_lahir.required' => 'Tanggal Lahir Kamu Berapa?',
+    //         'password.required' => 'Password Wajib Diisi',
+    //         'password.same:password_again' => 'Password Harus Sama Dengan Confirm Password',
+    //         'password_again.required' => 'Woi Isi Confirmasi Passwordnya',
+    //         'password.min' => 'Password Minimal :min Angka/Huruf' 
+    //     ];
+    //     $data = $request->validate([
+    //         'name' => 'required|min:3|max:255|string',
+    //         'nomor' => 'required|min:10|unique:users,nomor',
+    //         'jenis_kelamin' => 'required|string',
+    //         'tanggal_lahir' => 'required|date',
+    //         'password'       => 'required|min:6|same:password_again',
+    //         'password_again' => 'required'
+    //     ],$messages);
+    //     $notify = Notify::firstOrFail(); // Mengambil entitas notifikasi pertama
+    //     $data['notify_id'] = $notify->id;
+    //     $data['password'] = bcrypt($request->password);
+    //     $data['token'] = rand(111111,999999);
+    //     $data['nomor'] = $phone;
+        
+    //     $user = User::create($data);
+    
+    //     $notif_otp = $notify->notif_otp;
+    //     $messages = $notif_otp . $user->token;
+            
+    //     $this->send_message($user->nomor, $messages); 
 
-        $data = $request->validate([
-            'name' => 'required|min:3|max:255|string',
-            'email' => 'required|email',
-            'nomor' => 'required|min:10',
-            'jenis_kelamin' => 'required|string',
-            'tanggal_lahir' => 'required|date',
-            'password' => 'required|min:8',
-        ]);
-
-        $user = User::create($data);
-
-        try{
-            Auth::login($user);
-            return redirect()->route('admin.index');
-        }catch (\Throwable $th){
-            throw $th;
-            return redirect()->withInput();
-        }
-        return back()->withInput();
-    }
+    //     try{
+    //         Auth::login($user);
+    //         return redirect()->route('front');
+    //     }catch (\Throwable $th){
+    //         throw $th;
+    //         return redirect()->withInput();
+    //     }
+    //     return back()->withInput();
+    // }
 
     public function logout()
     {

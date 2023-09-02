@@ -101,72 +101,72 @@ class BiodataController extends Controller
         return view('pages.admin.dashboard.biodata.create');
     }
 
-    public function store(Request $request)
-    {
-        $phone = $request->nomor;
-        if (Str::startsWith($phone, '0')) {
-            $phone = '62' . substr($phone, 1);
-        }
-        $data = $request->validate([
-            'name' => 'required|string',
-            'nomor' => 'required',
-            'password' => 'required',
-            'tanggal_lahir' => 'required',
-            'jenis_kelamin' => 'required'
-        ]);
-        $data['password'] = bcrypt($request->password);
-        $data['token'] = rand(111111,999999);
-        $data['nomor'] = $phone;
+    // public function store(Request $request)
+    // {
+    //     $phone = $request->nomor;
+    //     if (Str::startsWith($phone, '0')) {
+    //         $phone = '62' . substr($phone, 1);
+    //     }
+    //     $data = $request->validate([
+    //         'name' => 'required|string',
+    //         'nomor' => 'required',
+    //         'password' => 'required',
+    //         'tanggal_lahir' => 'required',
+    //         'jenis_kelamin' => 'required'
+    //     ]);
+    //     $data['password'] = bcrypt($request->password);
+    //     $data['token'] = rand(111111,999999);
+    //     $data['nomor'] = $phone;
         
-        $user = User::create($data);
+    //     $user = User::create($data);
 
-        $messages = "Akun Kamu Di Buatkan Oleh Admin Ini Kode Kamu Jika Ingin Melanjutkan Pendaftaran $user->token";
+    //     $messages = "Akun Kamu Di Buatkan Oleh Admin Ini Kode Kamu Jika Ingin Melanjutkan Pendaftaran $user->token";
 
-        $this->send_message($user->nomor,$messages);
+    //     $this->send_message($user->nomor,$messages);
 
-        // $pendaftaran = $request->validate([
-        //     'nik' => 'required',
-        //     'nama_ayah' => 'required',
-        //     'no_ayah' => 'required',
-        //     'nama_ibu' => 'required',
-        //     'no_ibu' => 'required',
-        //     'alamat' => 'required'
-        // ]);
-        // $pendaftaran['user_id'] = Auth::user()->id;
-        // Pendaftaran::create($pendaftaran);
+    //     // $pendaftaran = $request->validate([
+    //     //     'nik' => 'required',
+    //     //     'nama_ayah' => 'required',
+    //     //     'no_ayah' => 'required',
+    //     //     'nama_ibu' => 'required',
+    //     //     'no_ibu' => 'required',
+    //     //     'alamat' => 'required'
+    //     // ]);
+    //     // $pendaftaran['user_id'] = Auth::user()->id;
+    //     // Pendaftaran::create($pendaftaran);
 
-        // $request->validate([
-        //     'kk' => 'required|mimes:pdf|max:2048', // Kartu Keluarga
-        //     'ijazah' => 'required|mimes:pdf|max:2048', // Ijazah
-        //     'akta' => 'required|mimes:pdf|max:2048', // Akta
-        // ]);
+    //     // $request->validate([
+    //     //     'kk' => 'required|mimes:pdf|max:2048', // Kartu Keluarga
+    //     //     'ijazah' => 'required|mimes:pdf|max:2048', // Ijazah
+    //     //     'akta' => 'required|mimes:pdf|max:2048', // Akta
+    //     // ]);
     
-        // if ($request->hasFile('kk') && $request->hasFile('ijazah') && $request->hasFile('akta')) {
-        //     $kkFile = $request->file('kk');
-        //     $ijazahFile = $request->file('ijazah');
-        //     $aktaFile = $request->file('akta');
+    //     // if ($request->hasFile('kk') && $request->hasFile('ijazah') && $request->hasFile('akta')) {
+    //     //     $kkFile = $request->file('kk');
+    //     //     $ijazahFile = $request->file('ijazah');
+    //     //     $aktaFile = $request->file('akta');
     
-        //     $kkFileName = time() . '_kk_' . $kkFile->getClientOriginalName();
-        //     $ijazahFileName = time() . '_ijazah_' . $ijazahFile->getClientOriginalName();
-        //     $aktaFileName = time() . '_akta_' . $aktaFile->getClientOriginalName();
+    //     //     $kkFileName = time() . '_kk_' . $kkFile->getClientOriginalName();
+    //     //     $ijazahFileName = time() . '_ijazah_' . $ijazahFile->getClientOriginalName();
+    //     //     $aktaFileName = time() . '_akta_' . $aktaFile->getClientOriginalName();
     
-        //     $kkFile->storeAs('public/pdf', $kkFileName);
-        //     $ijazahFile->storeAs('public/pdf', $ijazahFileName);
-        //     $aktaFile->storeAs('public/pdf', $aktaFileName);
+    //     //     $kkFile->storeAs('public/pdf', $kkFileName);
+    //     //     $ijazahFile->storeAs('public/pdf', $ijazahFileName);
+    //     //     $aktaFile->storeAs('public/pdf', $aktaFileName);
     
-        //     // Proses penyimpanan informasi ke database
-        //     $data = [
-        //         'kk' => 'pdf/' . $kkFileName,
-        //         'ijazah' => 'pdf/' . $ijazahFileName,
-        //         'akta' => 'pdf/' . $aktaFileName,
-        //     ];
+    //     //     // Proses penyimpanan informasi ke database
+    //     //     $data = [
+    //     //         'kk' => 'pdf/' . $kkFileName,
+    //     //         'ijazah' => 'pdf/' . $ijazahFileName,
+    //     //         'akta' => 'pdf/' . $aktaFileName,
+    //     //     ];
             
-        //     $data['user_id'] = Auth::user()->id;
+    //     //     $data['user_id'] = Auth::user()->id;
             
-        //     Document::create($data);
+    //     //     Document::create($data);
 
-            return redirect()->route('admin.biodata.index')->with('success','Berhasil Menambahkan Pendaftaran');
-    }
+    //         return redirect()->route('admin.biodata.index')->with('success','Berhasil Menambahkan Pendaftaran');
+    // }
 
     public function destroy($id)
     {     

@@ -59,34 +59,6 @@
                           <td>{{$item->name}}</td>
                           <td>{{$item->user->name}}</td>
                           <td>
-                            {{-- <!-- Button trigger modal -->
-                            <button type="button" class="badge badge-primary border-0" data-toggle="modal" data-target="#exampleModalLong">
-                              Show
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                              <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Detail Category</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <label for="">Pembuat</label>
-                                    <input type="text" disabled value="{{$category->name}}">
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div> --}}
-
-
                             <!--Tombol edit-->
                             <button type="button" class="badge badge-warning border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Edit

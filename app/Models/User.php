@@ -82,6 +82,6 @@ class User extends Authenticatable
 
     public function notifys()
     {
-        return $this->belongsTo(Notify::class);
+        return $this->belongsTo(Notify::class,'notify_id');
     }
 }

@@ -1,12 +1,12 @@
 @extends('pages.admin.dashboard.layouts.parent')
 
-@section('title','Data Valid')
+@section('title','Peserta')
 
 @section('content')
 <div class="main-panel">
     <div class="content">
       <div class="container-fluid">
-        <h4 class="page-title">Pendaftaran</h4>
+        <h4 class="page-title">Peserta</h4>
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
               {{session('success')}}
@@ -28,8 +28,8 @@
             <div class="card">
               <div class="card-header">
                 <div class="d-flex justify-content-between">
-                  <div class="card-title">Pendaftaran Table</div>
-                  <a href="{{route('admin.document.create')}}" class="btn btn-primary float-end text-white">Create New</a>
+                  <div class="card-title">Peserta Table</div>
+                  {{-- <a href="{{route('admin.document.create')}}" class="btn btn-primary float-end text-white">Create New</a> --}}
                 </div>
               </div>
               <div class="card-body">
@@ -98,7 +98,7 @@
                             @if($item->student == NULL)
                             <a href="" class="badge badge-danger">Tidak Ada Data</a>
                             @else
-                            <a href="{{route('admin.biodata.show',$item->student->id)}}" class="badge badge-primary">Data Pribadi</a>
+                            <a href="{{route('admin.pendaftaran.show',$item->id)}}" class="badge badge-primary">Data Pribadi</a>
                             @endif
                             @if ($item->document) 
                             <a href="{{route('admin.biodata.show_document',$item->document->id)}}" class="badge badge-warning">Document</a>

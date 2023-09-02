@@ -4,31 +4,6 @@
 
 @section('content')
 <main class="w-full min-h-screen h-auto pt-12 md:pt-24">
-    {{-- <!-- alert -->
-    <section id="alertProfile" class="w-full pt-3 pb-2 px-10 lg:px-60 bg-gradient-to-b from-primer to-sky-900 flex flex-col justify-center items-center gap-5">
-        <div class="flex justify-between items-center w-full py-1 px-5 bg-berhasil text-dasar rounded-full">
-            <p class="">Pesan Sukses!</p>
-            <span role="button" id="closeAlert" onclick="document.getElementById('alertProfile').classList.add('hidden')" 
-                class="px-1.5 rounded-full border border-dasar hover:bg-dasar text-dasar hover:text-primer duration-200">
-                &#10006;
-            </span>
-        </div>
-        <div class="flex justify-between items-center w-full py-1 px-5 bg-larangan text-dasar rounded-full">
-            <p class="">Pesan Gagal!</p>
-            <span role="button" id="closeAlert" onclick="document.getElementById('alertProfile').classList.add('hidden')" 
-                class="px-1.5 rounded-full border border-dasar hover:bg-dasar text-dasar hover:text-primer duration-200">
-                &#10006;
-            </span>
-        </div>
-        <div class="flex justify-between items-center w-full py-1 px-5 bg-peringatan text-primer rounded-full">
-            <p class="">Pesan Pemberitahuan!</p>
-            <span role="button" id="closeAlert" onclick="document.getElementById('alertProfile').classList.add('hidden')" 
-                class="px-1.5 rounded-full border border-primer hover:bg-primer text-primer hover:text-dasar duration-200">
-                &#10006;
-            </span>
-        </div>
-    </section> --}}
-
     <!-- content biodata -->
     <section class="w-full flex flex-wrap justify-center items-start px-10 md:px-20 pt-10 pb-14 gap-10">
         @if (!$user->student)

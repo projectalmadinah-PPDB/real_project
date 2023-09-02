@@ -1,12 +1,12 @@
 @extends('pages.admin.dashboard.layouts.parent')
 
-@section('title','Biodata')
+@section('title','Pendaftar')
 
 @section('content')
 <div class="main-panel">
     <div class="content">
       <div class="container-fluid">
-        <h4 class="page-title">Pendaftaran</h4>
+        <h4 class="page-title">Pendaftar</h4>
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
               {{session('success')}}
@@ -28,8 +28,8 @@
             <div class="card">
               <div class="card-header">
                 <div class="d-flex justify-content-between">
-                  <div class="card-title">Pendaftaran Table</div>
-                  <a href="{{route('admin.biodata.create')}}" class="btn btn-primary float-end text-white">Create New</a>
+                  <div class="card-title">Pendaftar Table</div>
+                  {{-- <a href="{{route('admin.biodata.create')}}" class="btn btn-primary float-end text-white">Create New</a> --}}
                 </div>
               </div>
               <div class="card-body">

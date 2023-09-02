@@ -1,5 +1,5 @@
-<aside class="sidebar pb-5">
-	<div class="scrollbar-inner sidebar-wrapper pb-5">
+<aside class="sidebar ">
+	<div class="scrollbar-inner sidebar-wrapper">
 		<div class="user">
 			<div class="photo">
 				<img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60">
@@ -107,7 +107,7 @@
 
 			
 			<li class="nav-item
-			 {{ Route::is('admin.article.*') ? 'active' : '' }}
+      {{ (Route::is('admin.article.*') || Route::is('admin.category.*')) ? 'active' : '' }}
 			 ">
 				<a href="#collapseArticles" data-toggle="collapse" aria-expanded="true" class="py-1 px-3">
 					<i class="bi bi-people"></i>
@@ -120,7 +120,7 @@
 			<div class="collapse in" id="collapseArticles">
 				<ul class="ps-3 list-group list-group-flush">
 					<li class="list-group-item py-1">
-						<a href="{{ route('admin.article.create') }}" class="nav-link link-secondary fw-bold {{ Route::is('admin.article.create') ? 'text-primary' : '' }}">
+						<a href="{{ route('admin.article.create') }}" class="nav-link link-secondary fw-bold" {{ Route::is('admin.article.create') ? 'text-primary' : '' }}>
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Tambah Artikel</span>
 						</a>
@@ -132,7 +132,7 @@
 						</a>
 					</li>
 					<li class="list-group-item py-1">
-						<a href="" class="nav-link link-secondary fw-bold">
+						<a href="{{route('admin.category.index')}}" class="nav-link link-secondary fw-bold {{ Route::is('admin.category.*') ? 'text-primary' : '' }}" >
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Kategori</span>
 						</a>
@@ -149,20 +149,33 @@
 					<p>Laporan</p>
 				</a>
 			</li>
+			
 
-			<li class="nav-item
-			 {{-- {{ Route::is('admin.document.*') ? 'active' : '' }} --}}
+			{{-- <li class="nav-item
+      {{ (Route::is('admin.setting.*') || Route::is('admin.category.*')) ? 'active' : '' }}
 			 ">
 				<a href="#collapseSettings" data-toggle="collapse" aria-expanded="true" class="py-1 px-3">
 					<i class="bi bi-people"></i>
-					<p>Pengaturan</p>
+					<p>Artikel</p>
 					<i class="bi bi-caret-down-fill position-absolute end-0" style="font-size: 11px"></i>
+				</a>
+			</li> --}}
+			<li class="nav-item {{ (Route::is('admin.setting.*') || Route::is('admin.setting.profile.*')) ? 'active' : '' }} pb-3">
+				<a href="#collapseSettings" data-toggle="collapse" aria-expanded="true" class="py-1 px-3">
+					<i class="bi bi-credit-card"></i>
+					<p>Setting</p>
 				</a>
 			</li>
 
 			{{-- collapse settings --}}
 			<div class="collapse in mb-5" id="collapseSettings">
 				<ul class="ps-3 list-group list-group-flush">
+					<li class="list-group-item py-1">
+						<a href="{{route('admin.setting.profile.index')}}" class="nav-link link-secondary fw-bold {{ Route::is('admin.setting.profile.index') ? 'text-primary' : '' }}">
+							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
+							<span class="ms-2 link-collapse">Profile</span>
+						</a>
+					</li>
 					<li class="list-group-item py-1">
 						<a href="" class="nav-link link-secondary fw-bold">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
@@ -176,7 +189,7 @@
 						</a>
 					</li>
 					<li class="list-group-item py-1">
-						<a href="" class="nav-link link-secondary fw-bold">
+						<a href="{{route('admin.setting.notify.index')}}" class="nav-link link-secondary fw-bold">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Notifikasi</span>
 						</a>

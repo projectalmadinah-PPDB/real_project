@@ -129,22 +129,23 @@ class UserController extends Controller
     ];
 
     $user = User::where('nomor',$phone)->first();
-
+    $notif = User::find($user->id);
     if($user->active == 0){
          return redirect()->route('user.activication')->with('gagal','Kamu Harus Mengisi Kode OTP Yang Dikirim');
     }
     if (Auth::attempt($infologin)) {
-        // if(auth()->user()->role == 'user'){
-        //     $request->session()->regenerate();
-        //     $messages = "Yey Kamu Berhasil Login Apa Yang Kamu Mau Lanjutkan ?";
+        if(auth()->user()->role == 'user'){
+            $request->session()->regenerate();
+            
+            $messages = $notif->notifys->notif_pembayaran;
 
-        //     $this->send_message($phone,$messages);
-        //     return redirect()->route('user.dashboard')->with('success','Yey Berhasil Login');
-        // }else{ 
-        //     return back()->withErrors([
-        //         'nomor' => 'Kamu Bukan User'
-        //     ])->onlyInput('nomor');
-        // }
+            $this->send_message($phone,$messages);
+            return redirect()->route('user.dashboard')->with('success','Yey Berhasil Login');
+        }else{ 
+            return back()->withErrors([
+                'nomor' => 'Kamu Bukan User'
+            ])->onlyInput('nomor');
+        }
         if(auth()->user()->role == 'user'){
             $request->session()->regenerate();
             return redirect()->route('user.dashboard');
@@ -165,7 +166,7 @@ class UserController extends Controller
         return view('front.register');
     }
 
-    public function register(Request $request)
+    public function register_proses(Request $request)
     {
     $phone = $request->nomor;
     if (Str::startsWith($phone, '0')) {
@@ -209,14 +210,9 @@ class UserController extends Controller
     $notif_otp = $notify->notif_otp;
     $messages = $notif_otp . $user->token;
         
-    $this->send_message($user->nomor, $messages);
-    
-    
-    
-    // auth()->login($user);
-    // $this->sendEmailVerification();
-
-    return redirect()->route('user.activication')->with('verif','Kami Sudah Mengirim Kode OTP Silahkan Cek Nomor Whatshap Anda');
+    $this->send_message($user->nomor, $messages);    
+     
+    return redirect()->route('user.activication');
     }
 
     public function activication()

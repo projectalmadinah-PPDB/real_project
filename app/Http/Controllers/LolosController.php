@@ -27,17 +27,19 @@ class LolosController extends Controller
     public function pengecekan(Request $request,$id)
     {
         // dd($request->all());
+        $notif = User::where('notify_id',$id)->first();
         $student = Student::find($id);
         $data = $request->validate([
             'status' => 'required|in:lolos,gagal'
         ]);
         $student->update($data);
         if($student->status == 'lolos'){
-            $messages = "Yey Kamu Di Nyatakan Lolos Oleh Pihak Sekolah Semalat Yah";
+
+            $messages = $notif->notifys->notif_lolos;
     
             $this->send_message($student->user->nomor,$messages);
         }else{
-            $messages = "Yah Kamu Gagal Mohon Bersabar Yah Menunggu 1Tahun Lagi";
+            $messages = $notif->notifys->gagal;
 
             $this->send_message($student->user->nomor,$messages);
         }
