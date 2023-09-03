@@ -26,17 +26,17 @@ class AdminSeeder extends Seeder
         'jenis_kelamin' => 'Laki-Laki'
    ];
 
-   $user = [
-    'name' => 'Admin',
-    'email' => 'admins`@email.com',
-    'nomor' => '628388001585',
-    'password' => bcrypt('12345678'),
-    'active' => 1,
-    'role' => 'user',
-    'token' => rand(111111, 999999),
-    'tanggal_lahir' => date('Y-m-d H:i:s'), // Ubah format tanggal di sini
-    'jenis_kelamin' => 'Laki-Laki'
-];
+//    $user = [
+//     'name' => 'Admin',
+//     'email' => 'admins@email.com',
+//     'nomor' => '628388001585',
+//     'password' => bcrypt('12345678'),
+//     'active' => 1,
+//     'role' => 'user',
+//     'token' => rand(111111, 999999),
+//     'tanggal_lahir' => date('Y-m-d H:i:s'), // Ubah format tanggal di sini
+//     'jenis_kelamin' => 'Laki-Laki'
+// ];
    User::create($user);
 }
 }

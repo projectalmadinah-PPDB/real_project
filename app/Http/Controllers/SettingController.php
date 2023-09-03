@@ -51,7 +51,7 @@ class SettingController extends Controller
         // dd($data);
 
         $generals->update($data);
-        return redirect()->route('admin.settings.general', compact('generals'));
+        return redirect()->route('admin.settings.general', compact('generals'))->with('tersimpan', true);
     }
 
     public function profile()

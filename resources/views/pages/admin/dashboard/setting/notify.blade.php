@@ -49,7 +49,7 @@
                                 <textarea name="notif_gagal" id="" class="form-control">{{$notif->notif_gagal}}</textarea>
                             </div>
                             <div class="mb-2">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" id="btnSubmit" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -64,6 +64,17 @@
                             
                         </div>
                     </div>
+                    
+                    <script>
+                      const textareas = document.querySelectorAll('textarea');
+                      const btnSubmit = document.querySelector('#btnSubmit');
+
+                      textareas.forEach(textarea => {
+                        textarea.addEventListener('change', function () {
+                          btnSubmit.setAttribute('type', 'submit');
+                        })
+                      })
+                    </script>
                 </form>
               </div>
             </div>

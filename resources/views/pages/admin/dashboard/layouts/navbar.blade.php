@@ -1,6 +1,6 @@
 <div class="main-header">
     <div class="logo-header">
-        <a href="{{ route('front') }}" class="logo fw-bolder text-dark nav-link">
+        <a href="{{ route('front') }}" class="logo fw-bolder text-dark nav-link pt-0">
             <img src="{{ asset('storage/' . App\Models\General::first()->school_logo) }}" height="35px" draggable="false">
             {{ App\Models\General::first()->school_name }}
         </a>
@@ -22,19 +22,13 @@
                                 </div>
                                 <div class="u-text">
                                     <h4>{{Auth::user()->name}}</h4>
-                                    <p class="text-muted">hello@themekita.com</p>
-                                    <a href="profile.html" class="btn btn-rounded btn-danger btn-sm"
-                                    >View Profile</a>
+                                    <p class="text-muted">{{ Auth::user()->email }}</p>
                                 </div>
                                 </div>
                             </li>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="">
+                            <a class="dropdown-item" href="{{ route('admin.setting.profile.index') }}">
                                 <i class="ti-user"></i> My Profile
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="">
-                                <i class="ti-settings"></i> Account Setting
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{route('admin.logout')}}">

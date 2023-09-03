@@ -35,7 +35,7 @@
                     
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <form action="{{route('admin.setting.profile.update',$profile->id)}}" method="post">
+                        <form action="{{route('admin.setting.profile.update', $profile->id)}}" method="post">
                         @csrf
                         @method('PUT')
                         <div class="modal-dialog">

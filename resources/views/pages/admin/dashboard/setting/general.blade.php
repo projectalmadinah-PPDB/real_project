@@ -7,6 +7,12 @@
 	<div class="content">
 		<div class="container-fluid">
 			<h4 class="page-title">Pengaturan Umum</h4>
+      @if (session('tersimpan'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Yeyy!</strong> Perubahan kamu berhasil disimpan.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      @endif
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
@@ -48,9 +54,20 @@
                         </div>
                       </div>
                     <div class="card-action">
-                      <button class="btn btn-success" type="submit">Submit</button>
+                      <button id="btnSubmit" class="btn btn-success" type="button">Submit</button>
                     </div>  
                 </div>
+                
+                <script>
+                  const inputs = document.querySelectorAll('input, textarea');
+                  const btnSubmit = document.querySelector('#btnSubmit');
+
+                  inputs.forEach(input => {
+                    input.addEventListener('change', function () {
+                      btnSubmit.setAttribute('type', 'submit');
+                    })
+                  })
+              </script>
             </form>
 						</div>
 					</div>

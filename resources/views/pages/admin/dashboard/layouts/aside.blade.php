@@ -1,4 +1,4 @@
-<aside class="sidebar ">
+<aside class="sidebar pb-5 ">
 	<div class="scrollbar-inner sidebar-wrapper">
 		<div class="user">
 			<div class="photo">
@@ -152,8 +152,9 @@
 
 			<li class="nav-item {{ (Route::is('admin.setting.*') || Route::is('admin.settings.*') || Route::is('admin.setting.profile.*')) ? 'active' : '' }} pb-3">
 				<a href="#collapseSettings" data-toggle="collapse" aria-expanded="true" class="py-1 px-3">
-					<i class="bi bi-credit-card"></i>
-					<p>Pengaturan</p>
+					<i class="bi bi-sliders"></i>
+					<p>Settings</p>
+					<i class="bi bi-caret-down-fill position-absolute end-0" style="font-size: 11px"></i>
 				</a>
 			</li>
 
@@ -167,7 +168,7 @@
 						</a>
 					</li>
 					<li class="list-group-item py-1">
-						<a href="" class="nav-link link-secondary fw-bold">
+						<a href="{{route('admin.settings.general')}}" class="nav-link link-secondary fw-bold {{ Route::is('admin.settings.general') ? 'text-primary' : '' }}">
 							<i class="bi bi-caret-right-fill" style="font-size: 11px"></i>
 							<span class="ms-2 link-collapse">Pengaturan Umum</span>
 						</a>
