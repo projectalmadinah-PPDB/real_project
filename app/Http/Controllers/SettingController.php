@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\General;
 use App\Models\User;
 use App\Traits\Fonnte;
 use Illuminate\Http\Request;
@@ -23,7 +24,34 @@ class SettingController extends Controller
 
     public function general()
     {
-        return view('pages.admin.dashboard.setting.general');
+        $generals = General::first();
+        return view('pages.admin.dashboard.setting.general', compact('generals'));
+    }
+
+    public function update_general(Request $request)
+    {
+        $generals = General::first();
+
+        $data = $request->validate([
+            'school_name' => 'required|string',
+            'school_logo' => 'max:8192',
+            'school_email' => 'required|email|max:255',
+            'school_phone' => 'string|max:16',
+            'school_address' => 'required',
+            'desc' => 'required'
+        ]);
+
+        if ($request->school_logo) {
+            $logo = $request->file('school_logo')->store('logo', 'public');
+            $data['school_logo'] = $logo;
+        } else {
+            $data['school_logo'] = $generals->school_logo;
+        }
+
+        // dd($data);
+
+        $generals->update($data);
+        return redirect()->route('admin.settings.general', compact('generals'));
     }
 
     public function profile()

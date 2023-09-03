@@ -22,19 +22,19 @@
                   <div>
                     <label for="">Kartu Keluarga</label>
                     <object data="{{ asset('storage/' . $document->kk) }}" type="application/pdf" width="100%" height="600px">
-                      <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->kk) }}">mengunduh file PDF</a> sebagai alternatif.</p>
+                      <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->kk) }}" target="_blank">mengunduh file PDF</a> sebagai alternatif.</p>
                   </object>
                   </div>
                   <div>
                     <label for="">Ijazah</label>
                     <object data="{{ asset('storage/' . $document->ijazah) }}" type="application/pdf" width="100%" height="600px">
-                      <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->kk) }}">mengunduh file PDF</a> sebagai alternatif.</p>
+                      <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->ijazah) }}" target="_blank">mengunduh file PDF</a> sebagai alternatif.</p>
                   </object>
                   </div>
                   <div>
-                    <label for="">Akta</label>
+                    <label for="">Akte Kelahiran</label>
                     <object data="{{ asset('storage/' . $document->akta) }}" type="application/pdf" width="100%" height="600px">
-                      <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->kk) }}">mengunduh file PDF</a> sebagai alternatif.</p>
+                      <p>Maaf, browser Anda tidak mendukung tampilan PDF. Anda bisa <a href="{{ asset('storage/' . $document->akta) }}" target="_blank">mengunduh file PDF</a> sebagai alternatif.</p>
                   </object>
                   </div>
                 </div>

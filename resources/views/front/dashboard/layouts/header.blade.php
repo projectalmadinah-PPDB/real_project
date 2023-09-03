@@ -3,8 +3,8 @@
             <!-- logo -->
             <a href="index.html"
                 class="p-2 flex gap-2 items-center">
-                <img id="logo" class="h-8 md:h-9" src="/dists/images/logo_only_white.svg">
-                <span class="font-extrabold text-xl hidden sm:block text-primer">AR-ROMUSHA</span>
+                <img id="logo" class="h-8 md:h-9" src="{{ asset('storage/' . App\Models\General::first()->school_logo) }}">
+                <span class="font-extrabold text-xl hidden sm:block text-primer">{{ App\Models\General::first()->school_name }}</span>
             </a>
 
             <div class="flex justify-end items-center gap-x-2">

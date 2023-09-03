@@ -56,7 +56,7 @@
                 </a>
 
                 <a href="#" class="w-20 mx-8">
-                    <img src="./images/logo_only_currentColor.svg">
+                    <img src="{{ asset('storage/' . App\Models\General::first()->school_logo) }}">
                 </a>
         
                 <!-- isntagram -->
@@ -117,7 +117,7 @@
             class="p-4 text-center text-xs bg-black/50">
             © 2023 - 
             <a class="text-white tracking-wide" href="https://tailwind-elements.com/"
-                >Sekolah Ar-Romusha</a
+                >Sekolah {{ App\Models\General::first()->school_name }}</a
             >
         </div>
     </footer>

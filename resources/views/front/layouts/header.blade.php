@@ -3,10 +3,10 @@
         <nav 
         class="z-[1000] w-full bg-white backdrop-blur-md px-5 sm:px-7 md:px-10 border-b border-sekunder/20 fixed flex justify-between items-center">
         <!-- logo -->
-        <a href="index.html"
+        <a href="{{ route('front') }}"
             class="p-2 flex gap-2 items-center">
-            <img id="logo" class="h-8 md:h-9" src="/dists/images/logo_only.svg">
-            <span class="font-extrabold text-xl hidden sm:block text-primer">AR-ROMUSHA</span>
+            <img id="logo" class="h-8 md:h-9" src="{{ asset('storage/' . App\Models\General::first()->school_logo) }}">
+            <span class="font-extrabold text-xl hidden sm:block text-primer">{{ App\Models\General::first()->school_name }}</span>
         </a>
 
         <!-- pc menu -->
@@ -15,9 +15,11 @@
             <a href="{{route('front')}}" 
                 class="text-sm p-2 {{Route::is('front') ? 'nav-active' : '' }}"
             >Home</a>
-            <a href="{{route('user.show')}}" 
-                class="text-sm p-2 {{Route::is('user.show') ? 'nav-active' : '' }}"
-            >Daftar</a>
+            @guest
+                <a href="{{route('user.show')}}" 
+                    class="text-sm p-2 {{Route::is('user.show') ? 'nav-active' : '' }}"
+                >Daftar</a>
+            @endguest
             <a href="{{route('user.informasi')}}" 
                 class="text-sm p-2 {{Route::is('user.informasi.*') ? 'nav-active' : '' }}"
             >Informasi</a>
@@ -27,9 +29,21 @@
             <a href="" 
                 class="text-sm p-2"
             >Q&A</a>
-            <a href="{{route('user.index')}}" 
-                class="text-sm p-2 border-[1.5px] border-sekunder text-sekunder font-semibold ms-3 hover:bg-sekunder hover:text-white duration-200 {{Route::is('user.index') ? 'nav-active' : '' }}"
-            >Login</a>
+            @auth
+                @if (Auth::user()->role == 'admin')
+                <a href="{{route('admin.admin.dashboard')}}" 
+                    class="text-sm p-2 border-[1.5px] border-sekunder text-sekunder font-semibold ms-3 hover:bg-sekunder hover:text-white duration-200 {{Route::is('admin.admin.dashboard') ? 'nav-active' : '' }}"
+                >Dashboard</a>
+                @elseif (Auth::user()->role == 'user')
+                <a href="{{route('user.dashboard')}}" 
+                    class="text-sm p-2 border-[1.5px] border-sekunder text-sekunder font-semibold ms-3 hover:bg-sekunder hover:text-white duration-200 {{Route::is('user.dashboard') ? 'nav-active' : '' }}"
+                >Dashboard</a>
+                @endif
+            @else
+                <a href="{{route('user.index')}}" 
+                    class="text-sm p-2 border-[1.5px] border-sekunder text-sekunder font-semibold ms-3 hover:bg-sekunder hover:text-white duration-200 {{Route::is('user.index') ? 'nav-active' : '' }}"
+                >Login</a>
+            @endauth
         </div>
         <!-- mobile menu button -->
         <label class="md:hidden pointer-events-auto" for="swapHamburger">
